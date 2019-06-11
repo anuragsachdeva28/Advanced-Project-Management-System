@@ -9,7 +9,7 @@ class App extends Component {
         <div className="App">
           <Sidebar />
           <Main/>
-          </div>
+        </div>
       </BrowserRouter>
     );
   }
