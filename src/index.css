@@ -1,0 +1,14 @@
+body,html {
+    margin: 0;
+    padding: 0;
+    height:100%;
+    width:100%;
+    font-family: Roboto;
+}
+.App,#root{
+    height:100%;
+    width:100%;
+}
+.App{
+    display:flex;
+}
