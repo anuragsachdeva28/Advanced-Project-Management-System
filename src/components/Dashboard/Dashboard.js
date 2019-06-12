@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import ContestList from './ContestList/ContestList';
 import ContestTypes from './ContestTypes/ContestTypes';
+import './dashboard.css';
 
 class Dashboard extends Component{
     constructor(props) {
@@ -21,12 +22,24 @@ class Dashboard extends Component{
     render() {
         return (
             <Fragment>
-                <h1>Contests</h1>  
-                <ContestTypes
+                <p className="para_client" >Client List</p>
+                <br />
+                <button className="add_new" type="button"> <span>+</span> add new </button>
+                <br />
+
+                <div className="client_list">
+                    <p>Mark and Spencer</p>
+                    <p>Mark and Spencer</p>
+                    <p>Mark and Spencer</p>
+                    <p>Mark and Spencer</p>
+                    <p>Mark and Spencer</p>
+                </div>
+
+                {/* <ContestTypes
                     types={this.types}
                     onActive = {this.onActive}
                 /> 
-                <ContestList activeParameter={this.state.activeParameter}/>
+                <ContestList activeParameter={this.state.activeParameter}/> */}
             </Fragment>
         )
     }

@@ -1,0 +1,34 @@
+.para_client{
+    font-size: 14px;
+    line-height: 14px;
+    color: rgba(0, 0, 0, 0.54);
+    font-weight: 600; 
+    opacity: 0.84;
+}
+
+.add_new{
+    background: #6053F5;
+    color: white;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    width: 90%;
+    height: 5%;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
+    /* font-weight: bold; */
+    font-size: initial;
+}
+
+.add_new span{
+    font-weight: bold;
+    font-size: large;
+}
+
+.client_list{
+    font-size: 16px;
+    line-height: 30px;
+    /* display: flex; */
+    align-items: center;
+
+    color: rgba(0, 0, 0, 0.54);
+}
