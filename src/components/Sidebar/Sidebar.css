@@ -1,10 +1,15 @@
 .sidebar{
-    width:60px;
+    width:8%;
     height:100%;
     box-shadow:0 0 10px rgba(0,0,0,0.3);
     float:left; 
-    transition:0.3s;
+    background: black;
+    /* transition:0.3s; */
 }
-.sidebar.active{
-    width:400px;
+
+.logo{
+    height: 8%;
+    width: 40%;
+    padding: 30%;
+    cursor: pointer;
 }

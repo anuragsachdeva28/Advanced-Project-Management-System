@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import Main from './components/Main/Main';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+// import Main from './components/Main/Main';
 import Sidebar from './components/Sidebar/Sidebar';
+import SignIn from './components/SignIn/SignIn'
+
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
+      <Router>
         <div className="App">
-          <Sidebar />
-          <Main/>
+          
+          <Route path="/" exact component={Sidebar} />
+          {/* <Route path="/" exact component={Main} /> */}
+          
+          <Route path="/sign-in" component={SignIn} />
         </div>
-      </BrowserRouter>
+      </Router>
     );
   }
 }

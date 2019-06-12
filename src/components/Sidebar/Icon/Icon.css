@@ -7,16 +7,21 @@
     overflow:hidden;
     cursor:pointer;
 }
-.icon-component:hover .icon,.icon-component:hover .title{
+/* .icon-component:hover .icon,.icon-component:hover .title{
     background:#eee;
-}
+} */
 .icon{
     height:100%;
     float:left;
-    background:#fff;
-    min-width:60px;
+    background:black;
+    width:100%;
+    color: rgba(193, 193, 209, 0.84);;
 }
-.title{
+.fa{
+    font-size: x-large;
+    /* color: rgba(193, 193, 209, 0.84); */
+}
+/* .title{
     width:calc(100% - 60px);
     background:#fff;
     display:none;
@@ -24,7 +29,7 @@
     text-align:left;
     padding:0 30px;
     box-sizing: border-box;
-}
+} */
 .sidebar.active .title{
     display:block;
 }
