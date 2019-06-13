@@ -35,6 +35,9 @@ class Main extends Component {
 
                     <div className="cards">
                         <CardList />
+                        <CardList />
+                        <CardList />
+                        <CardList />
 
                     </div>
                     

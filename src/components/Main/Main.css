@@ -120,7 +120,12 @@ input[type="file"] {
     min-width: 278px;
     background: #FFFFFF;
     box-shadow: 4px 0px 16px rgba(0, 0, 0, 0.12);
+    overflow: scroll  ;
 }
+
+.projAside::-webkit-scrollbar { 
+    display: none; 
+} 
 
 .projHeader{
     display: flex;
@@ -171,10 +176,12 @@ input[type="file"] {
 }
 
 .cards{
-    padding: 8%;
+    /* padding: 8%; */
+    /* overflow: scroll; */
 }
 
 .cardLayout {
+    margin:8%;
     border: 1px solid #6153F5;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.24);
 }
