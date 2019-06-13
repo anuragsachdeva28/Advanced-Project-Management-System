@@ -4,6 +4,7 @@
     color: rgba(0, 0, 0, 0.54);
     font-weight: 600; 
     opacity: 0.84;
+    margin-bottom: 0;
 }
 
 .add_new{
@@ -17,6 +18,8 @@
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
     /* font-weight: bold; */
     font-size: initial;
+    min-height: 28px;
+    max-height: 28px;
 }
 
 .add_new span{
