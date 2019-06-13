@@ -10,8 +10,8 @@ class App extends Component {
       <Router>
         <div className="App">
           
-          <Route path="/" exact component={Sidebar} />
-          <Route path="/" exact component={Main} />
+          <Route path="/Clients" component={Sidebar} />
+          <Route path="/Clients" component={Main} />
           
           <Route path="/sign-in" component={SignIn} />
         </div>

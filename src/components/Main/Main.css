@@ -9,14 +9,14 @@
     width: 15%;
     height: 100%;
     min-width: 180px;
-    padding: 2%;
+    /* padding: 2%;  */
     padding-top: 20px;
     padding-bottom: 0;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     overflow: auto;
-    background: rgba(193, 193, 209, 0.84);
+    background: rgba(193, 193, 209, 0.14);
 }
 
 .mainAside{
@@ -113,4 +113,94 @@
 }
 input[type="file"] {
     display: none;
+}
+
+.projAside {
+    width: 22%;
+    min-width: 278px;
+    background: #FFFFFF;
+    box-shadow: 4px 0px 16px rgba(0, 0, 0, 0.12);
+}
+
+.projHeader{
+    display: flex;
+    justify-content: space-between;
+    height: 15%;
+    width: 100%;
+    background: #6053F5;
+    color: white;
+    font-size: 14px;
+    min-height: 64px;
+    max-height: 64px;
+}
+
+.projHeaderName{
+    padding-left: 8%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.projList {
+    padding: 0;
+    margin: 0;
+    /* padding-left: 8%; */
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.addIcon{
+    margin-right: 10%;
+    display: flex;
+    color: #6053F5;
+    flex-direction: column;
+    /* background: white; */
+    justify-content: center;
+}
+
+.addIconInside {
+    background: white;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.addIconInside span{
+    font-size: x-large;
+}
+
+.cards{
+    padding: 8%;
+}
+
+.cardLayout {
+    border: 1px solid #6153F5;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.24);
+}
+.cardSub{
+    font-size: 12px;
+}
+
+.cardTitle {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.cardText {
+    font-size: 14px;
+}
+
+.tag {
+    border: 0.75px solid #6053F5;
+    box-sizing: border-box;
+    border-radius: 14px;
+    width: 122px;
+    height: 28px;
+    text-align: center;
+}
+
+.tag span {
+    color: #6053F5;
+    font-size: 14px;
 }

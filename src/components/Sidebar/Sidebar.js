@@ -14,7 +14,7 @@ class Sidebar extends Component{
         // let activeClassName = this.state.active ? " active" : "";
         return (
             <div className="sidebar">
-                <img className="logo" src={Logo} />
+                <img className="logo" src={Logo} alt="logo" />
                 <Icon
                     icon="fa-folder-open"
                     // onActive="fa-close"

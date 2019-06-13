@@ -2,6 +2,9 @@ import React, { Component, Fragment } from 'react';
 import ContestList from './ContestList/ContestList';
 import ContestTypes from './ContestTypes/ContestTypes';
 import './dashboard.css';
+import { Route } from 'react-router-dom';
+
+import '../Main/Main.css';
 
 class Dashboard extends Component{
     constructor(props) {
@@ -28,11 +31,11 @@ class Dashboard extends Component{
                 <br />
 
                 <div className="client_list">
-                    <p>Mark and Spencer</p>
-                    <p>Mark and Spencer</p>
-                    <p>Mark and Spencer</p>
-                    <p>Mark and Spencer</p>
-                    <p>Mark and Spencer</p>
+                    <div className="listTab">Mark and Spencer</div>
+                    <div className="listTab">Mark and Spencer</div>
+                    <div className="listTab">Mark and Spencer</div>
+                    <div className="listTab">Mark and Spencer</div>
+                    <div className="listTab">Mark and Spencer</div>
                 </div>
 
                 {/* <ContestTypes
@@ -40,7 +43,9 @@ class Dashboard extends Component{
                     onActive = {this.onActive}
                 /> 
                 <ContestList activeParameter={this.state.activeParameter}/> */}
+                
             </Fragment>
+            
         )
     }
 }
