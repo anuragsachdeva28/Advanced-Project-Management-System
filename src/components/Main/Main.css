@@ -175,10 +175,10 @@ input[type="file"] {
     font-size: x-large;
 }
 
-.cards{
-    /* padding: 8%; */
-    /* overflow: scroll; */
-}
+/* .cards{
+    padding: 8%;
+    overflow: scroll;
+} */
 
 .cardLayout {
     margin:8%;
