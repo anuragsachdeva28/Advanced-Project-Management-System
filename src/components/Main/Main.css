@@ -9,7 +9,7 @@
     width: 15%;
     height: 100%;
     min-width: 180px;
-    /* padding: 2%;  */
+    padding: 0; 
     padding-top: 20px;
     padding-bottom: 0;
     box-sizing: border-box;
@@ -116,8 +116,8 @@ input[type="file"] {
 }
 
 .projAside {
-    width: 22%;
-    min-width: 278px;
+    width: 22vw;
+    padding: 0;
     background: #FFFFFF;
     box-shadow: 4px 0px 16px rgba(0, 0, 0, 0.12);
     overflow: scroll  ;
@@ -131,8 +131,25 @@ input[type="file"] {
     display: flex;
     justify-content: space-between;
     height: 15%;
-    width: 100%;
+    width: inherit;
     background: #6053F5;
+    color: white;
+    font-size: 14px;
+    min-height: 64px;
+    max-height: 64px;
+    position: fixed;
+    z-index: 100;
+    /* width: -webkit-fill-available; */
+    /* min-width: 220px;
+    max-width: 248px; */
+}
+
+.projHeader_fake{
+    display: flex;
+    justify-content: space-between;
+    height: 15%;
+    width: 100%;
+    background: white;
     color: white;
     font-size: 14px;
     min-height: 64px;
@@ -175,10 +192,10 @@ input[type="file"] {
     font-size: x-large;
 }
 
-/* .cards{
-    padding: 8%;
-    overflow: scroll;
-} */
+.cards{
+    /* padding: 8%;
+    overflow: scroll; */
+}
 
 .cardLayout {
     margin:8%;
@@ -210,4 +227,89 @@ input[type="file"] {
 .tag span {
     color: #6053F5;
     font-size: 14px;
+}
+
+.addTask {
+    width: 58vw;
+}
+
+.taskHeader {
+    height: 15%;
+    min-height: 64px;
+    max-height: 64px;
+    position: relative;
+    border-bottom: 0.75px solid #C4C4C4;
+}
+
+.column {
+    position: fixed;
+    padding-left: 0;
+    /* right: ; */
+    padding: 0;
+    margin: 0;
+    width: 23.35vw;
+}
+
+.add_task{
+    background: #6053F5;
+    color: white;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    max-width: 125px;
+    width: 20vw;
+    height: 100%;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
+    /* font-weight: bold; */
+    font-size: 14px;
+    float: right;
+    
+}
+
+.add_task span{
+    font-weight: bold;
+    font-size: large;
+}
+
+.basic{
+    padding: 2% 7%;
+}
+
+.formLabel {
+    color: #6053F5;
+    font-size: 12px;
+    font-weight: bold;
+    padding-right: 50%;
+}
+
+
+.nameField {
+    border-radius: 0;
+    outline: 0;
+    max-height: 42px;
+    max-width: 620px;
+}
+
+.desField {
+    border-radius: 0;
+    outline: 0;
+    max-height: 93px;
+    max-width: 620px;
+}
+.formGroup {
+    margin-top: 6vh;
+}
+
+.addMember {
+    border-radius: 0;
+    border: 0;
+    background: #FFFFFF;
+    box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.05);
+    outline: 0;
+    max-height: 36px;
+    max-width: 572px;
+}
+
+.addMember::placeholder{
+    color: #6053F5;
 }
