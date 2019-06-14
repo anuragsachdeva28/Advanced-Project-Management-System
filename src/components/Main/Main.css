@@ -279,7 +279,7 @@ input[type="file"] {
     color: #6053F5;
     font-size: 12px;
     font-weight: bold;
-    padding-right: 50%;
+    padding-right: 75%;
 }
 
 
@@ -307,9 +307,13 @@ input[type="file"] {
     box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.05);
     outline: 0;
     max-height: 36px;
-    max-width: 572px;
+    max-width: 520px;
 }
 
 .addMember::placeholder{
     color: #6053F5;
 }
+
+[list]::-webkit-calendar-picker-indicator {
+    display: none;
+  }

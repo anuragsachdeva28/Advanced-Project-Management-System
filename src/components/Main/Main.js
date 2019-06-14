@@ -75,8 +75,8 @@ class Main extends Component {
                                 Team
                                 </Form.Label>
                                 <br></br>
-                                <Form.Control type="text" placeholder="Add members" className="addMember" />
-                                <Autocomplete suggestions={["White", "Black", "Green", "Blue", "Yellow", "Red"]} />  
+                                
+                                <Autocomplete options={["White", "Black", "Green", "Blue", "Yellow", "Red"]} />  
                             </Form.Group>
 
                             <br />  
