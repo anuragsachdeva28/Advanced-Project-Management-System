@@ -317,3 +317,17 @@ input[type="file"] {
 [list]::-webkit-calendar-picker-indicator {
     display: none;
   }
+
+.selected {
+    border: 0.75px solid #6053F5;
+    box-sizing: border-box;
+    border-radius: 14px;
+    width: 175px;
+    height: 28px;
+    text-align: center;
+}
+
+.selected span {
+    color: #6053F5;
+    font-size: 14px;
+}
