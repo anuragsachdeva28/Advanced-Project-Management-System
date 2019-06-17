@@ -2,19 +2,19 @@ import React, { Component } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import Autocomplete from "./Autocomplete";
 
-class AddTask extends Component {
+class AddProject extends Component {
   render() {
     return (
       <div className="addTask">
         <div className="taskHeader">
-          <button className="add_task" type="button">
-            {" "}
-            <span>+</span> Add Task{" "}
-          </button>
+          {/*<button className="add_task" type="button">*/}
+            {/*{" "}*/}
+            {/*<span>+</span> Add Task{" "}*/}
+          {/*</button>*/}
         </div>
 
         <Form className="basic">
-          <Form.Group as={Row}>
+          <Form.Group>
             <Form.Label className="formLabel">PROJECT NAME</Form.Label>
             <Form.Control
               type="text"
@@ -23,7 +23,7 @@ class AddTask extends Component {
             />
           </Form.Group>
 
-          <Form.Group as={Row} className="formGroup">
+          <Form.Group className="formGroup">
             <Form.Label className="formLabel">PROJECT DESCRIPTION</Form.Label>
             <Form.Control
               as="textarea"
@@ -32,7 +32,7 @@ class AddTask extends Component {
             />
           </Form.Group>
 
-          <Form.Group as={Row} className="formGroup">
+          <Form.Group className="formGroup">
             <Form.Label className="formLabel">Team</Form.Label>
             <br></br>
 
@@ -65,4 +65,4 @@ class AddTask extends Component {
   }
 }
 
-export default AddTask;
+export default AddProject;

@@ -10,7 +10,8 @@ import CardList from "./CardList";
 import { Form, Row, Button } from "react-bootstrap";
 import Autocomplete from "./Autocomplete";
 import Projects from "./Projects";
-import AddTask from "./AddTask";
+import AddProject from "./AddProject";
+import Tasks from './Tasks';
 
 class Main extends Component {
   render() {
@@ -20,9 +21,12 @@ class Main extends Component {
           <Route path="/Clients" component={Dashboard} />
         </div>
 
-        <Route path="/Clients/add" component={AddClient} />
-        <Route path="/Clients/:id/Projects" component={Projects} />
-        <Route path="/Clients/:id/Projects/:id/tasks" component={AddTask} />
+        <Route path="/clients/add" component={AddClient} />
+        <Route path="/clients/:cid/projects" component={Projects} />
+        <Route path="/clients/:cid/projects/add" component={AddProject} />
+        <Route path="/clients/:cid/projects/:pid/tasks" component={Tasks} />
+
+
       </div>
     );
   }

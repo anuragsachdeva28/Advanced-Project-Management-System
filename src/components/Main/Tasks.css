@@ -1,0 +1,172 @@
+.tasks {
+    width: 58vw;
+}
+
+.headerTask {
+    height: 15%;
+    min-height: 64px;
+    max-height: 64px;
+    position: relative;
+    border-bottom: 0.75px solid #C4C4C4;
+    text-align: center;
+    display: flex;
+}
+
+.add_task{
+    background: #6053F5;
+    color: white;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    /*max-width: 125px;*/
+    /*width: 20vw;*/
+    height: 100%;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
+    font-weight: bold;
+    font-size: 14px;
+    /*float: right;*/
+    width: 100%;
+}
+
+.add_task span{
+    font-weight: bold;
+    font-size: large;
+}
+
+.search {
+    float: right;
+    height: 100%;
+    border: 0;
+    padding-left: 2%;
+    max-width: 18vw;
+}
+
+.search:active {
+    outline: 0;
+    border: 0;
+}
+
+.search:focus {
+    outline: 0;
+    border: 0;
+}
+
+.searchTask {
+    float: right;
+    max-width: 25vw;
+    width: 25vw;
+    border: 0;
+    color: grey;
+    border-left: 0.75px solid #C4C4C4;;
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.searchTask .fa {
+    color: grey;
+    font-size: medium;
+    padding-top: 10%;
+    padding-left: 5%;
+
+}
+
+.set {
+    display: flex;
+    padding-left: 1vw;
+}
+
+.addButton {
+    width:11vw;
+    min-width: 11vw;
+}
+
+.name {
+    height: 100%;
+    display: flex;
+    opacity: 0;
+    /*flex-wrap: nowrap;*/
+    flex-direction: column;
+    justify-content: center;
+    transition: all 1s ease;
+    /*margin-left: -100px;*/
+    /*clip:rect(0, 50px, 0, 0);*/
+    position: relative;
+    left: -10%;
+
+}
+
+.name p{
+    margin: 0;
+    /*padding-left: 1%;*/
+}
+
+.profileImg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 100%;
+    transition: display 1s;
+    z-index: 1000;
+}
+
+.profileImg img {
+    border-radius: 100%;
+    width: 70%;
+}
+
+.profileImg:hover + .name {
+    display: flex;
+    opacity: 1;
+    position: relative;
+    left: 0%;
+    transition: all 1s ease;
+    /*margin-left: 0;*/
+}
+
+.sets {
+    width: 64vw;
+    display: flex;
+}
+
+.bodyTask {
+    padding: 3%;
+    height: 100%;
+}
+
+.bodyTask p {
+
+}
+
+.tableHeader {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.num {
+    flex-grow: 1;
+}
+
+.taskname {
+    flex-grow: 4;
+}
+
+.estimate {
+    flex-grow: 2;
+}
+
+.created {
+    flex-grow: 2;
+}
+
+.status{
+    flex-grow: 4;
+}
+
+.tableBody {
+    border: 1px solid rgba(193, 193, 209, 0.84);
+    display: flex;
+    height: 49px;
+}
