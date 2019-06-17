@@ -165,8 +165,16 @@
     flex-grow: 4;
 }
 
+.arrow {
+    flex-grow: 1;
+}
+
 .tableBody {
+    padding: 1%;
+    margin-bottom: 1%;
     border: 1px solid rgba(193, 193, 209, 0.84);
     display: flex;
     height: 49px;
+    /*justify-content: center;*/
+    /*flex-direction: column;*/
 }

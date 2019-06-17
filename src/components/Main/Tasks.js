@@ -68,6 +68,7 @@ class Tasks extends Component {
                         <div className="created">Created on</div>
                         <div className="estimate">Estimate Delivery</div>
                         <div className="status">Status</div>
+                        <div className="arrow"> > </div>
                     </div>
 
                     <div className="tableBody">
@@ -76,6 +77,43 @@ class Tasks extends Component {
                         <div className="created">Created on</div>
                         <div className="estimate">Estimate Delivery</div>
                         <div className="status">Status</div>
+                        <div className="arrow"> > </div>
+                    </div>
+
+                    <div className="tableBody">
+                        <div className="num">S. No.</div>
+                        <div className="taskname">Task Name</div>
+                        <div className="created">Created on</div>
+                        <div className="estimate">Estimate Delivery</div>
+                        <div className="status">Status</div>
+                        <div className="arrow"> > </div>
+                    </div>
+
+                    <div className="tableBody">
+                        <div className="num">S. No.</div>
+                        <div className="taskname">Task Name</div>
+                        <div className="created">Created on</div>
+                        <div className="estimate">Estimate Delivery</div>
+                        <div className="status">Status</div>
+                        <div className="arrow"> > </div>
+                    </div>
+
+                    <div className="tableBody">
+                        <div className="num">S. No.</div>
+                        <div className="taskname">Task Name</div>
+                        <div className="created">Created on</div>
+                        <div className="estimate">Estimate Delivery</div>
+                        <div className="status">Status</div>
+                        <div className="arrow"> > </div>
+                    </div>
+
+                    <div className="tableBody">
+                        <div className="num">S. No.</div>
+                        <div className="taskname">Task Name</div>
+                        <div className="created">Created on</div>
+                        <div className="estimate">Estimate Delivery</div>
+                        <div className="status">Status</div>
+                        <div className="arrow"> > </div>
                     </div>
                 </div>
 
