@@ -9,6 +9,8 @@ import { Card, Col } from "react-bootstrap";
 import CardList from "./CardList";
 import { Form, Row, Button } from "react-bootstrap";
 import Autocomplete from "./Autocomplete";
+import Projects from "./Projects";
+import AddTask from "./AddTask";
 
 class Main extends Component {
   render() {
@@ -19,84 +21,8 @@ class Main extends Component {
         </div>
 
         <Route path="/Clients/add" component={AddClient} />
-        <div className="projAside">
-          <div className="projHeader">
-            <div className="projHeaderName">
-              <h5 className="projList">PROJECT</h5>
-            </div>
-            <div className="addIcon">
-              <div className="addIconInside">
-                <span>+</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="projHeader_fake"></div>
-
-          <div className="cards">
-            <CardList />
-            <CardList />
-            <CardList />
-            <CardList />
-          </div>
-        </div>
-
-        <div className="addTask">
-          <div className="taskHeader">
-            <button className="add_task" type="button">
-              {" "}
-              <span>+</span> Add Task{" "}
-            </button>
-          </div>
-
-          <Form className="basic">
-            <Form.Group as={Row}>
-              <Form.Label className="formLabel">PROJECT NAME</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Write here...."
-                className="nameField"
-              />
-            </Form.Group>
-
-            <Form.Group as={Row} className="formGroup">
-              <Form.Label className="formLabel">PROJECT DESCRIPTION</Form.Label>
-              <Form.Control
-                as="textarea"
-                placeholder="Write here...."
-                className="desField"
-              />
-            </Form.Group>
-
-            <Form.Group as={Row} className="formGroup">
-              <Form.Label className="formLabel">Team</Form.Label>
-              <br></br>
-
-              <Autocomplete
-                options={["White", "Black", "Green", "Blue", "Yellow", "Red"]}
-              />
-            </Form.Group>
-
-            <div className="selected">
-              <span>Shambhavi Agarwal </span>
-            </div>
-
-            <br />
-            <br />
-            <Form.Group as={Row}>
-              <Col sm="3">
-                <Button variant="secondary" size="sm" className={`cancel`}>
-                  CANCEL
-                </Button>
-              </Col>
-              <Col sm="3">
-                <Button variant="secondary" size="sm" className={`create`}>
-                  CREATE
-                </Button>
-              </Col>
-            </Form.Group>
-          </Form>
-        </div>
+        <Route path="/Clients/:id/Projects" component={Projects} />
+        <Route path="/Clients/:id/Projects/:id/tasks" component={AddTask} />
       </div>
     );
   }
