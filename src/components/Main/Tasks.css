@@ -252,3 +252,50 @@
     opacity: 0.9;
 
 }
+.modal-content {
+    border: 0;
+
+}
+.aaaa{}
+.modalMain {
+    text-align: center;
+}
+
+.modalMain h4{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.taskLabel {
+    color: #6053F5;
+    font-size: 12px;
+    font-weight: bold;
+}
+.tasknameField {
+    border-radius: 0;
+    outline: 0;
+    max-height: 42px;
+    max-width: 620px;
+}
+.taskdesField {
+    border-radius: 0;
+    outline: 0;
+    max-height: 93px;
+    max-width: 620px;
+}
+
+.taskCreate {
+    background: #6053F5;
+    font-size: 14px;
+    color: white;
+    border: 0;
+    border-radius: 0;
+    font-weight: bold;
+    min-width: 400px;
+    min-height: 40px;
+}
+
+.createBt {
+    text-align: center;
+}
+

@@ -5,6 +5,7 @@ import {sortableContainer, sortableElement} from 'react-sortable-hoc';
 import arrayMove from 'array-move';
 import Infinite from 'react-infinite';
 import { Accordion, Card, Button } from 'react-bootstrap';
+import {  Modal, Form } from 'react-bootstrap';
 
 
 
@@ -71,26 +72,84 @@ const SortableInfiniteList = sortableContainer(({items}) => {
 
 
 
-class Tasks extends Component {
-    state = {
-        items: [
-            {sno: '1', height: 89, taskname: 'My name is Anurag', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
-            {sno: '2', height: 59, taskname: 'HIiii', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
-            {sno: '3', height: 130, taskname: 'aaaaaaaaaaaaaa', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
-            {sno: '4', height: 59, taskname: 'ssssssssssssss', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
-            {sno: '5', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
-            {sno: '6', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
-            {sno: '7', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
-            {sno: '8', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
-            {sno: '9', height: 150, taskname: 'ggggggggggggggg', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
-        ],
+
+const backdropStyle = {
+    position: 'fixed',
+    zIndex: 1040,
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: '#000',
+    opacity: 0.5
+};
+
+const modalStyle = function() {
+    // we use some psuedo random coords so nested modals
+    // don't sit right on top of each other.
+    let top = 30;
+    let left = 28;
+
+    return {
+        position: 'fixed',
+        width: 650,
+        height: 360,
+        zIndex: 1040,
+        top: top + '%',
+        left: left + '%',
+        border: '1px solid #e5e5e5',
+        backgroundColor: 'white',
+        boxShadow: '0 5px 15px rgba(0,0,0,.5)',
+        padding: 0,
+        overflow: 'hidden'
     };
+};
+
+
+
+
+
+
+class Tasks extends Component {
+    constructor(...args) {
+        super(...args);
+        this.state = {
+            showModal: false,
+            items: [
+                {sno: '1', height: 89, taskname: 'My name is Anurag', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
+                {sno: '2', height: 59, taskname: 'HIiii', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
+                {sno: '3', height: 130, taskname: 'aaaaaaaaaaaaaa', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
+                {sno: '4', height: 59, taskname: 'ssssssssssssss', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
+                {sno: '5', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
+                {sno: '6', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
+                {sno: '7', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
+                {sno: '8', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
+                {sno: '9', height: 150, taskname: 'ggggggggggggggg', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
+            ],
+        };
+
+        this.close = () => {
+            this.setState({ showModal: false });
+        };
+
+        this.open = () => {
+            this.setState({ showModal: true });
+        };
+
+
+    }
+
+    renderBackdrop(props) {
+        return <div {...props} style={backdropStyle} />;
+    }
 
     onSortEnd = ({oldIndex, newIndex}) => {
         this.setState(({items}) => ({
             items: arrayMove(items, oldIndex, newIndex),
         }));
     };
+
+
 
     render() {
         const {items} = this.state;
@@ -137,11 +196,55 @@ class Tasks extends Component {
 
 
                     </div>
-                    <div className="addButton">
-                        <button className="add_task" type="button">
+                    <div className="addButton modal-example">
+                        <button onClick={this.open} className="add_task" type="button">
                             {" "}
                             <span>+</span> Add Task{" "}
                         </button>
+
+                        <Modal
+                            onHide={this.close}
+                            style={modalStyle()}
+                            aria-labelledby="modal-label"
+                            show={this.state.showModal}
+                            renderBackdrop={this.renderBackdrop}
+                        >
+                            <div className="modalMain">
+                                <h4 id="modal-label">CREATE TASK</h4>
+                            </div>
+                            <div className="check">
+                                <Form.Group style={{float:'right'}} controlId="formBasicChecbox">
+                                    <Form.Check type="checkbox" label="Check me out" />
+                                </Form.Group>
+                            </div>
+                            <Form>
+                                <Form.Group>
+                                    <Form.Label className="taskLabel">TASK NAME</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Write here...."
+                                        className="nameField"
+                                    />
+                                </Form.Group>
+
+                                <Form.Group>
+                                    <Form.Label className="taskLabel">TASK DESCRIPTION</Form.Label>
+                                    <Form.Control
+                                        as="textarea"
+                                        placeholder="Write here...."
+                                        className="desField"
+                                    />
+                                </Form.Group>
+
+                                <Form.Group className="createBt">
+                                    <Button variant="secondary" size="sm" className="taskCreate">
+                                        CREATE
+                                    </Button>
+                                </Form.Group>
+                            </Form>
+
+                        </Modal>
+
                     </div>
 
 
