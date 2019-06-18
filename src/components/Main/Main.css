@@ -1,6 +1,7 @@
 .outer {
     width: 100%;
     display: flex;
+    background: rgba(193, 193, 209, 0.14);
 }
 
 
@@ -16,7 +17,7 @@
     display: flex;
     flex-direction: column;
     overflow: auto;
-    background: rgba(193, 193, 209, 0.14);
+    /*background: rgba(193, 193, 209, 0.14);*/
 }
 
 .mainAside{
@@ -132,7 +133,7 @@ input[type="file"] {
     justify-content: space-between;
     height: 15%;
     width: inherit;
-    max-width: 21.5vw;
+    max-width: 21.6vw;
     background: #6053F5;
     color: white;
     font-size: 14px;
@@ -150,7 +151,7 @@ input[type="file"] {
     justify-content: space-between;
     height: 15%;
     width: 100%;
-    background: white;
+    background: #6053F5;
     color: white;
     font-size: 14px;
     min-height: 64px;
