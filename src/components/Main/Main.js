@@ -13,6 +13,7 @@ import Projects from "./Projects";
 import AddProject from "./AddProject";
 import Tasks from './Tasks';
 import Employee from './Employee';
+import AddEmp from './AddEmp';
 
 class Main extends Component {
   render() {
@@ -26,7 +27,8 @@ class Main extends Component {
         <Route path="/clients/:cid/projects" component={Projects} />
         <Route path="/clients/:cid/projects/add" component={AddProject} />
         <Route path="/clients/:cid/projects/:pid/tasks" component={Tasks} />
-        <Route path="/clients/:cid/employee" component={Employee} />
+        <Route path="/clients/:cid/employee" exact component={Employee} />
+        <Route path="/clients/:cid/employee/add" component={AddEmp} />
 
 
       </div>
