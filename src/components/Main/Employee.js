@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import "./Employee.css";
+import { Link } from 'react-router-dom';
 
 class Employee extends Component {
   render() {
     return (
       <div className="empAside">
         <div className="userHeader">
-          <button className="add_user" type="button">
-            {" "}
-            <span>+</span> Add User{" "}
-          </button>
+          <Link to="./add">
+            <button className="add_user" type="button">
+              {" "}
+              <span>+</span> Add User{" "}
+            </button>
+          </Link>
         </div>
 
         {/*<div className="userBody">*/}

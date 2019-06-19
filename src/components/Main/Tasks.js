@@ -9,7 +9,7 @@ import {  Modal, Form } from 'react-bootstrap';
 
 
 
-const SortableItem = sortableElement(({height, sno, taskname, created, estimate, status}) => {
+const SortableItem = sortableElement(({height, sno, taskname, created, estimate, status, body}) => {
     let active=false;
     var classes = ["strip", "stripBorder"];
 
@@ -31,19 +31,23 @@ const SortableItem = sortableElement(({height, sno, taskname, created, estimate,
 
 
 
-    return <div className="stripComp">
-        <div className={classes.join(' ')}  >
-            <div className="num" style={{padding:'1%'}}>{sno}</div>
-            <div className="taskname" style={{padding:'1%'}}>{taskname}</div>
-            <div className="created" style={{padding:'1%'}}>{created}</div>
-            <div className="estimate" style={{padding:'1%'}}>{estimate}</div>
-            <div className="status" style={{padding:'1%'}}>{status}</div>
-            <div className="arrow" style={{padding:'1%'}}> > </div>
-        </div>
-        <div className="stripContent">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis cum dolorum earum ex expedita facere fugiat iusto laudantium mollitia nisi nostrum perspiciatis porro praesentium, quo quos repellendus, sed similique velit!</p>
-        </div>
-    </div>;
+    return <Card className="no-border">
+            <Accordion.Toggle as={Card.Header} eventKey={sno+" "}>
+                <div className="strip stripBorder"  >
+                    <div className="num" style={{padding:'1%'}}>{sno}</div>
+                    <div className="taskname" style={{padding:'1%'}}>{taskname}</div>
+                    <div className="created" style={{padding:'1%'}}>{created}</div>
+                    <div className="estimate" style={{padding:'1%'}}>{estimate}</div>
+                    <div className="status" style={{padding:'1%'}}>{status}</div>
+                    <div className="arrow" style={{padding:'1%'}}> > </div>
+                </div>
+            </Accordion.Toggle>
+            <Accordion.Collapse eventKey={sno+" "} className="collapsed">
+                <Card.Body className="hidden">{body}</Card.Body>
+            </Accordion.Collapse>
+        </Card>
+
+
 });
 
 const SortableInfiniteList = sortableContainer(({items}) => {
@@ -53,7 +57,7 @@ const SortableInfiniteList = sortableContainer(({items}) => {
             elementHeight={49}
             className="scrolling"
         >
-            {items.map(({sno, height, taskname, created, estimate, status}, index) => (
+            {items.map(({sno, height, taskname, created, estimate, status, body}, index) => (
                 <SortableItem
                     key={`item-${index}`}
                     index={index}
@@ -63,6 +67,7 @@ const SortableInfiniteList = sortableContainer(({items}) => {
                     created={created}
                     estimate={estimate}
                     status={status}
+                    body={body}
                 />
             ))}
         </Infinite>
@@ -116,16 +121,16 @@ class Tasks extends Component {
         this.state = {
             showModal: false,
             items: [
-                {sno: '1', height: 89, taskname: 'My name is Anurag', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
-                {sno: '2', height: 59, taskname: 'HIiii', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
-                {sno: '3', height: 130, taskname: 'aaaaaaaaaaaaaa', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
-                {sno: '4', height: 59, taskname: 'ssssssssssssss', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
-                {sno: '5', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
-                {sno: '6', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
-                {sno: '7', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
-                {sno: '8', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
-                {sno: '9', height: 150, taskname: 'ggggggggggggggg', created: '19/05/19', estimate: '19/05/19', status: 'Status'},
-            ],
+                {sno: '1', height: 89, taskname: 'My name is Anurag', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
+                {sno: '2', height: 59, taskname: 'HIiii', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
+                {sno: '3', height: 130, taskname: 'aaaaaaaaaaaaaa', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
+                {sno: '4', height: 59, taskname: 'ssssssssssssss', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
+                {sno: '5', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
+                {sno: '6', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
+                {sno: '7', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
+                {sno: '8', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
+                {sno: '9', height: 150, taskname: 'ggggggggggggggg', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
+                ],
         };
 
         this.close = () => {
@@ -210,11 +215,11 @@ class Tasks extends Component {
                             renderBackdrop={this.renderBackdrop}
                         >
                             <div className="modalMain">
-                                <h4 id="modal-label">CREATE TASK</h4>
+                                <h2 id="modal-label">CREATE TASK</h2>
                             </div>
                             <div className="check">
                                 <Form.Group style={{float:'right'}} controlId="formBasicChecbox">
-                                    <Form.Check type="checkbox" label="Check me out" />
+                                    <Form.Check type="checkbox" label="mark me urgent" />
                                 </Form.Group>
                             </div>
                             <Form>
@@ -265,8 +270,10 @@ class Tasks extends Component {
                         <div className="arrow"></div>
                     </div>
 
-                    <SortableInfiniteList items={items} onSortEnd={this.onSortEnd} />
 
+                    <Accordion>
+                        <SortableInfiniteList items={items} onSortEnd={this.onSortEnd} />
+                    </Accordion>
 
                     {/*<Accordion>*/}
                         {/*<Card>*/}

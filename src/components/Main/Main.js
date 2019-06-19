@@ -26,8 +26,8 @@ class Main extends Component {
         <Route path="/clients/add" component={AddClient} />
         <Route path="/clients/:cid/projects" component={Projects} />
         <Route path="/clients/:cid/projects/add" component={AddProject} />
-        <Route path="/clients/:cid/projects/:pid/tasks" component={Tasks} />
-        <Route path="/clients/:cid/employee" exact component={Employee} />
+        <Route path="/clients/:cid/projects/:pid/tasks/" component={Tasks} />
+        <Route path="/clients/:cid/employee/" exact component={Employee} />
         <Route path="/clients/:cid/employee/add" component={AddEmp} />
 
 

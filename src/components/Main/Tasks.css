@@ -199,7 +199,7 @@
     display: flex;
     padding:1%;
 
-    margin:1%;
+    /*margin:1%;*/
     fontSize:14px;
     background: #FAFAFA;
     transition: ease 0.3s;
@@ -209,6 +209,10 @@
 
 .stripBorder {
     border: 1px solid rgba(193, 193, 209, 0.34);
+}
+
+.collapsed {
+    background: #FAFAFA;
 }
 
 .strip:hover {
@@ -223,6 +227,30 @@
     transform: scale(1.01);
 
 }
+
+.card:hover  .strip {
+    background: white;
+    opacity: 0.9;
+    /*box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.2);*/
+    border: 0;
+    -webkit-transform: scale(1.01);
+    -moz-transform: scale(1.01);
+    -ms-transform: scale(1.01);
+    -o-transform: scale(1.01);
+    transform: scale(1.01);
+}
+
+.card:hover .collapsed{
+    background: white;
+    opacity: 0.9;
+}
+
+.collapsed:hover {
+    background: white;
+    opacity: 0.9;
+}
+
+
 
 .stripContent {
     transition: ease 0.3s;
@@ -261,9 +289,9 @@
     text-align: center;
 }
 
-.modalMain h4{
-    font-size: 16px;
-    font-weight: bold;
+.modalMain h2{
+    font-size: 20px;
+    font-weight: 900;
 }
 
 .taskLabel {
@@ -299,3 +327,23 @@
     text-align: center;
 }
 
+
+
+
+.card-header {
+    padding: 0;
+    border: 0;
+}
+
+.card {
+    margin-bottom:1%;
+}
+
+.no-border {
+    border: 0;
+}
+
+.hidden {
+    padding-left:6%;
+    padding-right:6%;
+}
