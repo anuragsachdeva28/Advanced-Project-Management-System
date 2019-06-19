@@ -12,6 +12,7 @@ import Autocomplete from "./Autocomplete";
 import Projects from "./Projects";
 import AddProject from "./AddProject";
 import Tasks from './Tasks';
+import Employee from './Employee';
 
 class Main extends Component {
   render() {
@@ -25,6 +26,7 @@ class Main extends Component {
         <Route path="/clients/:cid/projects" component={Projects} />
         <Route path="/clients/:cid/projects/add" component={AddProject} />
         <Route path="/clients/:cid/projects/:pid/tasks" component={Tasks} />
+        <Route path="/clients/:cid/employee" component={Employee} />
 
 
       </div>
