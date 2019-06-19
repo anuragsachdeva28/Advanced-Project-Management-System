@@ -1,0 +1,94 @@
+.profile-aside {
+    width: 100%;
+}
+
+.back {
+    background: linear-gradient(168.51deg, #FB1352 1.03%, #370EF7 116.89%);
+    width: 100%;
+    /*min-height: 290px;*/
+    height: 30vh;
+}
+
+.profileCard {
+    position: absolute;
+    top: 7vh;
+    left: 43vw;
+    height: 40vh;
+    width: 20vw;
+    background: white;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+}
+
+.profile-image {
+    /*background: black;*/
+    height: 12.7vh;
+    /*width: 9vw;*/
+    /*position: relative;*/
+    margin-top: 4.2vh;
+    text-align: center;
+    /*left: 6.7vw;*/
+    /*border-radius: 50%;*/
+}
+
+.profile-image img {
+    border-radius: 50%;
+}
+
+.profile-info {
+    text-align: center;
+    padding-top: 5vh;
+}
+
+.profile-info h1{
+    font-size: 24px;
+}
+.profile-info p{
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+.minibox {
+    width: 100%;
+    /*min-height: 290px;*/
+    /*height: 9.75vh;*/
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 25vh;
+}
+
+.box{
+    width: 100px;
+    /*opacity: 0.54;*/
+    border: 1px solid #C4C4C4;
+    height: 100px;
+    /*background: black;*/
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.no {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.what {
+    opacity: 0.54;
+    font-size: 14px;
+}
+
+.log_out{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10vh;
+}
+.numb {
+
+}
+
+.emailid {
+
+}

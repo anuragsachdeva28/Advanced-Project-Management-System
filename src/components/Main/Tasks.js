@@ -27,10 +27,6 @@ const SortableItem = sortableElement(({height, sno, taskname, created, estimate,
         active=!active;
     }
 
-
-
-
-
     return <Card className="no-border">
             <Accordion.Toggle as={Card.Header} eventKey={sno+" "}>
                 <div className="strip stripBorder"  >
