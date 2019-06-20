@@ -14,6 +14,7 @@ import AddProject from "./AddProject";
 import Tasks from './Tasks';
 import Employee from './Employee';
 import AddEmp from './AddEmp';
+import Admin from './Admin';
 
 class Main extends Component {
   render() {
@@ -29,6 +30,7 @@ class Main extends Component {
         <Route path="/clients/:cid/projects/:pid/tasks/" component={Tasks} />
         <Route path="/clients/employees/:cid/employee/" exact component={Employee} />
         <Route path="/clients/employees/:cid/employee/add" component={AddEmp} />
+
 
 
       </div>
