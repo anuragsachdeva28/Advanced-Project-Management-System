@@ -1,6 +1,6 @@
 .empAside {
     background: white;
-    width: 80vw;
+    width: 100%;
 }
 
 .userHeader {
@@ -66,13 +66,13 @@
 }
 
 .username {
-    flex-grow: 4;
-    width: 28vw;
+    flex-grow: 3;
+    width: 10vw;
 }
 
 .phone {
-    flex-grow: 2;
-    width: 14vw;
+    flex-grow: 1;
+    width: 8vw;
     opacity: 0.54;
 
 }
@@ -81,6 +81,7 @@
     flex-grow: 2;
     width: 15vw;
     opacity: 0.54;
+    overflow-x: hidden;
 
 }
 

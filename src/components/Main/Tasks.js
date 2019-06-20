@@ -10,22 +10,7 @@ import {  Modal, Form } from 'react-bootstrap';
 
 
 const SortableItem = sortableElement(({height, sno, taskname, created, estimate, status, body}) => {
-    let active=false;
-    var classes = ["strip", "stripBorder"];
 
-    function toggleClass()  {
-
-
-        if (!active) {
-            classes.push('stripBorder');
-        }
-        else {
-            classes.pop();
-
-        }
-        console.log("xscdscdscdscdscdscsdcdsvdsvs");
-        active=!active;
-    }
 
     return <Card className="no-border">
             <Accordion.Toggle as={Card.Header} eventKey={sno+" "}>
