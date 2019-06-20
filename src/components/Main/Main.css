@@ -7,9 +7,9 @@
 
 
 .main{
-    width: 15%;
+    width: 14vw;
     height: 100%;
-    min-width: 180px;
+    /*min-width: 180px;*/
     padding: 0; 
     padding-top: 20px;
     padding-bottom: 0;
@@ -134,7 +134,7 @@ input[type="file"] {
     justify-content: space-between;
     height: 15%;
     width: inherit;
-    max-width: 21.6vw;
+    /*max-width: 21.6vw;*/
     background: #6053F5;
     color: white;
     font-size: 14px;

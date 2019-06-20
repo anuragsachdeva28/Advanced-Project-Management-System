@@ -50,8 +50,8 @@
     padding: 0 2%;
     /*opacity: 0.54;*/
     margin-bottom: 1%;
-    max-width: 60vw;
-    font-size: 14px;
+    max-width: 65vw;
+    font-size: 16px;
 }
 
 .table-heading {
@@ -67,7 +67,7 @@
 
 .username {
     flex-grow: 3;
-    width: 10vw;
+    width: 15vw;
 }
 
 .phone {
@@ -79,10 +79,15 @@
 
 .email {
     flex-grow: 2;
-    width: 15vw;
+    width: 20vw;
     opacity: 0.54;
     overflow-x: hidden;
+}
 
+.role {
+    flex-grow: 1;
+    width: 8vw;
+    opacity: 0.54;
 }
 
 .client-tableBody {
@@ -92,11 +97,17 @@
     display: flex;
     height: 49px;
     min-height: 49px;
-    max-width: 60vw;
+    max-width: 65vw;
     font-size: 14px;
 
 }
 
 .light {
     opacity: 0.54;
+}
+
+.tableContainer {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 60vh;
 }
