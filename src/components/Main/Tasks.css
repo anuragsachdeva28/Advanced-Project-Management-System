@@ -74,7 +74,7 @@
 
 .set {
     display: flex;
-    padding-left: 1vw;
+    /*padding-left: 1vw;*/
 }
 
 .addButton {
@@ -93,12 +93,15 @@
     /*margin-left: -100px;*/
     /*clip:rect(0, 50px, 0, 0);*/
     position: relative;
-    left: -10%;
-
+    left: -40%;
+    overflow: hidden;
 }
 
 .name p{
     margin: 0;
+    font-size: 14px;
+    width: 0px;
+    transition: all 1s ease;
     /*padding-left: 1%;*/
 }
 
@@ -125,8 +128,15 @@
     /*margin-left: 0;*/
 }
 
+.profileImg:hover + .name p {
+    width: 70px;
+    /*color: red;*/
+    padding-right: 4%;
+}
+
 .sets {
     width: 64vw;
+    padding-left: 2%;
     display: flex;
 }
 

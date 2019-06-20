@@ -145,32 +145,34 @@ class Tasks extends Component {
                     <div className="sets">
                         <div className="set">
                             <div className="profileImg">
-                                <img className="profile" src="https://via.placeholder.com/50" alt="profile"/>
+                                <img className="profile" src="http://placekitten.com/g/50/50" alt="profile"/>
                             </div>
 
                             <div className="name">
-                                <p>Anurag Sachdeva</p>
+                                <p>Anurag</p>
                             </div>
 
                         </div>
-                        {/*<div className="set">*/}
-                            {/*<div className="profileImg">*/}
-                                {/*<img className="profile" src="https://via.placeholder.com/50" alt="profile"/>*/}
-                            {/*</div>*/}
 
-                            {/*<div className="name">*/}
-                                {/*<p>Anurag Sachdeva</p>*/}
-                            {/*</div>*/}
-
-                        {/*</div>*/}
 
                         <div className="set">
                             <div className="profileImg">
-                                <img className="profile" src="https://via.placeholder.com/50" alt="profile"/>
+                                <img className="profile" src="http://placekitten.com/g/50/50" alt="profile"/>
                             </div>
 
                             <div className="name">
-                                <p>Anurag Sachdeva</p>
+                                <p>Anurag</p>
+                            </div>
+
+                        </div>
+
+                        <div className="set">
+                            <div className="profileImg">
+                                <img className="profile" src="http://placekitten.com/g/50/50" alt="profile"/>
+                            </div>
+
+                            <div className="name">
+                                <p>Anurag</p>
                             </div>
 
                         </div>
@@ -256,70 +258,7 @@ class Tasks extends Component {
                         <SortableInfiniteList items={items} onSortEnd={this.onSortEnd} />
                     </Accordion>
 
-                    {/*<Accordion>*/}
-                        {/*<Card>*/}
-                            {/*<Accordion.Toggle as={Card.Header} eventKey="0">*/}
-                                {/*Click me!*/}
-                            {/*</Accordion.Toggle>*/}
-                            {/*<Accordion.Collapse eventKey="0">*/}
-                                {/*<Card.Body>Hello! I'm the body</Card.Body>*/}
-                            {/*</Accordion.Collapse>*/}
-                        {/*</Card>*/}
-                        {/*<Card>*/}
-                            {/*<Accordion.Toggle as={Card.Header} eventKey="1">*/}
-                                {/*Click me!*/}
-                            {/*</Accordion.Toggle>*/}
-                            {/*<Accordion.Collapse eventKey="1">*/}
-                                {/*<Card.Body>Hello! I'm another body</Card.Body>*/}
-                            {/*</Accordion.Collapse>*/}
-                        {/*</Card>*/}
-                    {/*</Accordion>*/}
 
-
-                    {/*<div className="tableBody">*/}
-                        {/*<div className="num">S. No.</div>*/}
-                        {/*<div className="taskname">Task Name</div>*/}
-                        {/*<div className="created">Created on</div>*/}
-                        {/*<div className="estimate">Estimate Delivery</div>*/}
-                        {/*<div className="status">Status</div>*/}
-                        {/*<div className="arrow"> > </div>*/}
-                    {/*</div>*/}
-
-                    {/*<div className="tableBody">*/}
-                        {/*<div className="num">S. No.</div>*/}
-                        {/*<div className="taskname">Task Name</div>*/}
-                        {/*<div className="created">Created on</div>*/}
-                        {/*<div className="estimate">Estimate Delivery</div>*/}
-                        {/*<div className="status">Status</div>*/}
-                        {/*<div className="arrow"> > </div>*/}
-                    {/*</div>*/}
-
-                    {/*<div className="tableBody">*/}
-                        {/*<div className="num">S. No.</div>*/}
-                        {/*<div className="taskname">Task Name</div>*/}
-                        {/*<div className="created">Created on</div>*/}
-                        {/*<div className="estimate">Estimate Delivery</div>*/}
-                        {/*<div className="status">Status</div>*/}
-                        {/*<div className="arrow"> > </div>*/}
-                    {/*</div>*/}
-
-                    {/*<div className="tableBody">*/}
-                        {/*<div className="num">S. No.</div>*/}
-                        {/*<div className="taskname">Task Name</div>*/}
-                        {/*<div className="created">Created on</div>*/}
-                        {/*<div className="estimate">Estimate Delivery</div>*/}
-                        {/*<div className="status">Status</div>*/}
-                        {/*<div className="arrow"> > </div>*/}
-                    {/*</div>*/}
-
-                    {/*<div className="tableBody">*/}
-                        {/*<div className="num">S. No.</div>*/}
-                        {/*<div className="taskname">Task Name</div>*/}
-                        {/*<div className="created">Created on</div>*/}
-                        {/*<div className="estimate">Estimate Delivery</div>*/}
-                        {/*<div className="status">Status</div>*/}
-                        {/*<div className="arrow"> > </div>*/}
-                    {/*</div>*/}
                 </div>
 
             </div>
