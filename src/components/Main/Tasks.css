@@ -75,6 +75,7 @@
 .set {
     display: flex;
     margin-left: -10px;
+    transition: all 0.4s ease;
     /*padding-left: 1vw;*/
 }
 
@@ -94,7 +95,7 @@
     /*flex-wrap: nowrap;*/
     flex-direction: column;
     justify-content: center;
-    transition: all 1s ease;
+    transition: all 0.5s ease;
     /*margin-left: -100px;*/
     /*clip:rect(0, 50px, 0, 0);*/
     position: relative;
@@ -106,7 +107,7 @@
     margin: 0;
     font-size: 14px;
     width: 0px;
-    transition: all 1s ease;
+    transition: all 0.5s ease;
     /*padding-left: 1%;*/
 }
 
@@ -115,29 +116,43 @@
     flex-direction: column;
     justify-content: center;
     border-radius: 100%;
-    transition: display 1s;
+    transition: all 0.4s ease;
     z-index: 1000;
+}
+
+.set:hover  img{
+    transform: scale(1.15);
+    margin-left: 10px;
 }
 
 .profileImg img {
     border-radius: 100%;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
+
+    box-shadow: 0px 1px 5px #000000d9;
+    transition: all 0.4s ease;
 }
 
-.profileImg:hover + .name {
+.set:hover  .name {
     display: flex;
     opacity: 1;
     position: relative;
     left: 0%;
+    margin-right: 10px;
     transition: all 1s ease;
     /*margin-left: 0;*/
 }
 
-.profileImg:hover + .name p {
+.set:hover  .name p {
     width: 70px;
     /*color: red;*/
     padding-right: 4%;
+}
+
+.set:hover  img {
+    margin-left: 20px;
+    box-shadow: 0px 2px 6px #000000deb;
 }
 
 .sets {

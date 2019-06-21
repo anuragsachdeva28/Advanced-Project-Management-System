@@ -145,7 +145,7 @@ class Tasks extends Component {
                     <div className="sets">
                         <div className="set">
                             <div className="profileImg">
-                                <img className="profile" src="http://placekitten.com/g/50/50" alt="profile"/>
+                                <img className="profile" src="https://www.fillmurray.com/50/50" alt="profile"/>
                             </div>
 
                             <div className="name">
@@ -157,7 +157,7 @@ class Tasks extends Component {
 
                         <div className="set">
                             <div className="profileImg">
-                                <img className="profile" src="http://placekitten.com/g/50/50" alt="profile"/>
+                                <img className="profile" src="https://placecage.com/50/50" alt="profile"/>
                             </div>
 
                             <div className="name">
@@ -168,7 +168,7 @@ class Tasks extends Component {
 
                         <div className="set">
                             <div className="profileImg">
-                                <img className="profile" src="http://placekitten.com/g/50/50" alt="profile"/>
+                                <img className="profile" src="https://placebeard.it/50/50" alt="profile"/>
                             </div>
 
                             <div className="name">
