@@ -21,6 +21,15 @@ class AddEmp extends Component {
                             </Col>
                         </Form.Group>
 
+                        <Form.Group as={Row}>
+                            <Form.Label column sm="2" className="userDetail">
+                                Number
+                            </Form.Label>
+                            <Col sm="4">
+                                <Form.Control type="number" placeholder="" className="userfield" />
+                            </Col>
+                        </Form.Group>
+
                         <Form.Group as={Row} controlId="formBasicEmail">
                             <Form.Label column sm="2" className="userDetail">
                                 Email Id
