@@ -76,6 +76,7 @@
     display: flex;
     margin-left: -10px;
     transition: all 0.4s ease;
+    cursor: pointer;
     /*padding-left: 1vw;*/
 }
 
