@@ -15,7 +15,7 @@ class Employee extends Component {
     }
 
     componentDidMount() {
-        const url_emp= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+localStorage.getItem('clientId')+"/employees/";
+        const url_emp= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+this.props.match.params.cid+"/employees/";
         // console.log(url,"cddscsdCds",this.props);
         fetch(url_emp,{
             headers: {
@@ -35,7 +35,50 @@ class Employee extends Component {
 
             .catch(err => console.log(err))
 
-        const url_client= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+localStorage.getItem('clientId');
+        const url_client= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+this.props.match.params.cid;
+        // console.log(url,"cddscsdCds",this.props);
+        fetch(url_client,{
+            headers: {
+                Authorization: "Bearer "+this.props.auth.stsTokenManager.accessToken
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+
+                console.log("clientttttttt",data);
+                const name = data.res.client.name;
+                const description = (data.res.client.description) ? data.res.description : " ";
+                this.setState({ name, description })
+
+
+
+            })
+
+            .catch(err => console.log(err))
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const url_emp= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+nextProps.match.params.cid+"/employees/";
+        // console.log(url,"cddscsdCds",this.props);
+        fetch(url_emp,{
+            headers: {
+                Authorization: "Bearer "+this.props.auth.stsTokenManager.accessToken
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+
+                console.log("emp list this ",data);
+                const arr = data.res;
+                this.setState({ employees: arr })
+
+
+
+            })
+
+            .catch(err => console.log(err))
+
+        const url_client= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+nextProps.match.params.cid;
         // console.log(url,"cddscsdCds",this.props);
         fetch(url_client,{
             headers: {

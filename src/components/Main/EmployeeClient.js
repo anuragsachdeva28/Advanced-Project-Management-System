@@ -6,8 +6,9 @@ import {connect} from "react-redux";
 import {Route} from "react-router-dom";
 import Dashboard_2 from "../Dashboard/Dashboard_2";
 import AddClient from "./AddClient";
+import Employee from "./Employee"
 
-class Employee extends Component {
+class EmployeeClient extends Component {
     state = {
         name:"",
         description:"",
@@ -80,5 +81,5 @@ const mapStateToProps = (state) => {
         auth: state.firebase.auth
     }
 }
-export default connect(mapStateToProps)(Employee);
+export default connect(mapStateToProps)(EmployeeClient);
 
