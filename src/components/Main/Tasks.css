@@ -1,5 +1,5 @@
 .tasks {
-    width: 58vw;
+    width: 75vw;
 }
 
 .headerTask {
@@ -121,18 +121,27 @@
     z-index: 1000;
 }
 
-.set:hover  img{
+.profile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #6053F5;
+    color: white
+}
+
+.set:hover  .profile{
     transform: scale(1.15);
     margin-left: 10px;
 }
 
-.profileImg img {
+.profileImg div {
     border-radius: 100%;
     width: 40px;
     height: 40px;
 
-    box-shadow: 0px 1px 5px #000000d9;
+    /*box-shadow: 0px 1px 5px #000000d9;*/
     transition: all 0.4s ease;
+    border: 3px solid white;
 }
 
 .set:hover  .name {
@@ -151,7 +160,7 @@
     padding-right: 4%;
 }
 
-.set:hover  img {
+.set:hover  .profile {
     margin-left: 20px;
     box-shadow: 0px 2px 6px #000000deb;
 }
@@ -180,6 +189,7 @@
     opacity: 0.54;
 }
 
+
 .num {
     flex-grow: 1;
     width: 4.7vw;
@@ -205,7 +215,7 @@
 
 .status{
     flex-grow: 4;
-    width: 26.8vw;
+    width: 23.8vw;
 }
 
 .arrow {
@@ -229,7 +239,7 @@
 
 .strip {
     display: flex;
-    padding:1%;
+    padding:0.5% 1%;
 
     /*margin:1%;*/
     fontSize:14px;
@@ -385,4 +395,48 @@
 
 .tableHeader {
     font-size: 16px;
+}
+
+.proj_name {
+    width:10vw;
+    height:2.5vh;
+}
+
+.proj_desc {
+    width:20vw;
+    height: 2vh;
+    margin-top: -5px;
+}
+
+.task-tableBody {
+    padding: 1% 3%;
+    margin-bottom: 1%;
+    border: 1px solid rgba(193, 193, 209, 0.84);
+    display: flex;
+    height: 49px;
+    font-size: 14px;
+
+}
+
+.task_holder {
+    width: 5vw;
+    height: 2vh;
+}
+.task_holder_name {
+    width: 10vw;
+    height: 2vh;
+}
+
+.task_holder_num {
+    width: 0.5vw;
+    height: 2vh;
+}
+
+.arrow i{
+    transition-timing-function: ease;
+    transition: 0.2s;
+}
+.active .arrow i{
+
+    transform: rotate(90deg);
 }

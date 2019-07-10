@@ -1,6 +1,6 @@
 .empAside {
     background: white;
-    width: 100%;
+    width: 94vw;
 }
 
 .userHeader {
@@ -72,7 +72,7 @@
 
 .phone {
     flex-grow: 1;
-    width: 8vw;
+    width: 10vw;
     opacity: 0.54;
 
 }
@@ -109,5 +109,16 @@
 .tableContainer {
     overflow-x: hidden;
     overflow-y: scroll;
-    height: 60vh;
+    height: 65vh;
+}
+
+.proj_name {
+    width:10vw;
+    height:3vh;
+}
+
+.proj_desc {
+    width:20vw;
+    height: 2vh;
+    margin-top: -5px;
 }

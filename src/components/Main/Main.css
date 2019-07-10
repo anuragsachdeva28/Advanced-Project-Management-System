@@ -118,7 +118,7 @@ input[type="file"] {
 }
 
 .projAside {
-    width: 22vw;
+    width: 20vw;
     padding: 0;
     background: #FFFFFF;
     box-shadow: 4px 0px 16px rgba(0, 0, 0, 0.12);
@@ -195,15 +195,15 @@ input[type="file"] {
     font-size: x-large;
 }
 
-.cards{
-    /* padding: 8%;
-    overflow: scroll; */
+.card{
+
+    border-radius: 0 !important;
 }
 
 .cardLayout {
-    margin:8%;
+    margin:5%;
     border: 1px solid #6153F5;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.24);
+    /*box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.24);*/
 }
 .cardSub{
     font-size: 12px;
@@ -233,7 +233,7 @@ input[type="file"] {
 }
 
 .addTask {
-    width: 58vw;
+    width: 72vw;
 }
 
 .taskHeader {
@@ -321,6 +321,10 @@ input[type="file"] {
     display: none;
   }
 
+.selection_container {
+    display: flex;
+}
+
 .selected {
     border: 0.75px solid #6053F5;
     box-sizing: border-box;
@@ -328,9 +332,81 @@ input[type="file"] {
     width: 175px;
     height: 28px;
     text-align: center;
+    margin-right: 0.5vw;
 }
 
 .selected span {
     color: #6053F5;
     font-size: 14px;
+}
+
+.shine {
+    background: #f6f7f8;
+    background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+    background-repeat: no-repeat;
+    background-size: 800px 104px;
+    display: inline-block;
+    position: relative;
+
+    -webkit-animation-duration: 1s;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: placeholderShimmer;
+    -webkit-animation-timing-function: linear;
+}
+lines {
+    height: 10px;
+    margin-top: 10px;
+
+}
+@-webkit-keyframes placeholderShimmer {
+    0% {
+        background-position: -468px 0;
+    }
+
+    100% {
+        background-position: 468px 0;
+    }
+}
+
+.date {
+    width:10vw;
+    height: 8px;
+}
+
+.title {
+    width: 5vw;
+    height: 3vh;
+}
+
+.desc {
+    width: 15vw;
+    height: 2vh;
+    margin-top: -5px;
+}
+
+.tag_holder {
+    width: 4vw;
+    height: 2vh;
+}
+
+.active .cardLayout{
+    background: #6153F5;
+    color: white ;
+    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.24);
+}
+
+.active .cardLayout .card-body .tag {
+    /*border: 0.75px solid white;*/
+    background: #2c2671;
+    /*opacity: 0.54;*/
+}
+.active .cardLayout .card-body .tag span{
+
+    color: white;
+}
+
+.active .cardLayout .card-body .text-muted {
+    color: white !important;
+    opacity: 0.75;
 }

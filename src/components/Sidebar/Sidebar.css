@@ -1,8 +1,9 @@
 .sidebar{
-    width:7vw;
+    width:6vw;
     height:100%;
     box-shadow:0 0 10px rgba(0,0,0,0.3);
-    float:left; 
+    float:left;
+    text-align: center;
     background: black;
     /* transition:0.3s; */
     /*min-width: 70px;*/
@@ -13,4 +14,11 @@
     width: 100%;
     padding: 30%;
     cursor: pointer;
+}
+
+.pic {
+    border-radius: 100%;
+    height: 40px;
+    width: 40px;
+    margin: auto;
 }

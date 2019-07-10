@@ -1,54 +1,84 @@
 import React, {Component} from 'react';
 import './Tasks.css';
-import {render} from 'react-dom';
+// import {render} from 'react-dom';
 import {sortableContainer, sortableElement} from 'react-sortable-hoc';
 import arrayMove from 'array-move';
 import Infinite from 'react-infinite';
 import { Accordion, Card, Button } from 'react-bootstrap';
 import {  Modal, Form } from 'react-bootstrap';
+import Pic from "../../0.jpeg";
+import Aastha from "../../3.jpeg";
+import Shivam from "../../2.jpeg";
+import Lalit from "../../1.jpeg";
+import Projects from "./Projects";
+import {connect} from "react-redux";
+
+let last;
+
+const SortableItem = sortableElement((props) => {
+    // console.log("watch this",props.open)
+    const handleClick = (e) => {
+        console.log(document.getElementById(last))
+        console.log(document.getElementById(props.sno))
+        let last_element = document.getElementById(last);
+        let present_element = document.getElementById(props.sno);
+
+            if(present_element!=last_element){
+                if(last_element!=null && last_element.classList.contains("active"))
+                {last_element.classList.remove("active")}
+                present_element.classList.add("active")
+            }
+            if((present_element==last_element)&& (present_element.classList.contains("active"))){
+                present_element.classList.remove("active")
+            }
+            else
+                present_element.classList.add("active")
 
 
-
-const SortableItem = sortableElement(({height, sno, taskname, created, estimate, status, body}) => {
-
-
-    return <Card className="no-border">
-            <Accordion.Toggle as={Card.Header} eventKey={sno+" "}>
-                <div className="strip stripBorder"  >
-                    <div className="num" style={{padding:'1%'}}>{sno}</div>
-                    <div className="taskname" style={{padding:'1%'}}>{taskname}</div>
-                    <div className="created" style={{padding:'1%'}}>{created}</div>
-                    <div className="estimate" style={{padding:'1%'}}>{estimate}</div>
-                    <div className="status" style={{padding:'1%'}}>{status}</div>
-                    <div className="arrow" style={{padding:'1%'}}> > </div>
-                </div>
-            </Accordion.Toggle>
-            <Accordion.Collapse eventKey={sno+" "} className="collapsed">
-                <Card.Body className="hidden">{body}</Card.Body>
-            </Accordion.Collapse>
-        </Card>
+        // console.log("sno",props.sno)
+        // console.log(e)
+        last=props.sno;
+    }
+    // console.log(document.getElementById(props.sno))
+    return <Card className="no-border" id={props.sno}>
+                <Accordion.Toggle as={Card.Header} eventKey={props.sno+" "} onClick={handleClick}>
+                    <div className="strip stripBorder"  >
+                        <div className="num" style={{padding:'1%'}}>{props.sno}</div>
+                        <div className="taskname" style={{padding:'1%'}}>{props.taskname}</div>
+                        <div className="created" style={{padding:'1%'}}>{ props.created.substring(0,props.created.indexOf('T')) }</div>
+                        <div className="estimate" style={{padding:'1%'}}>--------/----/----</div>
+                        <div className="status" style={{padding:'1%'}}>{(props.status.notYetStarted)?"Not Yet Started":"Just Added"}</div>
+                        <div className="arrow" style={{padding:'1%'}}><i className="fa fa-chevron-right" aria-hidden="true"></i> </div>
+                    </div>
+                </Accordion.Toggle>
+                <Accordion.Collapse eventKey={props.sno+" "} className="collapsed">
+                    <Card.Body className="hidden">{props.body}</Card.Body>
+                </Accordion.Collapse>
+            </Card>
 
 
 });
 
-const SortableInfiniteList = sortableContainer(({items}) => {
+const SortableInfiniteList = sortableContainer(({items,open}) => {
+    // console.log(items,"this are items passed");
     return (
         <Infinite
             containerHeight={400}
             elementHeight={49}
             className="scrolling"
         >
-            {items.map(({sno, height, taskname, created, estimate, status, body}, index) => (
+            {items&&items.map(({sno, height, name, creationTime, estimate, status, description}, index) => (
                 <SortableItem
                     key={`item-${index}`}
                     index={index}
-                    sno={sno}
+                    sno={index+1}
                     height={height}
-                    taskname={taskname}
-                    created={created}
+                    taskname={name}
+                    created={creationTime}
                     estimate={estimate}
                     status={status}
-                    body={body}
+                    body={description}
+                    open={open}
                 />
             ))}
         </Infinite>
@@ -97,21 +127,34 @@ const modalStyle = function() {
 
 
 class Tasks extends Component {
-    constructor(...args) {
-        super(...args);
+    constructor(props) {
+        super(props);
+        console.log("ye hai props inside constructor",this.props);
+
         this.state = {
+            pid: "",
+            name: "",
+            description: "",
+            id:this.props,
             showModal: false,
             items: [
-                {sno: '1', height: 89, taskname: 'My name is Anurag', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
-                {sno: '2', height: 59, taskname: 'HIiii', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
-                {sno: '3', height: 130, taskname: 'aaaaaaaaaaaaaa', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
-                {sno: '4', height: 59, taskname: 'ssssssssssssss', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
-                {sno: '5', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
-                {sno: '6', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
-                {sno: '7', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
-                {sno: '8', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
-                {sno: '9', height: 150, taskname: 'ggggggggggggggg', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
+                {sno: '1', height: 89, taskname: 'Logo Created', created: '19/05/19', estimate: '26/05/19', status: 'completed', body: 'added by : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, asperiores inventore quasi tempore veniam voluptatem? Aliquam aut consequatur, ea eos laborum laudantium modi natus quos totam velit veniam veritatis vitae. '},
+                {sno: '2', height: 59, taskname: 'Website UI ', created: '19/05/19', estimate: '27/05/19', status: 'finished and in review', body: 'added by : michael white Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, asperiores inventore quasi tempore veniam voluptatem? Aliquam aut consequatur, ea eos laborum laudantium modi natus quos totam velit veniam veritatis vitae. '},
+                {sno: '3', height: 130, taskname: 'Website UX', created: '19/05/19', estimate: '29/05/19', status: 'in progress', body: 'added by : michael white Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, asperiores inventore quasi tempore veniam voluptatem? Aliquam aut consequatur, ea eos laborum laudantium modi natus quos totam velit veniam veritatis vitae. '},
+                {sno: '4', height: 59, taskname: 'Website Development', created: '29/05/19', estimate: '19/06/19', status: 'in progress', body: 'added by : vLorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, asperiores inventore quasi tempore veniam voluptatem? Aliquam aut consequatur, ea eos laborum laudantium modi natus quos totam velit veniam veritatis vitae. '},
+                {sno: '5', height: 200, taskname: 'Backend', created: '01/06/19', estimate: '29/06/19', status: 'not yet started', body: 'added by : michael white Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, asperiores inventore quasi tempore veniam voluptatem? Aliquam aut consequatur, ea eos laborum laudantium modi natus quos totam velit veniam veritatis vitae. '},
+                // {sno: '6', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
+                // {sno: '7', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
+                // {sno: '8', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
+                // {sno: '9', height: 150, taskname: 'ggggggggggggggg', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
                 ],
+            project: {
+                name:"",
+                description:""
+            },
+            team:[],
+            open: false
+
         };
 
         this.close = () => {
@@ -124,8 +167,115 @@ class Tasks extends Component {
 
 
     }
+    componentDidMount() {
+        console.log("see props inside componentDidMount", this.props);
+        const url_project= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+localStorage.getItem('clientId')+"/projects/"+this.props.match.params.pid;
+        // console.log(url);
+        fetch(url_project,{
+            headers: {
+                Authorization: "Bearer "+this.props.auth.stsTokenManager.accessToken
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+
+                // console.log("cdcdsc",data);
+
+                // console.log(data.res);
+                const arr = data.res.project.team;
+                this.setState({
+                    project:{
+                        name:data.res.project.name,
+                        description: data.res.project.description
+                    },
+                    team: arr
+                })
+
+            })
+
+            .catch(err => console.log(err));
+
+
+        const url_task= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+localStorage.getItem('clientId')+"/projects/"+this.props.match.params.pid+"/tasks/";
+        // console.log(url);
+        fetch(url_task,{
+            headers: {
+                Authorization: "Bearer "+this.props.auth.stsTokenManager.accessToken
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+
+                // console.log("cdcdsc",data);
+
+                // console.log(data.res);
+                const arr2 = data.res;
+                this.setState({
+                    tasks: arr2
+                })
+
+            })
+            .catch(err => console.log(err));
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            id: nextProps
+        })
+        // console.log(nextProps,"cdcdscdvfdgewdS")
+        const url_project= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+localStorage.getItem('clientId')+"/projects/"+nextProps.match.params.pid;
+        console.log("this is nextProp", nextProps);
+        // console.log(url);
+        fetch(url_project,{
+            headers: {
+                Authorization: "Bearer "+this.props.auth.stsTokenManager.accessToken
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+
+                // console.log("cdcdsc",data);
+
+                // console.log(data.res);
+                const arr = data.res.project.team;
+                this.setState({
+                    project:{
+                        name:data.res.project.name,
+                        description: data.res.project.description
+                    },
+                    team: arr
+                })
+
+            })
+
+            .catch(err => console.log(err));
+
+
+        const url_task= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+localStorage.getItem('clientId')+"/projects/"+nextProps.match.params.pid+"/tasks/";
+        // console.log(url);
+        fetch(url_task,{
+            headers: {
+                Authorization: "Bearer "+this.props.auth.stsTokenManager.accessToken
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+
+                // console.log("cdcdsc",data);
+
+                // console.log(data.res);
+                const arr2 = data.res;
+                this.setState({
+                    tasks: arr2
+                })
+
+            })
+            .catch(err => console.log(err));
+    }
+
 
     renderBackdrop(props) {
+
         return <div {...props} style={backdropStyle} />;
     }
 
@@ -135,55 +285,85 @@ class Tasks extends Component {
         }));
     };
 
+    handleChange = (e) => {
+        this.setState({
+            [e.target.id]: e.target.value,
+
+        })
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+
+        let name = this.state.name;
+        let description = this.state.description;
+        let status = {
+            notYetStarted: true,
+            inProgress: false,
+            finishAndInReview: false,
+            completed: false
+        };
+        let markAsUrgent = document.getElementById('checkbox').checked;
+        // console.log(markAsUrgent);
+        let numberOfHours = "";
+        let dataObj = {name, description, status, markAsUrgent, numberOfHours};
+
+        // console.log(dataObj);
+        // console.log(this.state.id.match.params.pid);
+
+        const url_task= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+localStorage.getItem('clientId')+"/projects/"+this.state.id.match.params.pid+"/tasks/";
+        // console.log(url_task,"cddscsdCds",this.props);
+        fetch(url_task,{
+            headers: {
+                Authorization: "Bearer "+this.props.auth.stsTokenManager.accessToken
+            },
+            method: 'POST',
+            body: JSON.stringify(dataObj)
+        })
+            .then(res => res.json())
+            .then(data => {
+
+                // console.log("anurag",data);
+
+            })
+
+            .catch(err => console.log(err))
+
+    }
 
 
     render() {
-        const {items} = this.state;
+        console.log("ye hai props inside render method",this.props);
+        const {tasks, open} = this.state;
         return (
             <div className="tasks">
                 <div className="headerTask">
                     <div className="sets">
-                        <div className="set">
-                            <div className="profileImg">
-                                <img className="profile" src="https://www.fillmurray.com/50/50" alt="profile"/>
-                            </div>
+                        {
+                            this.state.team.map((employee) =>
+                                // console.log(employee,"this is employee list")
+                                <div className="set">
+                                    <div className="profileImg">
+                                        <div className="profile" >{employee.name.split(" ")[0].charAt(0).toUpperCase()+""+employee.name.split(" ")[1].charAt(0).toUpperCase() } </div>
+                                    </div>
 
-                            <div className="name">
-                                <p>Anurag</p>
-                            </div>
+                                    <div className="name">
+                                        <p>{ employee.name.split(" ")[0] }</p>
+                                    </div>
 
-                        </div>
-
-
-                        <div className="set">
-                            <div className="profileImg">
-                                <img className="profile" src="https://placecage.com/50/50" alt="profile"/>
-                            </div>
-
-                            <div className="name">
-                                <p>Anurag</p>
-                            </div>
-
-                        </div>
-
-                        <div className="set">
-                            <div className="profileImg">
-                                <img className="profile" src="https://placebeard.it/50/50" alt="profile"/>
-                            </div>
-
-                            <div className="name">
-                                <p>Anurag</p>
-                            </div>
-
-                        </div>
+                                </div>
+                            )
+                        }
                     </div>
-
-                    <div className="searchTask">
-                        <i className="fa fa-search fa-xs ic"></i>
-                        <input type="text" className="search" placeholder="Search task"/>
+                    {/*uncomment to add search bar*/}
 
 
-                    </div>
+                    {/*<div className="searchTask">*/}
+                    {/*    <i className="fa fa-search fa-xs ic"></i>*/}
+                    {/*    <input type="text" className="search" placeholder="Search task"/>*/}
+
+
+                    {/*</div>*/}
                     <div className="addButton modal-example">
                         <button onClick={this.open} className="add_task" type="button">
                             {" "}
@@ -200,18 +380,22 @@ class Tasks extends Component {
                             <div className="modalMain">
                                 <h2 id="modal-label">CREATE TASK</h2>
                             </div>
-                            <div className="check">
-                                <Form.Group style={{float:'right'}} controlId="formBasicChecbox">
-                                    <Form.Check type="checkbox" label="mark me urgent" />
-                                </Form.Group>
-                            </div>
-                            <Form>
+                            <Form onSubmit={this.handleSubmit}>
+                                <div className="check">
+                                    <Form.Group style={{float:'right'}} controlId="formBasicChecbox">
+                                        <Form.Check id="checkbox" type="checkbox" label="mark me urgent" />
+                                    </Form.Group>
+                                </div>
+
+
                                 <Form.Group>
                                     <Form.Label className="taskLabel">TASK NAME</Form.Label>
                                     <Form.Control
                                         type="text"
                                         placeholder="Write here...."
                                         className="nameField"
+                                        id="name"
+                                        onChange={this.handleChange}
                                     />
                                 </Form.Group>
 
@@ -221,11 +405,13 @@ class Tasks extends Component {
                                         as="textarea"
                                         placeholder="Write here...."
                                         className="desField"
+                                        id="description"
+                                        onChange={this.handleChange}
                                     />
                                 </Form.Group>
 
                                 <Form.Group className="createBt">
-                                    <Button variant="secondary" size="sm" className="taskCreate">
+                                    <Button type="submit" variant="secondary" size="sm" className="taskCreate" >
                                         CREATE
                                     </Button>
                                 </Form.Group>
@@ -240,9 +426,8 @@ class Tasks extends Component {
                 </div>
 
                 <div className="bodyTask">
-                    <h4>Dexpert Tool UI Design</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A corporis cupiditate doloribus incidunt ipsam nobis repellat soluta tenetur? Atque deleniti dolor in laudantium magni odio praesentium quos sed soluta suscipit.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, reprehenderit!</p>
+                    <h4>{(this.state.project.name)?this.state.project.name:<lines className="shine proj_name"></lines>}</h4>
+                    <p>{ (this.state.project.description)?this.state.project.description:<lines className="shine proj_desc"></lines> }</p>
                     <br />
                     <div className="tableHeader">
                         <div className="num"></div>
@@ -253,9 +438,18 @@ class Tasks extends Component {
                         <div className="arrow"></div>
                     </div>
 
+                    { !tasks && <div className="task-tableBody">
+                        <div className="num"><lines className="shine task_holder_num"></lines></div>
+                        <div className="taskname"><lines className="shine task_holder_name"></lines></div>
+                        <div className="created"><lines className="shine task_holder"></lines></div>
+                        <div className="estimate"><lines className="shine task_holder"></lines></div>
+                        <div className="status"><lines className="shine task_holder"></lines></div>
+                        <div className="arrow"></div>
+                    </div> }
+
 
                     <Accordion>
-                        <SortableInfiniteList items={items} onSortEnd={this.onSortEnd} />
+                        <SortableInfiniteList items={tasks} open={open} onSortEnd={this.onSortEnd} />
                     </Accordion>
 
 
@@ -266,4 +460,11 @@ class Tasks extends Component {
     }
 }
 
-export default Tasks;
+
+const mapStateToProps = (state) => {
+    console.log("my name is state1",state);
+    return {
+        auth: state.firebase.auth
+    }
+}
+export default connect(mapStateToProps)(Tasks);
