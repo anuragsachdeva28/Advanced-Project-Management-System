@@ -169,7 +169,7 @@ class Tasks extends Component {
     }
     componentDidMount() {
         console.log("see props inside componentDidMount", this.props);
-        const url_project= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+localStorage.getItem('clientId')+"/projects/"+this.props.match.params.pid;
+        const url_project= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+this.props.match.params.cid+"/projects/"+this.props.match.params.pid;
         // console.log(url);
         fetch(url_project,{
             headers: {
@@ -196,7 +196,7 @@ class Tasks extends Component {
             .catch(err => console.log(err));
 
 
-        const url_task= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+localStorage.getItem('clientId')+"/projects/"+this.props.match.params.pid+"/tasks/";
+        const url_task= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+this.props.match.params.cid+"/projects/"+this.props.match.params.pid+"/tasks/";
         // console.log(url);
         fetch(url_task,{
             headers: {
@@ -222,8 +222,8 @@ class Tasks extends Component {
         this.setState({
             id: nextProps
         })
-        // console.log(nextProps,"cdcdscdvfdgewdS")
-        const url_project= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+localStorage.getItem('clientId')+"/projects/"+nextProps.match.params.pid;
+        console.log(nextProps,"cdcdscdvfdgewdS")
+        const url_project= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+nextProps.match.params.cid+"/projects/"+nextProps.match.params.pid;
         console.log("this is nextProp", nextProps);
         // console.log(url);
         fetch(url_project,{
@@ -251,7 +251,7 @@ class Tasks extends Component {
             .catch(err => console.log(err));
 
 
-        const url_task= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+localStorage.getItem('clientId')+"/projects/"+nextProps.match.params.pid+"/tasks/";
+        const url_task= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+nextProps.match.params.cid+"/projects/"+nextProps.match.params.pid+"/tasks/";
         // console.log(url);
         fetch(url_task,{
             headers: {
@@ -311,7 +311,7 @@ class Tasks extends Component {
         // console.log(dataObj);
         // console.log(this.state.id.match.params.pid);
 
-        const url_task= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+localStorage.getItem('clientId')+"/projects/"+this.state.id.match.params.pid+"/tasks/";
+        const url_task= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+this.props.match.params.cid+"/projects/"+this.state.id.match.params.pid+"/tasks/";
         // console.log(url_task,"cddscsdCds",this.props);
         fetch(url_task,{
             headers: {
@@ -340,7 +340,7 @@ class Tasks extends Component {
                 <div className="headerTask">
                     <div className="sets">
                         {
-                            this.state.team.map((employee) =>
+                            this.state.team && this.state.team.map((employee) =>
                                 // console.log(employee,"this is employee list")
                                 <div className="set">
                                     <div className="profileImg">

@@ -59,7 +59,7 @@ class Autocomplete extends Component {
           id={"data-list"}
           onautocomplete={this.selected}
         >
-          {this.props.options.map((employee, id) => (
+          {this.props.options && this.props.options.map((employee, id) => (
             <option
               data-id={employee.id}
               data-name={employee.name}

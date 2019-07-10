@@ -3,6 +3,9 @@ import "./Employee.css";
 // import { Link } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
 import {connect} from "react-redux";
+import {Route} from "react-router-dom";
+import Dashboard_2 from "../Dashboard/Dashboard_2";
+import AddClient from "./AddClient";
 
 class Employee extends Component {
     state = {
@@ -59,7 +62,7 @@ class Employee extends Component {
         console.log("dcdcDDSFVFDVDF");
     return (
         <Fragment>
-            <Sidebar/>
+
             <div className="empAside">
                 <div className="userHeader">
                     {/*<Link to="./add">*/}

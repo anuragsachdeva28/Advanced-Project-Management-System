@@ -6,6 +6,7 @@ import SignIn from "./components/SignIn/SignIn";
 import Profile from "./components/Profile/Profile";
 import Admin from "./components/Main/Admin";
 import Employee from "./components/Main/Employee";
+import EmployeeClient from "./components/Main/EmployeeClient";
 // import AddEmp from "./components/Main/AddEmp";
 
 class App extends Component {
@@ -16,18 +17,17 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-
             <Route exact path="/" render={() => (<Redirect to="/signin" />)} />
 
-          <Route path="/projects" component={Sidebar} />
+            {/*<Route path="/employees/" component={Sidebar} />*/}
+            <Route path="/clients/" component={Sidebar} />
+            <Route path="/clients/" component={Main} />
 
-          <Route path="/projects" component={Main} />
+            <Route path="/signin/" component={SignIn} />
+            <Route path="/profile/" component={Profile} />
+            <Route path="/admin/" component={Admin} />
 
-          <Route path="/signin" component={SignIn} />
-          <Route path="/profile" component={Profile} />
-          <Route path="/admin" component={Admin} />
-
-            <Route path="/employees/" exact component={Employee} />
+            <Route path="/employees/" component={EmployeeClient} />
 
 
         </div>

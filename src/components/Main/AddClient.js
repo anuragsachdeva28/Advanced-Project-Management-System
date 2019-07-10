@@ -1,7 +1,42 @@
 import React, { Component } from "react";
 import { Form, Row, Col, Button } from "react-bootstrap";
+import {connect} from "react-redux";
 
 class AddClient extends Component {
+  state = {
+    name:""
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.id]: e.target.value
+    })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("this is clicked");
+
+    let name = this.state.name;
+    let dataObj = {name}
+    const url= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients";
+    // console.log(url);
+    fetch(url,{
+      headers: {
+        Authorization: "Bearer "+this.props.auth.stsTokenManager.accessToken
+      },
+      method: 'POST',
+      body: JSON.stringify(dataObj)
+    })
+        .then(res => res.json())
+        .then(data => {
+
+          console.log("anurag",data);
+          // window.location.reload(false);
+        })
+
+        .catch(err => console.log(err))
+  }
   render() {
     return (
       <div className="mainAside">
@@ -9,13 +44,13 @@ class AddClient extends Component {
           <h5 className="new_client">NEW CLIENT</h5>
         </div>
         <div className="mainAside_body">
-          <Form>
+          <Form onSubmit={this.handleSubmit} >
             <Form.Group as={Row}>
               <Form.Label column sm="2" className="clientDetail">
                 Client name
               </Form.Label>
               <Col sm="4">
-                <Form.Control type="text" placeholder="" className="field" />
+                <Form.Control id="name" onChange={this.handleChange} type="text" placeholder="" className="field" />
               </Col>
             </Form.Group>
 
@@ -48,7 +83,7 @@ class AddClient extends Component {
                 </Button>
               </Col>
               <Col sm="2">
-                <Button variant="secondary" size="sm" className={`create`}>
+                <Button type="submit" variant="secondary" size="sm" className={`create`}>
                   CREATE
                 </Button>
               </Col>
@@ -60,4 +95,11 @@ class AddClient extends Component {
   }
 }
 
-export default AddClient;
+
+const mapStateToProps = (state) => {
+  console.log("my name is state1",state);
+  return {
+    auth: state.firebase.auth
+  }
+}
+export default connect(mapStateToProps)(AddClient);

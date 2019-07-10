@@ -13,7 +13,7 @@ class Sidebar extends Component{
         return (
             <div className="sidebar">
                 <Link to={"/profile/"} > <img className="logo" src={Logo} alt="logo" /></Link>
-                <Link to={"/projects/"}>
+                <Link to={"/clients/"}>
                 <Icon
                     icon="fa-folder-open"
                     // onActive="fa-close"
@@ -22,7 +22,7 @@ class Sidebar extends Component{
                     // active={this.state.active}
                      />
                 </Link>
-                <Link to={"/employees/"}>
+                <Link to={"/employees/clients/"}>
                     <Icon
                     icon="fa-user"
                     title="Profile" 

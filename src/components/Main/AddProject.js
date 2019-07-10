@@ -16,7 +16,7 @@ class AddProject extends Component {
 
   componentDidMount() {
     // console.log(this.props.auth.uid,"cdcdscdvfdgewdS")
-    const url= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+localStorage.getItem('clientId')+"/employees/";
+    const url= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+this.props.match.params.cid+"/employees/";
     // console.log(url,"cddscsdCds",this.props);
     fetch(url,{
       headers: {
@@ -45,7 +45,7 @@ class AddProject extends Component {
     let dataObj = {name, description, team};
     console.log(dataObj)
 
-    const url= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+localStorage.getItem('clientId')+"/projects/";
+    const url= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+this.props.match.params.cid+"/projects/";
     console.log(url,"cddscsdCds",this.props);
     fetch(url,{
       headers: {

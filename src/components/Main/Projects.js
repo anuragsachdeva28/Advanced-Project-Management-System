@@ -10,12 +10,32 @@ class Projects extends Component {
 
     }
     componentDidMount() {
-        // console.log(this.props.auth.uid,"cdcdscdvfdgewdS")
-        const url= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+localStorage.getItem('clientId')+"/projects/";
+        console.log(this.props,"projects pe call kiya hua props")
+        const url= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+this.props.match.params.cid+"/projects/";
         // console.log(url);
         fetch(url,{
             headers: {
                 Authorization: "Bearer "+this.props.auth.stsTokenManager.accessToken
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+
+                // console.log("cdcdsc",data);
+
+                const arr = data.res.projects;
+                this.setState({ projects: arr })
+
+            })
+
+            .catch(err => console.log(err))
+    }
+    componentWillReceiveProps(nextProps) {
+        const url= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+nextProps.match.params.cid+"/projects/";
+        // console.log(url);
+        fetch(url,{
+            headers: {
+                Authorization: "Bearer "+nextProps.auth.stsTokenManager.accessToken
             }
         })
             .then(res => res.json())
@@ -41,7 +61,7 @@ class Projects extends Component {
                         <h5 className="projList">PROJECT</h5>
                     </div>
                     <div className="addIcon">
-                        <Link to="/projects/add" >
+                        <Link to="./add" >
                         <div className="addIconInside">
                             <span>+</span>
                         </div>
@@ -69,7 +89,7 @@ class Projects extends Component {
 
                     {
                         this.state.projects && this.state.projects.map((project,key) =>
-                        <NavLink to = {"/projects/" + (project.id) + "/tasks"} key={key} activeClassName={"active"} >
+                        <NavLink to = {"/clients/"+this.props.match.params.cid+"/projects/" + (project.id) + "/tasks"} key={key} activeClassName={"active"} >
                             {console.log(project)}
                             <CardList
                                 date={project.creationTime.substring(0,project.creationTime.indexOf('T'))}

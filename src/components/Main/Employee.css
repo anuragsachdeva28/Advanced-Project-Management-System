@@ -1,6 +1,9 @@
+.main{
+    background: rgba(193, 193, 209, 0.14);
+}
 .empAside {
     background: white;
-    width: 94vw;
+    width: 80vw;
 }
 
 .userHeader {
