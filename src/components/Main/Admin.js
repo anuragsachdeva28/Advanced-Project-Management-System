@@ -1,16 +1,25 @@
 import React, { Component, Fragment } from "react";
 import "./Admin.css";
 import Sidebar from "../Sidebar/Sidebar";
+import {Link, Route} from "react-router-dom";
+import AddAdmin from "./AddAdmin";
 // import { Link } from "react-router-dom";
 
 class Admin extends Component {
+
   render() {
     return (
       <Fragment>
-        <Sidebar />
+
+
         <div className="adminAside">
           <div className="adminHeader">
-
+            <Link to="/admins/add/">
+              <button className="add_admin" type="button">
+                {" "}
+                <span>+</span> Add Admin{" "}
+              </button>
+            </Link>
           </div>
           <div className="adminBody">
             <h4 className="admin-table-heading">Admin Page</h4>

@@ -7,6 +7,7 @@ import Profile from "./components/Profile/Profile";
 import Admin from "./components/Main/Admin";
 import Employee from "./components/Main/Employee";
 import EmployeeClient from "./components/Main/EmployeeClient";
+import AddAdmin from "./components/Main/AddAdmin";
 // import AddEmp from "./components/Main/AddEmp";
 
 class App extends Component {
@@ -21,11 +22,13 @@ class App extends Component {
 
             {/*<Route path="/employees/" component={Sidebar} />*/}
             <Route path="/clients/" component={Sidebar} />
+            <Route path="/admins/" component={Sidebar} />
             <Route path="/clients/" component={Main} />
 
             <Route path="/signin/" component={SignIn} />
             <Route path="/profile/" component={Profile} />
-            <Route path="/admins/" component={Admin} />
+            <Route path="/admins/" exact component={Admin} />
+            <Route path={"/admins/add/"} component={AddAdmin} />
 
             <Route path="/employees/" component={EmployeeClient} />
 
