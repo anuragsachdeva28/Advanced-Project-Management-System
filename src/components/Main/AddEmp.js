@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './AddEmp.css';
 import {Button, Col, Form, Row, Dropdown, MenuItem} from "react-bootstrap";
 import {connect} from "react-redux";
+import { Redirect } from "react-router-dom";
 
 
 class AddEmp extends Component {
@@ -88,6 +89,10 @@ class AddEmp extends Component {
         setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
     }
 
+    handleCancel = () => {
+        window.location.href = "/employees/clients/"+this.props.match.params.cid+"/employees/";
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
 
@@ -147,6 +152,9 @@ class AddEmp extends Component {
                     console.log("rrrrrrrrrrrr")
                     this.myfunc();
                 }
+                else {
+                    window.location.href = "/employees/clients/"+this.props.match.params.cid+"/employees/";
+                }
             })
 
             .catch(err => console.log("sachdeva",err))
@@ -192,7 +200,7 @@ class AddEmp extends Component {
 
                         <Form.Group as={Row} controlId="formBasicPassword">
                             <Form.Label column sm="2" className="userDetail">
-                                Password
+                                Role
                             </Form.Label>
                             <Dropdown onSelect={this.onSelect} id="d">
                                 <Dropdown.Toggle variant="secondary" id="dropdown-basic">
@@ -213,7 +221,7 @@ class AddEmp extends Component {
                         <br />
                         <Form.Group as={Row}>
                             <Col sm="2">
-                                <Button variant="secondary" size="sm" className={`cancel`}>
+                                <Button onClick={this.handleCancel} variant="secondary" size="sm" className={`cancel`}>
                                     CANCEL
                                 </Button>
                             </Col>

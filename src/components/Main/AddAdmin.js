@@ -8,7 +8,7 @@ class AddAdmin extends Component {
     state = {
         name: "",
         email: "",
-        password: "",
+
         selectedName: "admin"
     }
 
@@ -72,7 +72,7 @@ class AddAdmin extends Component {
 
         let dataObj = { name, email, role };
 
-        const url= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+this.props.match.params.cid+"/employees";
+        const url= "https://us-central1-dexpert-admin.cloudfunctions.net/api/admins";
         // console.log(url);
         fetch(url,{
             headers: {
@@ -135,7 +135,7 @@ class AddAdmin extends Component {
 
                         <Form.Group as={Row} controlId="formBasicPassword">
                             <Form.Label column sm="2" className="adminDetail">
-                                Password
+                                Role
                             </Form.Label>
                             <Dropdown onSelect={this.onSelect} id="d" style={{marginLeft:1.1+"%"}} >
                                 <Dropdown.Toggle variant="secondary" id="dropdown-basic" style={{borderRadius:20+'px'}} >
