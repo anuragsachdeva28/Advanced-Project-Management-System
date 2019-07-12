@@ -61,7 +61,7 @@ class Projects extends Component {
                         <h5 className="projList">PROJECT</h5>
                     </div>
                     <div className="addIcon">
-                        <Link to="./add" >
+                        <Link to={"/clients/"+this.props.match.params.cid+"/projects/add/"} >
                         <div className="addIconInside">
                             <span>+</span>
                         </div>

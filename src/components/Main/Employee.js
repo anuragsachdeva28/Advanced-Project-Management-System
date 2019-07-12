@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from "react";
 import "./Employee.css";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
 import {connect} from "react-redux";
 import {Route} from "react-router-dom";
@@ -108,12 +108,12 @@ class Employee extends Component {
 
             <div className="empAside">
                 <div className="userHeader">
-                    {/*<Link to="./add">*/}
-                        {/*<button className="add_user" type="button">*/}
-                            {/*{" "}*/}
-                            {/*<span>+</span> Add User{" "}*/}
-                        {/*</button>*/}
-                    {/*</Link>*/}
+                    <Link to="./add">
+                        <button className="add_user" type="button">
+                            {" "}
+                            <span>+</span> Add User{" "}
+                        </button>
+                    </Link>
                 </div>
 
                 <div className="userBody">

@@ -29,6 +29,13 @@ class Sidebar extends Component{
                     // active={this.state.active}
                     />
                 </Link>
+                <Link to={"/admins/"}>
+                    <Icon
+                    icon="fa-user-secret"
+                    title="Profile"
+                    // active={this.state.active}
+                    />
+                </Link>
                 <Link to={"/profile/"} > <img className="pic" src={Pic} alt="logo" /></Link>
                 {/*<Icon*/}
                     {/*icon="fa-cog"*/}

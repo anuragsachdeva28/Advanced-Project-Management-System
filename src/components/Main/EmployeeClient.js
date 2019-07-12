@@ -7,6 +7,7 @@ import {Route} from "react-router-dom";
 import Dashboard_2 from "../Dashboard/Dashboard_2";
 import AddClient from "./AddClient";
 import Employee from "./Employee"
+import AddEmp from "./AddEmp";
 
 class EmployeeClient extends Component {
     state = {
@@ -68,7 +69,8 @@ class EmployeeClient extends Component {
                     <Route path="/employees/clients/" component={Dashboard_2} />
                 </div>
                 <Route path="/employees/clients/add/" component={AddClient} />
-                <Route path="/employees/clients/:cid/employees/" component={Employee} />
+                <Route path="/employees/clients/:cid/employees/" exact component={Employee} />
+                <Route path="/employees/clients/:cid/employees/add/" component={AddEmp} />
             </Fragment>
 
         );
