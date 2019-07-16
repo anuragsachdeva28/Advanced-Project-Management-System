@@ -8,6 +8,7 @@ import Admin from "./components/Main/Admin";
 import Employee from "./components/Main/Employee";
 import EmployeeClient from "./components/Main/EmployeeClient";
 import AddAdmin from "./components/Main/AddAdmin";
+import SignInForm from "./components/SignIn/SignInForm";
 // import AddEmp from "./components/Main/AddEmp";
 
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
             <Route path="/clients/" component={Main} />
 
             <Route path="/signin/" component={SignIn} />
+
             <Route path="/profile/" component={Profile} />
             <Route path="/admins/" exact component={Admin} />
             <Route path={"/admins/add/"} component={AddAdmin} />

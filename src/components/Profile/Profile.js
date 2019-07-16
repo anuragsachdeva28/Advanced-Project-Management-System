@@ -12,30 +12,34 @@ class Profile extends Component {
     state = {
         name: "",
         email: "",
-
+        aT: (this.props.auth.stsTokenManager)?this.props.auth.stsTokenManager.accessToken:""
     }
+
     componentDidMount() {
         console.log(this.props.auth.uid,"cdcdscdvfdgewdS")
-        const url= "https://us-central1-dexpert-admin.cloudfunctions.net/api/employees/"+this.props.auth.uid;
+        const url= "https://us-central1-dexpert-admin.cloudfunctions.net/api/admins/"+this.props.auth.uid;
         console.log(url);
         fetch(url,{
             headers: {
-                Authorization: "Bearer "+this.props.auth.stsTokenManager.accessToken
+                Authorization: "Bearer "+this.state.aT
             }
         })
             .then(res => res.json())
             .then(data=> {
                 const dataItem = (data);
-                console.log(dataItem,"cdcdscsdvs")
-                const clientId = dataItem.res.client.id;
-                localStorage.setItem("clientId",clientId);
+                console.log(dataItem.res.admin.name,"cdcdscsdvs")
+                const adminId = dataItem.res.admin.id;
+                localStorage.setItem("clientId",adminId);
                 localStorage.setItem("employeeId",this.props.auth.uid);
                 localStorage.setItem("token",this.props.auth.stsTokenManager.accessToken);
-                const { name, email, number } = dataItem.res;
+                const { name, email, number } = dataItem.res.admin;
                 this.setState({name, email, number}  )
             })
 
             .catch(err => console.log(err))
+
+
+
     }
 
     render() {
@@ -73,26 +77,26 @@ class Profile extends Component {
                         </Fragment> }
 
                     </div>
-                    <div className="minibox">
-                        <div className="box box1">
-                            <div className="extra-content">
-                                <div className="no">1</div>
-                                <div className="what">client</div>
-                            </div>
-                        </div>
-                        <div className="box box2">
-                            <div className="extra-content">
-                                <div className="no">4</div>
-                                <div className="what">projects</div>
-                            </div>
-                        </div>
-                        <div className="box box3">
-                            <div className="extra-content">
-                                <div className="no">5</div>
-                                <div className="what">task active</div>
-                            </div>
-                        </div>
-                    </div>
+                    {/*<div className="minibox">*/}
+                    {/*    <div className="box box1">*/}
+                    {/*        <div className="extra-content">*/}
+                    {/*            <div className="no">1</div>*/}
+                    {/*            <div className="what">client</div>*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*    <div className="box box2">*/}
+                    {/*        <div className="extra-content">*/}
+                    {/*            <div className="no">4</div>*/}
+                    {/*            <div className="what">projects</div>*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*    <div className="box box3">*/}
+                    {/*        <div className="extra-content">*/}
+                    {/*            <div className="no">5</div>*/}
+                    {/*            <div className="what">task active</div>*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                     <div className="log_out">
                         <a onClick={this.props.signOut} >
                             <Button variant="secondary" size="sm" type="submit" className={`cancel`}>

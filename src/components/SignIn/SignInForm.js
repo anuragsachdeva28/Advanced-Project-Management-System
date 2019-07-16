@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import { signIn } from "../../actions/authActions";
+import {signIn, signOut} from "../../actions/authActions";
 
 class SignInForm extends Component {
 
@@ -29,16 +29,47 @@ class SignInForm extends Component {
     this.props.signIn(this.state);
     setTimeout( ()=>{
 
-      (this.props.authError)? this.setState({loading:false}): console.log("no Error")
-    },1000)
+
+      if(this.props.authError){
+        this.setState({loading:false})
+        this.setState({
+          email:"",
+          password:""
+        })
+        console.log("cleared")
+      }
+      else {
+
+          console.log("now checking for admin")
+
+
+      }
+
+    },2000)
 
     // console.log(this.props,"k,kj,kj,hj,hj,hj,")
 
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.admin){
+      console.log("no error and is a admin")
+
+    }
+    else {
+      this.setState({loading:false})
+      this.setState({
+        email:"",
+        password:""
+      })
+      console.log("no error but not an admin")
+      this.props.signOut()
+    }
+  }
+
 
   render() {
-    // console.log("see this prop", this.props);
+    console.log("see this prop", this.props);
     const { authError } = this.props;
     const {loading} =this.state;
 
@@ -48,6 +79,7 @@ class SignInForm extends Component {
 
           onSubmit={this.handleSubmit}
           className="FormFields"
+          id="form-id"
         >
           <label className="login">Log in</label>
           <div className="FormField">
@@ -110,7 +142,8 @@ const mapStateToProps = (state)  => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      signIn: (creds) => dispatch(signIn(creds))
+      signIn: (creds) => dispatch(signIn(creds)),
+      signOut: () => dispatch(signOut())
   }
 }
 

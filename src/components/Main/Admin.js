@@ -29,7 +29,7 @@ class Admin extends Component {
         .then(data => {
 
           console.log("admin list this ",data);
-          const arr = data.res;
+          const arr = data.res.admins;
           this.setState({ admins: arr })
 
           if(data.error){
@@ -68,12 +68,12 @@ class Admin extends Component {
             </div>
             <div className="admin-tableContainer">
               {
-                this.state.admins && this.state.admins.map(admin =>
-                  <div className="admin-tableBody">
-                    <div className="num">1</div>
-                    <div className="username">Christel Woolfolk Quiroga </div>
-                    <div className="email">abcdefg@gmail.com</div>
-                    <div className="role">Manager</div>
+                this.state.admins && this.state.admins.map((admin,index) =>
+                  <div className="admin-tableBody" key={index}>
+                    <div className="num">{index+1}</div>
+                    <div className="username">{admin.name} </div>
+                    <div className="email">{admin.email}</div>
+                    <div className="role">{(admin.role.admin)?"Admin":(admin.role.manager)?"Manager":(admin.role.editor)?"Editor":"Viewer"}</div>
                   </div>
               )}
               {
