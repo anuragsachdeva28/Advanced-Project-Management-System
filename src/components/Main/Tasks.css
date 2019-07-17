@@ -435,8 +435,11 @@
 .arrow i{
     transition-timing-function: ease;
     transition: 0.2s;
+    color: grey;
+    opacity: 0.84;
+    font-size: 18px;
 }
 .active .arrow i{
 
-    transform: rotate(90deg);
+    transform: rotate(-180deg);
 }

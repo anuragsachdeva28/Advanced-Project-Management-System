@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./AddAdmin.css";
 import { Button, Col, Form, Row, Dropdown, MenuItem } from "react-bootstrap";
 import { connect } from "react-redux";
+import {reset, signIn, signOut} from "../../actions/authActions";
 
 class AddAdmin extends Component {
   state = {
@@ -89,8 +90,10 @@ class AddAdmin extends Component {
         if (data.error) {
           console.log("rrrrrrrrrrrr", data);
           this.myfunc();
-        } else {
-          window.location.href = "/admins/"
+        }
+        else {
+            this.props.reset(this.state.email)
+            // window.location.href = "/admins/";
         }
       })
 
@@ -203,4 +206,9 @@ const mapStateToProps = state => {
     auth: state.firebase.auth
   };
 };
-export default connect(mapStateToProps)(AddAdmin);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        reset: (mail) => dispatch(reset(mail))
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(AddAdmin);

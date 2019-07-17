@@ -112,6 +112,10 @@
     text-decoration: none;
     color: rgba(97, 83, 245, 0.54);
   }
+  .forget:hover{
+    text-decoration: none;
+    color: rgba(97, 83, 245, 0.54);
+  }
   
   .FormField__Button {
     background-color: #6053F5;

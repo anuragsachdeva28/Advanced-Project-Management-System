@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import {signIn, signOut} from "../../actions/authActions";
+import {signIn, signOut, reset} from "../../actions/authActions";
 
 class SignInForm extends Component {
 
@@ -9,6 +9,10 @@ class SignInForm extends Component {
     email: '',
     password: '',
     loading: false
+  }
+
+  forgetPassword = () => {
+    this.props.reset(this.state.email)
   }
 
   handleChange = (e) => {
@@ -69,7 +73,7 @@ class SignInForm extends Component {
 
 
   render() {
-    console.log("see this prop", this.props);
+    console.log("see this props right here", this.props);
     const { authError } = this.props;
     const {loading} =this.state;
 
@@ -109,7 +113,7 @@ class SignInForm extends Component {
           {/*{ authError ? this.setState({loading:false}): null}*/}
 
           {/*<div className="FormField for">*/}
-          {/*  <Link to="#" className="forget">*/}
+          {/*  <Link to="#" className="forget" onClick={this.forgetPassword}>*/}
           {/*    {" "}*/}
           {/*    Forget Password?{" "}*/}
           {/*  </Link>*/}
@@ -133,7 +137,7 @@ class SignInForm extends Component {
 
 
 const mapStateToProps = (state)  => {
-  // console.log("cdscDSCdscdscdsc",state)
+  console.log("cdscDSCdscdscdsc",state)
   return {
     authError: state.auth.authError,
     auth: state.firebase.auth
@@ -143,7 +147,8 @@ const mapStateToProps = (state)  => {
 const mapDispatchToProps = (dispatch) => {
   return {
       signIn: (creds) => dispatch(signIn(creds)),
-      signOut: () => dispatch(signOut())
+      signOut: () => dispatch(signOut()),
+      reset: (mail) => dispatch(reset(mail))
   }
 }
 

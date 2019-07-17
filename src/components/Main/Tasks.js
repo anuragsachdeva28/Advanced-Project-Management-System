@@ -16,7 +16,7 @@ import {connect} from "react-redux";
 let last;
 
 const SortableItem = sortableElement((props) => {
-    // console.log("watch this",props.open)
+    // console.log("watch this",props)
     const handleClick = (e) => {
         console.log(document.getElementById(last))
         console.log(document.getElementById(props.sno))
@@ -48,7 +48,7 @@ const SortableItem = sortableElement((props) => {
                         <div className="created" style={{padding:'1%'}}>{ props.created.substring(0,props.created.indexOf('T')) }</div>
                         <div className="estimate" style={{padding:'1%'}}>--------/----/----</div>
                         <div className="status" style={{padding:'1%'}}>{(props.status.notYetStarted)?"Not Yet Started":"Just Added"}</div>
-                        <div className="arrow" style={{padding:'1%'}}><i className="fa fa-chevron-right" aria-hidden="true"></i> </div>
+                        <div className="arrow" style={{padding:'1%'}}><i className="fa fa-chevron-down" aria-hidden="true"></i> </div>
                     </div>
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey={props.sno+" "} className="collapsed">
@@ -67,7 +67,7 @@ const SortableInfiniteList = sortableContainer(({items,open}) => {
             elementHeight={49}
             className="scrolling"
         >
-            {items&&items.map(({sno, height, name, creationTime, estimate, status, description}, index) => (
+            {items&&items.map(({priority, height, name, creationTime, estimate, status, description}, index) => (
                 <SortableItem
                     key={`item-${index}`}
                     index={index}
@@ -138,11 +138,11 @@ class Tasks extends Component {
             id:this.props,
             showModal: false,
             items: [
-                {sno: '1', height: 89, taskname: 'Logo Created', created: '19/05/19', estimate: '26/05/19', status: 'completed', body: 'added by : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, asperiores inventore quasi tempore veniam voluptatem? Aliquam aut consequatur, ea eos laborum laudantium modi natus quos totam velit veniam veritatis vitae. '},
-                {sno: '2', height: 59, taskname: 'Website UI ', created: '19/05/19', estimate: '27/05/19', status: 'finished and in review', body: 'added by : michael white Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, asperiores inventore quasi tempore veniam voluptatem? Aliquam aut consequatur, ea eos laborum laudantium modi natus quos totam velit veniam veritatis vitae. '},
-                {sno: '3', height: 130, taskname: 'Website UX', created: '19/05/19', estimate: '29/05/19', status: 'in progress', body: 'added by : michael white Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, asperiores inventore quasi tempore veniam voluptatem? Aliquam aut consequatur, ea eos laborum laudantium modi natus quos totam velit veniam veritatis vitae. '},
-                {sno: '4', height: 59, taskname: 'Website Development', created: '29/05/19', estimate: '19/06/19', status: 'in progress', body: 'added by : vLorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, asperiores inventore quasi tempore veniam voluptatem? Aliquam aut consequatur, ea eos laborum laudantium modi natus quos totam velit veniam veritatis vitae. '},
-                {sno: '5', height: 200, taskname: 'Backend', created: '01/06/19', estimate: '29/06/19', status: 'not yet started', body: 'added by : michael white Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, asperiores inventore quasi tempore veniam voluptatem? Aliquam aut consequatur, ea eos laborum laudantium modi natus quos totam velit veniam veritatis vitae. '},
+                // {priority: '1.223',  name: 'Logo Created', creationTime: '19/05/19', estimate: '26/05/19', status: 'completed', description: 'added by : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, asperiores inventore quasi tempore veniam voluptatem? Aliquam aut consequatur, ea eos laborum laudantium modi natus quos totam velit veniam veritatis vitae. '},
+                // {priority: '2.1232', name: 'Website UI ', creationTime: '19/05/19', estimate: '27/05/19', status: 'finished and in review', description: 'added by : michael white Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, asperiores inventore quasi tempore veniam voluptatem? Aliquam aut consequatur, ea eos laborum laudantium modi natus quos totam velit veniam veritatis vitae. '},
+                // {priority: '3', name: 'Website UX', creationTime: '19/05/19', estimate: '29/05/19', status: 'in progress', description: 'added by : michael white Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, asperiores inventore quasi tempore veniam voluptatem? Aliquam aut consequatur, ea eos laborum laudantium modi natus quos totam velit veniam veritatis vitae. '},
+                // {priority: '4', name: 'Website Development', creationTime: '29/05/19', estimate: '19/06/19', status: 'in progress', description: 'added by : vLorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, asperiores inventore quasi tempore veniam voluptatem? Aliquam aut consequatur, ea eos laborum laudantium modi natus quos totam velit veniam veritatis vitae. '},
+                // {priority: '5', name: 'Backend', creationTime: '01/06/19', estimate: '29/06/19', status: 'not yet started', description: 'added by : michael white Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, asperiores inventore quasi tempore veniam voluptatem? Aliquam aut consequatur, ea eos laborum laudantium modi natus quos totam velit veniam veritatis vitae. '},
                 // {sno: '6', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
                 // {sno: '7', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
                 // {sno: '8', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
@@ -207,22 +207,28 @@ class Tasks extends Component {
             .then(data => {
 
                 // console.log("cdcdsc",data);
-
-                // console.log(data.res);
-                const arr2 = data.res;
                 this.setState({
-                    tasks: arr2
+                    items:data.res
                 })
+                console.log(data.res);
+
 
             })
             .catch(err => console.log(err));
     }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        // console.log(prevProps,"prevProps")
+        // console.log(prevState,"prevState")
+        // console.log(snapshot,"snapshot")
+    }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps, nextContext) {
         this.setState({
             id: nextProps
         })
         console.log(nextProps,"cdcdscdvfdgewdS")
+        console.log(nextContext,"cdcdscdvfdgewdS")
+        console.log(this.state,"cdcdscdvfdgewdS")
         const url_project= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+nextProps.match.params.cid+"/projects/"+nextProps.match.params.pid;
         console.log("this is nextProp", nextProps);
         // console.log(url);
@@ -263,10 +269,8 @@ class Tasks extends Component {
 
                 // console.log("cdcdsc",data);
 
-                // console.log(data.res);
-                const arr2 = data.res;
                 this.setState({
-                    tasks: arr2
+                    items:data.res
                 })
 
             })
@@ -280,9 +284,54 @@ class Tasks extends Component {
     }
 
     onSortEnd = ({oldIndex, newIndex}) => {
+        let priority = 0;
         this.setState(({items}) => ({
             items: arrayMove(items, oldIndex, newIndex),
         }));
+        // console.log("oldindex",this.state.items[oldIndex-1],this.state.items[oldIndex],this.state.items[oldIndex+1])
+        let prevPriority = (this.state.items[newIndex-1])?this.state.items[newIndex-1].priority:0;
+        let nextPriority = (this.state.items[newIndex+1])?this.state.items[newIndex+1].priority:0;
+        if(prevPriority!==0 && nextPriority!==0){
+            priority = (prevPriority+nextPriority)/2;
+        }
+        else if(prevPriority===0){
+            priority = nextPriority-20;
+        }
+        else if(nextPriority===0){
+            priority = prevPriority+20;
+        }
+        console.log("newindex",this.state.items[newIndex-1],this.state.items[newIndex],this.state.items[newIndex+1])
+
+        console.log("priority",priority)
+        this.setState(prevState => {
+            const items = [...prevState.items];
+            items[newIndex] = {...items[newIndex], priority:priority}
+            return { items }
+        })
+
+        const url_task_id= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+this.props.match.params.cid+"/projects/"+this.props.match.params.pid+"/tasks/"+this.state.items[newIndex].id;
+        // console.log(url);
+        const dataObj = {
+            "update":{
+                "priority":priority
+            }
+        }
+        fetch(url_task_id,{
+            headers: {
+                Authorization: "Bearer "+this.props.auth.stsTokenManager.accessToken,
+                "Content-Type":"application/json"
+            },
+            method: 'PUT',
+            body: JSON.stringify(dataObj)
+        })
+            .then(res => res.json())
+            .then(data => {
+
+                console.log("anurag",data);
+
+            })
+            .catch(err => console.log(err));
+
     };
 
     handleChange = (e) => {
@@ -333,8 +382,12 @@ class Tasks extends Component {
 
 
     render() {
-        console.log("ye hai props inside render method",this.props);
-        const {tasks, open} = this.state;
+        console.log("ye hai props inside render method",this.state);
+        const {items,open} = this.state;
+        // console.log("ye hai tasks",tasks)
+        // console.log("ye hai items",items)
+
+
         return (
             <div className="tasks">
                 <div className="headerTask">
@@ -429,16 +482,17 @@ class Tasks extends Component {
                     <h4>{(this.state.project.name)?this.state.project.name:<lines className="shine proj_name"></lines>}</h4>
                     <p>{ (this.state.project.description)?this.state.project.description:<lines className="shine proj_desc"></lines> }</p>
                     <br />
-                    <div className="tableHeader">
+
+                    {items && <div className="tableHeader">
                         <div className="num"></div>
                         <div className="taskname">Task Name</div>
                         <div className="created">Created on</div>
                         <div className="estimate">Estimate Delivery</div>
                         <div className="status">Status</div>
                         <div className="arrow"></div>
-                    </div>
+                    </div>}
 
-                    { !tasks && <div className="task-tableBody">
+                    { !items && <div className="task-tableBody">
                         <div className="num"><lines className="shine task_holder_num"></lines></div>
                         <div className="taskname"><lines className="shine task_holder_name"></lines></div>
                         <div className="created"><lines className="shine task_holder"></lines></div>
@@ -449,8 +503,10 @@ class Tasks extends Component {
 
 
                     <Accordion>
-                        <SortableInfiniteList items={tasks} open={open} onSortEnd={this.onSortEnd} />
+                        <SortableInfiniteList items={items} open={open} onSortEnd={this.onSortEnd} />
                     </Accordion>
+
+
 
 
                 </div>

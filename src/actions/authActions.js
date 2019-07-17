@@ -16,6 +16,17 @@ export const signIn = (credentials) => {
     }
 }
 
+export const reset = (email) => {
+    return (dispatch, getState, { getFirebase }) => {
+        const firebase= getFirebase();
+
+        firebase.auth().sendPasswordResetEmail(email).then(() => {
+            dispatch({ type: 'RESET_PASSWORD'})
+        })
+    }
+}
+
+
 
 export const signOut = () => {
     return (dispatch, getState, { getFirebase }) => {
