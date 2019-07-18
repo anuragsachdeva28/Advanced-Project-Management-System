@@ -4,6 +4,7 @@ import CardList from "./CardList";
 import {Link, NavLink} from "react-router-dom";
 import {Card} from "react-bootstrap";
 import {connect} from "react-redux";
+import Pic from "../../no_proj.png";
 
 class Projects extends Component {
     state = {
@@ -86,6 +87,9 @@ class Projects extends Component {
                         </Card>
 
                     }
+
+                    { this.state.projects && this.state.projects.length===0 && <div className={"no_proj-img"}><img src={Pic} alt="profile" /></div>}
+                    { this.state.projects && this.state.projects.length===0 && <div className={"no_proj-div"}><p className={"no_proj"}>No projects added !!!</p></div>}
 
                     {
                         this.state.projects && this.state.projects.map((project,key) =>

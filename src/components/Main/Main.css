@@ -410,3 +410,22 @@ lines {
     color: white !important;
     opacity: 0.75;
 }
+
+.cards img{
+    width: 15vw;
+}
+
+.no_proj{
+    font-size: large;
+    /*font-weight: bold;*/
+    color: #6053F5;
+    opacity: 0.4;
+}
+
+.no_proj-div{
+    text-align: center;
+    padding-top: 15%;
+}
+.no_proj-img {
+    text-align: center;
+}

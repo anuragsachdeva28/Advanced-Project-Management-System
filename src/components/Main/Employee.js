@@ -6,12 +6,13 @@ import {connect} from "react-redux";
 import {Route} from "react-router-dom";
 import Dashboard_2 from "../Dashboard/Dashboard_2";
 import AddClient from "./AddClient";
+import NO_EMPLOYEE from "../../no_emp.png";
 
 class Employee extends Component {
     state = {
         name:"",
         description:"",
-        employees:[]
+        aT: (this.props.auth.stsTokenManager)?this.props.auth.stsTokenManager.accessToken:""
     }
 
     componentDidMount() {
@@ -19,7 +20,7 @@ class Employee extends Component {
         // console.log(url,"cddscsdCds",this.props);
         fetch(url_emp,{
             headers: {
-                Authorization: "Bearer "+this.props.auth.stsTokenManager.accessToken
+                Authorization: "Bearer "+this.state.aT
             }
         })
             .then(res => res.json())
@@ -28,6 +29,11 @@ class Employee extends Component {
                 console.log("emp list this ",data);
                 const arr = data.res;
                 this.setState({ employees: arr })
+                if(!data.res) {
+                    this.setState({
+                        employees: []
+                    })
+                }
 
 
 
@@ -39,7 +45,7 @@ class Employee extends Component {
         // console.log(url,"cddscsdCds",this.props);
         fetch(url_client,{
             headers: {
-                Authorization: "Bearer "+this.props.auth.stsTokenManager.accessToken
+                Authorization: "Bearer "+this.state.aT
             }
         })
             .then(res => res.json())
@@ -62,7 +68,7 @@ class Employee extends Component {
         // console.log(url,"cddscsdCds",this.props);
         fetch(url_emp,{
             headers: {
-                Authorization: "Bearer "+this.props.auth.stsTokenManager.accessToken
+                Authorization: "Bearer "+this.state.aT
             }
         })
             .then(res => res.json())
@@ -71,6 +77,11 @@ class Employee extends Component {
                 console.log("emp list this ",data);
                 const arr = data.res;
                 this.setState({ employees: arr })
+                if(!data.res) {
+                    this.setState({
+                        employees: []
+                    })
+                }
 
 
 
@@ -82,7 +93,7 @@ class Employee extends Component {
         // console.log(url,"cddscsdCds",this.props);
         fetch(url_client,{
             headers: {
-                Authorization: "Bearer "+this.props.auth.stsTokenManager.accessToken
+                Authorization: "Bearer "+this.state.aT
             }
         })
             .then(res => res.json())
@@ -123,7 +134,7 @@ class Employee extends Component {
                     </p>
                     <br />
 
-                    <div className="client-tableHeader">
+                    {this.state.employees && this.state.employees.length!==0 && <div className="client-tableHeader">
                         <div className="num"></div>
                         <div className="username light">User Name</div>
                         <div className="phone">Phone No.</div>
@@ -131,7 +142,22 @@ class Employee extends Component {
                         <div className="role">Role</div>
                         {/*<div className="status">Status</div>*/}
                         {/*<div className="arrow"></div>*/}
-                    </div>
+                    </div>}
+
+                    {!this.state.employees && <div className="client-tableHeader">
+                        <div className="num"><lines className="shine task_holder_num"></lines></div>
+                        <div className="username light"><lines className="shine task_holder_name"></lines></div>
+                        <div className="phone"><lines className="shine task_holder"></lines></div>
+                        <div className="email"><lines className="shine task_holder"></lines></div>
+                        <div className="role"><lines className="shine task_holder"></lines></div>
+                        {/*<div className="status">Status</div>*/}
+                        {/*<div className="arrow"></div>*/}
+                    </div>}
+
+                    {this.state.employees && this.state.employees.length===0 && <div className={"emp-div"}><img className="no_emp" src={NO_EMPLOYEE} alt="logo" /></div> }
+                    { this.state.employees && this.state.employees.length===0 && <div className={"no_emp-div"}><p className={"no_projemp"}>No Employees added!!!</p></div>}
+
+
                     <div className="tableContainer">
 
                         {

@@ -125,3 +125,23 @@
     height: 2vh;
     margin-top: -5px;
 }
+
+.no_emp {
+    height: 60vh;
+    opacity:0.8 !important;
+
+}
+.emp-div{
+    text-align: center;
+}
+.no_emp-div{
+    text-align: center;
+    padding-top: 2%;
+}
+
+.no_projemp{
+    font-size: large !important;
+    /*font-weight: bold;*/
+    color: #6053F5;
+    opacity: 0.4;
+}

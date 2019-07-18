@@ -12,6 +12,7 @@ import Shivam from "../../2.jpeg";
 import Lalit from "../../1.jpeg";
 import Projects from "./Projects";
 import {connect} from "react-redux";
+import NO_Tasks from "../../no_task.png";
 
 let last;
 
@@ -137,17 +138,7 @@ class Tasks extends Component {
             description: "",
             id:this.props,
             showModal: false,
-            items: [
-                // {priority: '1.223',  name: 'Logo Created', creationTime: '19/05/19', estimate: '26/05/19', status: 'completed', description: 'added by : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, asperiores inventore quasi tempore veniam voluptatem? Aliquam aut consequatur, ea eos laborum laudantium modi natus quos totam velit veniam veritatis vitae. '},
-                // {priority: '2.1232', name: 'Website UI ', creationTime: '19/05/19', estimate: '27/05/19', status: 'finished and in review', description: 'added by : michael white Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, asperiores inventore quasi tempore veniam voluptatem? Aliquam aut consequatur, ea eos laborum laudantium modi natus quos totam velit veniam veritatis vitae. '},
-                // {priority: '3', name: 'Website UX', creationTime: '19/05/19', estimate: '29/05/19', status: 'in progress', description: 'added by : michael white Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, asperiores inventore quasi tempore veniam voluptatem? Aliquam aut consequatur, ea eos laborum laudantium modi natus quos totam velit veniam veritatis vitae. '},
-                // {priority: '4', name: 'Website Development', creationTime: '29/05/19', estimate: '19/06/19', status: 'in progress', description: 'added by : vLorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, asperiores inventore quasi tempore veniam voluptatem? Aliquam aut consequatur, ea eos laborum laudantium modi natus quos totam velit veniam veritatis vitae. '},
-                // {priority: '5', name: 'Backend', creationTime: '01/06/19', estimate: '29/06/19', status: 'not yet started', description: 'added by : michael white Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, asperiores inventore quasi tempore veniam voluptatem? Aliquam aut consequatur, ea eos laborum laudantium modi natus quos totam velit veniam veritatis vitae. '},
-                // {sno: '6', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
-                // {sno: '7', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
-                // {sno: '8', height: 200, taskname: 'yyyyyyyyyyyyyy', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
-                // {sno: '9', height: 150, taskname: 'ggggggggggggggg', created: '19/05/19', estimate: '19/05/19', status: 'Status', body: 'added by : michael white This pattern allows users to add columns from a dataset. It is a way to keep the table\'s data  to keep the table\'s data limited to to to essentia; information and enables the user to add additional columns based on their use case  based on their use '},
-                ],
+
             project: {
                 name:"",
                 description:""
@@ -210,7 +201,13 @@ class Tasks extends Component {
                 this.setState({
                     items:data.res
                 })
-                console.log(data.res);
+                if(!data.res){
+                    this.setState({
+                        items:[]
+                    })
+                }
+
+                // console.log(data.res);
 
 
             })
@@ -272,6 +269,11 @@ class Tasks extends Component {
                 this.setState({
                     items:data.res
                 })
+                if(!data.res){
+                    this.setState({
+                        items:[]
+                    })
+                }
 
             })
             .catch(err => console.log(err));
@@ -481,9 +483,9 @@ class Tasks extends Component {
                 <div className="bodyTask">
                     <h4>{(this.state.project.name)?this.state.project.name:<lines className="shine proj_name"></lines>}</h4>
                     <p>{ (this.state.project.description)?this.state.project.description:<lines className="shine proj_desc"></lines> }</p>
-                    <br />
 
-                    {items && <div className="tableHeader">
+
+                    {items && items.length!==0 && <div className="tableHeader">
                         <div className="num"></div>
                         <div className="taskname">Task Name</div>
                         <div className="created">Created on</div>
@@ -491,6 +493,8 @@ class Tasks extends Component {
                         <div className="status">Status</div>
                         <div className="arrow"></div>
                     </div>}
+                    {console.log(!items)}
+                    {console.log(items)}
 
                     { !items && <div className="task-tableBody">
                         <div className="num"><lines className="shine task_holder_num"></lines></div>
@@ -501,6 +505,8 @@ class Tasks extends Component {
                         <div className="arrow"></div>
                     </div> }
 
+                    { items && items.length===0 && <div className={"task-div"}><img className="no_task" src={NO_Tasks} alt="logo" /></div> }
+                    { items && items.length===0 && <div className={"no_task-div"}><p className={"no_proj"}>No tasks added !!!</p></div>}
 
                     <Accordion>
                         <SortableInfiniteList items={items} open={open} onSortEnd={this.onSortEnd} />

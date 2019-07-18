@@ -443,3 +443,23 @@
 
     transform: rotate(-180deg);
 }
+
+.no_task {
+    height: 60vh;
+    opacity:0.8 !important;
+
+}
+.task-div{
+    text-align: center;
+}
+.no_task-div{
+    text-align: center;
+    padding-top: 0;
+}
+
+.no_proj{
+    font-size: large;
+    /*font-weight: bold;*/
+    color: #6053F5;
+    opacity: 0.4;
+}
