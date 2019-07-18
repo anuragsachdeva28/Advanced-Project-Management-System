@@ -372,8 +372,8 @@ class Tasks extends Component {
             .then(res => res.json())
             .then(data => {
 
-                // console.log("anurag",data);
-
+                console.log("anurag",data);
+                window.location.reload();
             })
 
             .catch(err => console.log(err))

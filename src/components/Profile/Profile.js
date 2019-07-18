@@ -27,7 +27,7 @@ class Profile extends Component {
             .then(res => res.json())
             .then(data=> {
                 const dataItem = (data);
-                console.log(dataItem.res.admin.name,"cdcdscsdvs")
+                console.log(dataItem.res,"cdcdscsdvs")
                 const adminId = dataItem.res.admin.id;
                 localStorage.setItem("clientId",adminId);
                 localStorage.setItem("employeeId",this.props.auth.uid);
