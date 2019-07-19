@@ -109,7 +109,7 @@ class SignInForm extends Component {
               onChange={this.handleChange}
             />
           </div>
-          { authError ? <p>{authError}</p> : null }
+          { authError ? <p className={'authError'}>Wrong Email or Password</p> : null }
           {/*{ authError ? this.setState({loading:false}): null}*/}
 
           {/*<div className="FormField for">*/}

@@ -20,7 +20,9 @@ class SignIn extends Component {
     }, 5000);
   };
   componentDidMount() {
-    if(this.props.auth.uid) return <Redirect to={/profile/} />
+    if(this.props.auth.uid) {
+      window.location.href = "/profile/"
+    }
     console.log("checked")
   }
   componentWillReceiveProps(nextProps) {

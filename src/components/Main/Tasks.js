@@ -56,8 +56,6 @@ const SortableItem = sortableElement((props) => {
                     <Card.Body className="hidden">{props.body}</Card.Body>
                 </Accordion.Collapse>
             </Card>
-
-
 });
 
 const SortableInfiniteList = sortableContainer(({items,open}) => {
