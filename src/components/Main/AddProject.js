@@ -11,7 +11,8 @@ class AddProject extends Component {
     team:[],
     employees:[{
 
-    }]
+    }],
+    loading:false
   }
 
   componentDidMount() {
@@ -36,9 +37,23 @@ class AddProject extends Component {
 
         .catch(err => console.log(err))
   }
+
+  myfunc = () => {
+    console.log("trnfvndjkcnj");
+    let x = document.getElementById("snackbar");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
+  }
+
+  handleCancel = () => {
+    window.location.href = "/clients/"+this.props.match.params.cid+"/projects/";
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
-
+    this.setState({
+      loading:true
+    })
     let name = this.state.name;
     let description = this.state.description;
     let team = this.state.team;
@@ -49,7 +64,8 @@ class AddProject extends Component {
     console.log(url,"cddscsdCds",this.props);
     fetch(url,{
       headers: {
-        Authorization: "Bearer "+this.props.auth.stsTokenManager.accessToken
+        Authorization: "Bearer "+this.props.auth.stsTokenManager.accessToken,
+        "Content-Type":"application/json"
       },
       method: 'POST',
       body: JSON.stringify(dataObj)
@@ -58,10 +74,27 @@ class AddProject extends Component {
         .then(data => {
 
           console.log("anurag",data);
-          window.location.reload(false);
+          if(data.error){
+            console.log("errrrrrrrrrrror")
+            this.myfunc();
+            this.setState({
+              loading:false,
+              name:"",
+              email:""
+            })
+          }
+          else {
+            window.location.href = "/clients/"+this.props.match.params.cid+"/projects/";
+          }
         })
 
-        .catch(err => console.log(err))
+        .catch(err => {
+          console.log(err);
+          this.setState({
+            loading:false
+          })
+          this.myfunc();
+        })
   }
   handleChange = (e) => {
     this.setState({
@@ -123,7 +156,7 @@ class AddProject extends Component {
 
           <div className={"selection_container"}>
             {
-              this.state.team.map((member) => {
+              this.state.team && this.state.team.map((member) => {
                 return <div className="selected"><span>{member.name}</span></div>
               })
             }
@@ -137,7 +170,7 @@ class AddProject extends Component {
           <Form.Group as={Row}>
             <Col sm="3">
               <Link to="/projects/">
-                <Button variant="secondary" size="sm" className={`cancel`}>
+                <Button onClick={this.handleCancel} variant="secondary" size="sm" className={`cancel`}>
                   CANCEL
                 </Button>
               </Link>
@@ -145,12 +178,13 @@ class AddProject extends Component {
             <Col sm="3">
 
                 <Button variant="secondary" size="sm" className={`create`} type={"submit"}>
-                  CREATE
+                  { this.state.loading ? <i className={"fa fa-refresh fa-spin"}></i>:"CREATE"}
                 </Button>
 
             </Col>
           </Form.Group>
         </Form>
+        <div id="snackbar">Something went Wrong ! ! !</div>
       </div>
     );
   }

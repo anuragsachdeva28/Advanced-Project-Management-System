@@ -252,7 +252,8 @@ class Tasks extends Component {
                 description:""
             },
             team:[],
-            open: false
+            open: false,
+            loading:false
 
         };
 
@@ -458,7 +459,9 @@ class Tasks extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-
+        this.setState({
+            loading:true
+        })
         let name = this.state.name;
         let description = this.state.description;
         let status = {
@@ -479,7 +482,8 @@ class Tasks extends Component {
         // console.log(url_task,"cddscsdCds",this.props);
         fetch(url_task,{
             headers: {
-                Authorization: "Bearer "+this.props.auth.stsTokenManager.accessToken
+                Authorization: "Bearer "+this.props.auth.stsTokenManager.accessToken,
+                "Content-Type":"application/json"
             },
             method: 'POST',
             body: JSON.stringify(dataObj)
@@ -488,10 +492,23 @@ class Tasks extends Component {
             .then(data => {
 
                 console.log("anurag",data);
-                window.location.reload();
+
+                if(data.error){
+                    this.setState({
+                        loading:false
+                    })
+                }
+                else {
+                    window.location.reload();
+                }
             })
 
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err)
+                this.setState({
+                    loading:false
+                })
+            })
 
     }
 
@@ -580,7 +597,7 @@ class Tasks extends Component {
 
                                 <Form.Group className="createBt">
                                     <Button type="submit" variant="secondary" size="sm" className="taskCreate" >
-                                        CREATE
+                                        { this.state.loading ? <i className={"fa fa-refresh fa-spin"}></i>:"CREATE"}
                                     </Button>
                                 </Form.Group>
                             </Form>

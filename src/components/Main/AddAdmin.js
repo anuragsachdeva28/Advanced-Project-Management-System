@@ -8,7 +8,7 @@ class AddAdmin extends Component {
   state = {
     name: "",
     email: "",
-
+    loading:false,
     selectedName: "admin"
   };
 
@@ -21,7 +21,11 @@ class AddAdmin extends Component {
     this.setState({
       [e.target.id]: e.target.value
     });
-  };
+  }
+
+  handleCancel = () => {
+    window.location.href = "/admins/";
+  }
 
   myfunc = () => {
     console.log("trnfvndjkcnj");
@@ -34,7 +38,9 @@ class AddAdmin extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
+    this.setState({
+      loading:true
+    })
     let name = this.state.name;
     let email = this.state.email;
     let role = {};
@@ -93,6 +99,9 @@ class AddAdmin extends Component {
         if (data.error) {
           console.log("rrrrrrrrrrrr", data);
           this.myfunc();
+          this.setState({
+            loading:false
+          })
         }
         else {
             this.props.reset(this.state.email)
@@ -100,7 +109,12 @@ class AddAdmin extends Component {
         }
       })
 
-      .catch(err => console.log("sachdeva", err));
+      .catch(err => {
+        console.log("sachdeva", err)
+        this.setState({
+          loading:false
+        })
+      });
   };
   render() {
     const users = [
@@ -180,7 +194,7 @@ class AddAdmin extends Component {
             <br />
             <Form.Group as={Row}>
               <Col sm="2">
-                <Button variant="secondary" size="sm" className={`cancel`}>
+                <Button onClick={this.handleCancel} variant="secondary" size="sm" className={`cancel`}>
                   CANCEL
                 </Button>
               </Col>
@@ -191,7 +205,7 @@ class AddAdmin extends Component {
                   type="submit"
                   className={`create`}
                 >
-                  CREATE
+                  { this.state.loading ? <i className={"fa fa-refresh fa-spin"}></i>:"CREATE"}
                 </Button>
               </Col>
             </Form.Group>

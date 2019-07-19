@@ -10,7 +10,8 @@ class AddEmp extends Component {
         name: "",
         email: "",
         password: "",
-        selectedName: "admin"
+        selectedName: "admin",
+        loading:false
     }
 
     onSelect = (eventKey) => {
@@ -38,7 +39,9 @@ class AddEmp extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-
+        this.setState({
+            loading:true
+        })
         let name = this.state.name;
         let email = this.state.email;
         let role={}
@@ -81,7 +84,8 @@ class AddEmp extends Component {
         // console.log(url);
         fetch(url,{
             headers: {
-                Authorization: "Bearer "+this.props.auth.stsTokenManager.accessToken
+                Authorization: "Bearer "+this.props.auth.stsTokenManager.accessToken,
+                "Content-Type":"application/json"
             },
             method: 'POST',
             body: JSON.stringify(dataObj)
@@ -92,8 +96,13 @@ class AddEmp extends Component {
                 console.log("anurag",data.error);
                 // window.location.reload(false);
                 if(data.error){
-                    console.log("rrrrrrrrrrrr")
+                    console.log("errrrrrrrrrrror")
                     this.myfunc();
+                    this.setState({
+                        loading:false,
+                        name:"",
+                        email:""
+                    })
                 }
                 else {
                     window.location.href = "/employees/clients/"+this.props.match.params.cid+"/employees/";
@@ -128,7 +137,7 @@ class AddEmp extends Component {
                                 Name
                             </Form.Label>
                             <Col sm="4">
-                                <Form.Control id={"name"} type="text" placeholder="" className="userfield" onChange={this.handleChange} />
+                                <Form.Control id={"name"} type="text" placeholder="" className="userfield" onChange={this.handleChange} value={this.state.name} />
                             </Col>
                         </Form.Group>
 
@@ -137,7 +146,7 @@ class AddEmp extends Component {
                                 Email Id
                             </Form.Label>
                             <Col sm="4">
-                                <Form.Control id={"email"} type="email" placeholder="" className="userfield" onChange={this.handleChange} />
+                                <Form.Control id={"email"} type="email" placeholder="" className="userfield" onChange={this.handleChange} value={this.state.email} />
                             </Col>
                         </Form.Group>
 
@@ -145,8 +154,8 @@ class AddEmp extends Component {
                             <Form.Label column sm="2" className="userDetail">
                                 Role
                             </Form.Label>
-                            <Dropdown onSelect={this.onSelect} id="d">
-                                <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                            <Dropdown onSelect={this.onSelect} id="d" style={{ marginLeft: 1.1 + "%" }}>
+                                <Dropdown.Toggle variant="secondary" id="dropdown-basic" style={{ borderRadius: 20 + "px" }}>
                                     {selectedName}
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
@@ -170,7 +179,7 @@ class AddEmp extends Component {
                             </Col>
                             <Col sm="2">
                                 <Button variant="secondary" size="sm" type="submit" className={`create`}>
-                                    CREATE
+                                    { this.state.loading ? <i className={"fa fa-refresh fa-spin"}></i>:"CREATE"}
                                 </Button>
                             </Col>
                         </Form.Group>
