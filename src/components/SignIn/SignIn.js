@@ -21,7 +21,7 @@ class SignIn extends Component {
   };
   componentDidMount() {
     if(this.props.auth.uid) {
-      window.location.href = "/profile/"
+      window.location.href = "/clients/"
     }
     console.log("checked")
   }
@@ -50,7 +50,7 @@ class SignIn extends Component {
               admin: false
             });
           } else {
-            window.location.href = "/profile/";
+            window.location.href = "/clients/";
           }
         })
 
@@ -67,8 +67,7 @@ class SignIn extends Component {
           <div className="App__Aside">
             <h3>WELCOME TO DEXPERT</h3>
             <p className="Para">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem,
-              temporibus?xs
+              One Stop station for your Project Express.
             </p>
           </div>
           <div className="App__Form">

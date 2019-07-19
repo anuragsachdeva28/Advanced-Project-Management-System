@@ -216,6 +216,7 @@
 .status{
     flex-grow: 4;
     width: 23.8vw;
+    cursor: text;
 }
 
 .arrow {
@@ -259,7 +260,7 @@
 
 .strip:hover {
     background: white;
-    opacity: 0.9;
+    /*opacity: 0.9;*/
     /*box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.2);*/
     border: 0;
     -webkit-transform: scale(1.02);
@@ -267,12 +268,16 @@
     -ms-transform: scale(1.02);
     -o-transform: scale(1.02);
     transform: scale(1.02);
+    z-index: 99;
+}
 
+.dropdown-menu{
+    z-index: 1000;
 }
 
 .card:hover  .strip {
     background: white;
-    opacity: 0.9;
+    /*opacity: 0.9;*/
     /*box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.2);*/
     border: 0;
     -webkit-transform: scale(1.02);
@@ -284,7 +289,7 @@
 
 .active  .strip {
     background: white;
-    opacity: 0.9;
+    /*opacity: 0.9;*/
     /*box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.2);*/
     border: 0;
     -webkit-transform: scale(1.02);
@@ -298,7 +303,7 @@
 
 .active .collapsed {
     background: white;
-    opacity: 0.9;
+    /*opacity: 0.9;*/
     transform: scale(1.02);
 }
 
@@ -307,14 +312,14 @@
 .stripContent {
     transition: ease 0.3s;
     height: 0px;
-    opacity: 0;
+    /*opacity: 0;*/
     padding: 1%;
     margin: 0.5%;
     margin-top: 0;
 }
 
 .strip:hover + .stripContent {
-    opacity: 1;
+    /*opacity: 1;*/
     height: auto;
     background: white;
 
@@ -329,7 +334,7 @@
     margin: 1%;
     padding: 1%;
 
-    opacity: 0.9;
+    /*opacity: 0.9;*/
 
 }
 .modal-content {
@@ -393,6 +398,7 @@
 
 .no-border {
     border: 0;
+
     margin: 1%;
 }
 
@@ -470,4 +476,8 @@
     /*font-weight: bold;*/
     color: #6053F5;
     opacity: 0.4;
+}
+
+.menudrop{
+    z-index: 9999;
 }

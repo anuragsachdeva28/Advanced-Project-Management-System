@@ -10,7 +10,7 @@ class Dashboard extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            clients:[]
+
         };
 
     }
@@ -51,6 +51,12 @@ class Dashboard extends Component{
                             <div className="listTab">{ client.name }</div>
                         </NavLink>
                     ) }
+
+                    { !this.state.clients && <div><lines className="shine client_holder_num"></lines>
+                        <lines className="shine client_holder_num"></lines>
+                        <lines className="shine client_holder_num"></lines>
+
+                    </div>}
 
                 </div>
                 

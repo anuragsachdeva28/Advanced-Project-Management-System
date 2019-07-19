@@ -4,7 +4,8 @@ import {connect} from "react-redux";
 
 class AddClient extends Component {
   state = {
-    name:""
+    name:"",
+    loading:false
   }
 
   handleChange = (e) => {
@@ -16,6 +17,9 @@ class AddClient extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     console.log("this is clicked");
+    this.setState({
+      loading:true
+    })
 
     let name = this.state.name;
     let dataObj = {name}
@@ -32,6 +36,17 @@ class AddClient extends Component {
         .then(data => {
 
           console.log("anurag",data);
+          if(!data.error){
+            window.location.href = "/clients"
+          }
+          if(data.error){
+            this.setState({
+              loading:false,
+              name:""
+            })
+            console.log(data.error)
+          }
+
           // window.location.reload(false);
         })
 
@@ -50,7 +65,7 @@ class AddClient extends Component {
                 Client name
               </Form.Label>
               <Col sm="4">
-                <Form.Control id="name" onChange={this.handleChange} type="text" placeholder="" className="field" />
+                <Form.Control id="name" onChange={this.handleChange} type="text" placeholder="" className="field" value={this.state.name} />
               </Col>
             </Form.Group>
 
@@ -77,14 +92,15 @@ class AddClient extends Component {
             </Form.Group>
             <br />
             <Form.Group as={Row}>
-              <Col sm="2">
-                <Button variant="secondary" size="sm" className={`cancel`}>
+              <Col sm="2" >
+                <Button variant="secondary" size="sm" className={`cancel1`}>
                   CANCEL
                 </Button>
               </Col>
               <Col sm="2">
                 <Button type="submit" variant="secondary" size="sm" className={`create`}>
-                  CREATE
+                  { this.state.loading ? <i className={"fa fa-refresh fa-spin"}></i>:"CREATE"}
+
                 </Button>
               </Col>
             </Form.Group>

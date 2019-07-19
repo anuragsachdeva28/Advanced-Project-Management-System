@@ -45,21 +45,24 @@ class AddAdmin extends Component {
         editor: false,
         viewer: true
       };
-    } else if (this.state.selectedName === "editor") {
+    }
+    else if (this.state.selectedName === "editor") {
       role = {
         admin: false,
         manager: false,
         editor: true,
         viewer: true
       };
-    } else if (this.state.selectedName === "manager") {
+    }
+    else if (this.state.selectedName === "manager") {
       role = {
         admin: false,
         manager: true,
         editor: true,
         viewer: true
       };
-    } else {
+    }
+    else {
       role = {
         admin: true,
         manager: true,

@@ -429,3 +429,12 @@ lines {
 .no_proj-img {
     text-align: center;
 }
+
+.client_holder_num {
+    width: 10vw;
+    height: 3vh;
+}
+
+.cancel1 {
+    visibility: hidden;
+}

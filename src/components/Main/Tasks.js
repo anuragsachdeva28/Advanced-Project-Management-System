@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
+import { useState } from 'react';
 import './Tasks.css';
 // import {render} from 'react-dom';
 import {sortableContainer, sortableElement} from 'react-sortable-hoc';
 import arrayMove from 'array-move';
 import Infinite from 'react-infinite';
-import { Accordion, Card, Button } from 'react-bootstrap';
+import {Accordion, Card, Button, Dropdown} from 'react-bootstrap';
 import {  Modal, Form } from 'react-bootstrap';
 import Pic from "../../0.jpeg";
 import Aastha from "../../3.jpeg";
@@ -17,7 +18,16 @@ import NO_Tasks from "../../no_task.png";
 let last;
 
 const SortableItem = sortableElement((props) => {
-    // console.log("watch this",props)
+        const [value, setValue] = useState((props.status.completed)?"Completed":(props.status.finishAndInReview)?"Finished and in Review":(props.status.inProgress)?"In progress":"Not yet Started")
+        // let value = (props.status.notYetStarted)?"Not Yet Started":"Just Added"
+
+    console.log("initial value",value)
+    const status = [
+        { id: 1, name: "Completed" },
+        { id: 2, name: "Finished and in Review" },
+        { id: 3, name: "In progress" },
+        { id: 4, name: "Not yet Started" }
+    ];
     const handleClick = (e) => {
         console.log(document.getElementById(last))
         console.log(document.getElementById(props.sno))
@@ -40,33 +50,129 @@ const SortableItem = sortableElement((props) => {
         // console.log(e)
         last=props.sno;
     }
+
+    const onSelect = eventKey => {
+
+        if(eventKey!==value) {
+            setValue(eventKey)
+
+            const url_task_id= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+props.cid+"/projects/"+props.pid+"/tasks/"+props.id;
+            console.log(url_task_id);
+            console.log("my name is eventKey",eventKey);
+            console.log("myname is value",value)
+            let status = {};
+            if (eventKey === "Not yet Started") {
+                status = {
+                    completed: false,
+                    finishAndInReview: false,
+                    inProgress: false,
+                    notYetStarted: true
+                };
+            }
+            else if (eventKey === "In progress") {
+                status = {
+                    completed: false,
+                    finishAndInReview: false,
+                    inProgress: true,
+                    notYetStarted: true
+                };
+            }
+            else if (eventKey === "Finished and in Review") {
+                status = {
+                    completed: false,
+                    finishAndInReview: true,
+                    inProgress: true,
+                    notYetStarted: true
+                };
+            }
+            else if (eventKey === "Completed") {
+                status = {
+                    completed: true,
+                    finishAndInReview: true,
+                    inProgress: true,
+                    notYetStarted: true
+                };
+            }
+            const dataObj = {
+                "update":{
+                    status
+                }
+            }
+
+            console.log(dataObj,"sending this data");
+
+            fetch(url_task_id,{
+                headers: {
+                    Authorization: "Bearer "+props.token,
+                    "Content-Type":"application/json"
+                },
+                method: 'PUT',
+                body: JSON.stringify(dataObj)
+            })
+                .then(res => res.json())
+                .then(data => {
+
+                    console.log("anurag",data);
+                    window.location.reload();
+                })
+                .catch(err => console.log(err));
+        }
+
+    };
+
+
+
+
     // console.log(document.getElementById(props.sno))
     return <Card className="no-border" id={props.sno}>
-                <Accordion.Toggle as={Card.Header} eventKey={props.sno+" "} onClick={handleClick}>
+
                     <div className="strip stripBorder"  >
                         <div className="num" style={{padding:'1%'}}>{props.sno}</div>
                         <div className="taskname" style={{padding:'1%'}}>{props.taskname}</div>
                         <div className="created" style={{padding:'1%'}}>{ props.created.substring(0,props.created.indexOf('T')) }</div>
                         <div className="estimate" style={{padding:'1%'}}>--------/----/----</div>
-                        <div className="status" style={{padding:'1%'}}>{(props.status.notYetStarted)?"Not Yet Started":"Just Added"}</div>
-                        <div className="arrow" style={{padding:'1%'}}><i className="fa fa-chevron-down" aria-hidden="true"></i> </div>
+                        <div className="status" style={{padding:'1%'}}>
+                            <Dropdown
+                                onSelect={onSelect}
+                                id="d"
+                                style={{ marginLeft: 1.1 + "%" }}
+
+                            >
+                                <Dropdown.Toggle
+                                    variant="secondary"
+                                    id="dropdown-basic"
+                                    style={{ borderRadius: 20 + "px" }}
+                                >
+                                    {value}
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu  >
+                                    {status.map(user => (
+                                        <Dropdown.Item eventKey={user.name} key={user.id}>
+                                            {user.name}
+                                        </Dropdown.Item>
+                                    ))}
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </div>
+                        <Accordion.Toggle as={Card.Text} className="arrow" style={{padding:'1%'}} eventKey={props.sno+" "} onClick={handleClick} ><i className="fa fa-chevron-down" aria-hidden="true"></i></Accordion.Toggle>
+                        {/*<div className="arrow" style={{padding:'1%'}}><i className="fa fa-chevron-down" aria-hidden="true"></i> </div>*/}
                     </div>
-                </Accordion.Toggle>
+
                 <Accordion.Collapse eventKey={props.sno+" "} className="collapsed">
                     <Card.Body className="hidden">{props.body}</Card.Body>
                 </Accordion.Collapse>
             </Card>
 });
 
-const SortableInfiniteList = sortableContainer(({items,open}) => {
-    // console.log(items,"this are items passed");
+const SortableInfiniteList = sortableContainer(({items,open,cid,pid,token}) => {
+    console.log(items,"this are items passed");
     return (
         <Infinite
             containerHeight={400}
             elementHeight={49}
             className="scrolling"
         >
-            {items&&items.map(({priority, height, name, creationTime, estimate, status, description}, index) => (
+            {items&&items.map(({priority, height, name, creationTime, estimate, status, description, id}, index) => (
                 <SortableItem
                     key={`item-${index}`}
                     index={index}
@@ -78,6 +184,10 @@ const SortableInfiniteList = sortableContainer(({items,open}) => {
                     status={status}
                     body={description}
                     open={open}
+                    id={id}
+                    cid={cid}
+                    pid={pid}
+                    token={token}
                 />
             ))}
         </Infinite>
@@ -156,6 +266,9 @@ class Tasks extends Component {
 
 
     }
+
+
+
     componentDidMount() {
         console.log("see props inside componentDidMount", this.props);
         const url_project= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+this.props.match.params.cid+"/projects/"+this.props.match.params.pid;
@@ -284,6 +397,7 @@ class Tasks extends Component {
     }
 
     onSortEnd = ({oldIndex, newIndex}) => {
+        if(oldIndex!==newIndex) {
         let priority = 0;
         this.setState(({items}) => ({
             items: arrayMove(items, oldIndex, newIndex),
@@ -316,6 +430,7 @@ class Tasks extends Component {
                 "priority":priority
             }
         }
+
         fetch(url_task_id,{
             headers: {
                 Authorization: "Bearer "+this.props.auth.stsTokenManager.accessToken,
@@ -332,7 +447,7 @@ class Tasks extends Component {
             })
             .catch(err => console.log(err));
 
-    };
+    }};
 
     handleChange = (e) => {
         this.setState({
@@ -507,7 +622,7 @@ class Tasks extends Component {
                     { items && items.length===0 && <div className={"no_task-div"}><p className={"no_proj"}>No tasks added !!!</p></div>}
 
                     <Accordion>
-                        <SortableInfiniteList items={items} open={open} onSortEnd={this.onSortEnd} />
+                        <SortableInfiniteList items={items} open={open} cid={this.props.match.params.cid} pid={this.props.match.params.pid} token={this.props.auth.stsTokenManager.accessToken} onSortEnd={this.onSortEnd} />
                     </Accordion>
 
 

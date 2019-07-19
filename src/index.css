@@ -4,7 +4,7 @@ body,html {
     padding: 0;
     height:100%;
     width:100%;
-    font-family: Roboto;
+    font-family: 'Nunito Sans', sans-serif;
     overflow: hidden;
 }
 .App,#root{

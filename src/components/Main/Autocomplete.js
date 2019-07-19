@@ -29,6 +29,7 @@ class Autocomplete extends Component {
   };
   addChange = () => {
     const name = document.getElementById("empName").value;
+    if(name!==""){
     let id = "";
     let email= "";
     console.log("see this",name);
@@ -43,7 +44,7 @@ class Autocomplete extends Component {
           }
       })
     this.props.onSelection({name,id,email});
-  };
+  }};
 
   randomId = () =>
     Math.floor((1 + Math.random()) * 0x100000)
