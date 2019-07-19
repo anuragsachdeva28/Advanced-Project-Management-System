@@ -45,6 +45,9 @@
     flex-direction: column;
     cursor: pointer;
 }
+.scrollable-element {
+    scrollbar-width: none;
+}
 
 .listTab:hover {
     background: #FFFFFF;

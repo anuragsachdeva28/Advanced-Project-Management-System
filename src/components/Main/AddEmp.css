@@ -19,8 +19,13 @@
 .new_user{
     padding-left: 2%;
     font-size: 14px;
+    margin: 0;
     font-weight: bold;
 }
+
+
+
+
 
 .addUser_body{
     padding: 5%;
