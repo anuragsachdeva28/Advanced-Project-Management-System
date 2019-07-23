@@ -45,6 +45,14 @@ const SortableItem = sortableElement((props) => {
         last = props.sno;
     }
 
+    const handleEdit = (e) => {
+        let name=props.taskname;
+        let id= props.id;
+        let description = props.body;
+        let status = props.status
+        props.toOpen({ name, id, description, status});
+    }
+
     const onSelect = eventKey => {
 
         console.log(eventKey)
@@ -150,8 +158,9 @@ const SortableItem = sortableElement((props) => {
                     </Dropdown.Menu>
                 </Dropdown>
             </div>
+            <div className="edit" style={{padding:'1%'}} onClick={handleEdit}><i className="fa fa-pencil-square" aria-hidden="true"></i> </div>
             <Accordion.Toggle as={Card.Text} className="arrow" style={{ padding: '1%' }} eventKey={props.sno + " "} onClick={handleClick} ><i className="fa fa-chevron-down" aria-hidden="true"></i></Accordion.Toggle>
-            {/*<div className="arrow" style={{padding:'1%'}}><i className="fa fa-chevron-down" aria-hidden="true"></i> </div>*/}
+
         </div>
 
         <Accordion.Collapse eventKey={props.sno + " "} className="collapsed">
@@ -160,7 +169,7 @@ const SortableItem = sortableElement((props) => {
     </Card>
 });
 
-const SortableInfiniteList = sortableContainer(({ items, open, cid, pid, token }) => {
+const SortableInfiniteList = sortableContainer(({ items, open, cid, pid, token, toOpen }) => {
     console.log(items, "this are items passed");
     return (
         <Infinite
@@ -184,6 +193,7 @@ const SortableInfiniteList = sortableContainer(({ items, open, cid, pid, token }
                     cid={cid}
                     pid={pid}
                     token={token}
+                    toOpen={toOpen}
                 />
             ))}
         </Infinite>
@@ -226,6 +236,27 @@ const modalStyle = function () {
     };
 };
 
+const modalStyle2 = function () {
+    // we use some psuedo random coords so nested modals
+    // don't sit right on top of each other.
+    let top = 20;
+    let left = 25;
+
+    return {
+        position: 'fixed',
+        width: 650,
+        height: 430,
+        zIndex: 1040,
+        top: top + '%',
+        left: left + '%',
+        border: '1px solid #e5e5e5',
+        backgroundColor: 'white',
+        boxShadow: '0 5px 15px rgba(0,0,0,.5)',
+        padding: 0,
+        overflow: 'hidden'
+    };
+};
+
 
 
 
@@ -242,6 +273,7 @@ class Tasks extends Component {
             description: "",
             id: this.props,
             showModal: false,
+            showModal2: false,
 
             project: {
                 name: "",
@@ -259,6 +291,21 @@ class Tasks extends Component {
 
         this.open = () => {
             this.setState({ showModal: true });
+        };
+
+        this.close2 = () => {
+            this.setState({ showModal2: false });
+        };
+
+        this.open2 = (id) => {
+            console.log(id,"ye neeche se aa rha")
+            this.setState({
+                showModal2: true,
+                taskName: id.name,
+                taskDes: id.description,
+                editId: id.id,
+                stat:(id.status.completed) ? "Completed" : (id.status.finishAndInReview) ? "Finished and in Review" : (id.status.inProgress) ? "In progress" : "Not yet Started"
+            });
         };
 
 
@@ -454,6 +501,13 @@ class Tasks extends Component {
         })
     }
 
+    handleTaskChange = (e) => {
+        this.setState({
+            [e.target.id]: e.target.value,
+
+        })
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
         this.setState({
@@ -509,6 +563,75 @@ class Tasks extends Component {
 
     }
 
+    handleEdit = (e) => {
+        e.preventDefault();
+
+        const url_task_id = "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/" + this.props.match.params.cid + "/projects/" + this.props.match.params.pid + "/tasks/" + this.state.editId;
+        console.log(url_task_id);
+
+        // console.log("myname is value", value)
+        let status = {};
+        if (this.state.stat === "Not yet Started") {
+            status = {
+                completed: false,
+                finishAndInReview: false,
+                inProgress: false,
+                notYetStarted: true
+            };
+        }
+        else if (this.state.stat === "In progress") {
+            status = {
+                completed: false,
+                finishAndInReview: false,
+                inProgress: true,
+                notYetStarted: true
+            };
+        }
+        else if (this.state.stat === "Finished and in Review") {
+            status = {
+                completed: false,
+                finishAndInReview: true,
+                inProgress: true,
+                notYetStarted: true
+            };
+        }
+        else if (this.state.stat === "Completed") {
+            status = {
+                completed: true,
+                finishAndInReview: true,
+                inProgress: true,
+                notYetStarted: true
+            };
+        }
+        let name = this.state.taskName;
+        let desc = this.state.taskDes;
+        const dataObj = {
+            "update": {
+                status,
+                "name":name,
+                "description":desc
+            }
+        }
+
+        console.log(dataObj, "sending this data");
+
+        fetch(url_task_id, {
+            headers: {
+                Authorization: "Bearer " + this.props.auth.stsTokenManager.accessToken,
+                "Content-Type": "application/json"
+            },
+            method: 'PUT',
+            body: JSON.stringify(dataObj)
+        })
+            .then(res => res.json())
+            .then(data => {
+
+                console.log("anurag", data);
+                window.location.reload(false);
+            })
+            .catch(err => console.log(err));
+    }
+
     getInitals(stringData) {
         console.log(stringData)
         let strings = stringData.split(" ");
@@ -530,9 +653,9 @@ class Tasks extends Component {
                 <div className="headerTask">
                     <div className="sets">
                         {
-                            this.state.team && this.state.team.map((employee) =>
+                            this.state.team && this.state.team.map((employee, index) =>
                                 // console.log(employee,"this is employee list")
-                                <div className="set">
+                                <div className="set" key={index}>
                                     <div className="profileImg">
                                         <div className="profile" >{this.getInitals(employee.name)} </div>
                                     </div>
@@ -644,8 +767,69 @@ class Tasks extends Component {
                     {items && items.length === 0 && <div className={"no_task-div"}><p className={"no_proj"}>No tasks added !!!</p></div>}
 
                     <Accordion>
-                        <SortableInfiniteList items={items} open={open} cid={this.props.match.params.cid} pid={this.props.match.params.pid} token={this.props.auth.stsTokenManager.accessToken} onSortEnd={this.onSortEnd} />
+                        <SortableInfiniteList items={items} open={open} toOpen={this.open2} cid={this.props.match.params.cid} pid={this.props.match.params.pid} token={this.props.auth.stsTokenManager.accessToken} onSortEnd={this.onSortEnd} />
                     </Accordion>
+
+                    <Modal
+                        onHide={this.close2}
+                        style={modalStyle2()}
+                        aria-labelledby="modal-label"
+                        show={this.state.showModal2}
+                        renderBackdrop={this.renderBackdrop}
+                    >
+                        <div className="modalMain">
+                            <h2 id="modal-label">EDIT TASK</h2>
+                        </div>
+                        <Form onSubmit={this.handleEdit}>
+                            <div className="check">
+                                <Form.Group style={{ float: 'right' }} controlId="formBasicChecbox">
+                                    <Form.Check id="checkbox" type="checkbox" label="mark me urgent" />
+                                </Form.Group>
+                            </div>
+
+
+                            <Form.Group>
+                                <Form.Label className="taskLabel">TASK NAME</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Write here...."
+                                    className="nameField"
+                                    id="taskName"
+                                    value={this.state.taskName}
+                                    onChange={this.handleTaskChange}
+                                />
+                            </Form.Group>
+
+                            <Form.Group>
+                                <Form.Label className="taskLabel">TASK DESCRIPTION</Form.Label>
+                                <Form.Control
+                                    as="textarea"
+                                    placeholder="Write here...."
+                                    className="desField"
+                                    id="taskDes"
+                                    value={this.state.taskDes}
+                                    onChange={this.handleTaskChange}
+                                />
+                            </Form.Group>
+
+                            <Form.Group>
+                                <Form.Label className="taskLabel">STATUS</Form.Label>
+                                <Form.Control id="stat" value={this.state.stat} as="select" onChange={this.handleTaskChange}>
+                                    <option>Not yet Started</option>
+                                    <option>In progress</option>
+                                    <option>Finished and in Review</option>
+                                    <option>Completed</option>
+                                </Form.Control>
+                            </Form.Group>
+
+                            <Form.Group className="createBt">
+                                <Button type="submit" variant="secondary" size="sm" className="taskCreate" >
+                                    {this.state.loading ? <i className={"fa fa-refresh fa-spin"}></i> : "SAVE"}
+                                </Button>
+                            </Form.Group>
+                        </Form>
+
+                    </Modal>
 
 
 

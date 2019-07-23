@@ -446,6 +446,11 @@
     height: 2vh;
 }
 
+.edit {
+    flex-grow: 1;
+    width: 6vw;
+}
+
 .arrow i{
     transition-timing-function: ease;
     transition: 0.2s;
