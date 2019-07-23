@@ -3,6 +3,9 @@ import { useState } from 'react';
 import './Tasks.css';
 // import {render} from 'react-dom';
 import { sortableContainer, sortableElement } from 'react-sortable-hoc';
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 import arrayMove from 'array-move';
 import Infinite from 'react-infinite';
 import { Accordion, Card, Button, Dropdown } from 'react-bootstrap';
@@ -13,16 +16,7 @@ import NO_Tasks from "../../no_task.png";
 let last;
 
 const SortableItem = sortableElement((props) => {
-    const [value, setValue] = useState((props.status.completed) ? "Completed" : (props.status.finishAndInReview) ? "Finished and in Review" : (props.status.inProgress) ? "In progress" : "Not yet Started")
-    // let value = (props.status.notYetStarted)?"Not Yet Started":"Just Added"
 
-    console.log("initial value", value)
-    const status = [
-        { id: 1, name: "Completed" },
-        { id: 2, name: "Finished and in Review" },
-        { id: 3, name: "In progress" },
-        { id: 4, name: "Not yet Started" }
-    ];
     const handleClick = (e) => {
         console.log(document.getElementById(last))
         console.log(document.getElementById(props.sno))
@@ -53,76 +47,7 @@ const SortableItem = sortableElement((props) => {
         props.toOpen({ name, id, description, status});
     }
 
-    const onSelect = eventKey => {
 
-        console.log(eventKey)
-
-        if (eventKey !== value) {
-            setValue(eventKey)
-
-            const url_task_id = "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/" + props.cid + "/projects/" + props.pid + "/tasks/" + props.id;
-            console.log(url_task_id);
-            console.log("my name is eventKey", eventKey);
-            console.log("myname is value", value)
-            let status = {};
-            if (eventKey === "Not yet Started") {
-                status = {
-                    completed: false,
-                    finishAndInReview: false,
-                    inProgress: false,
-                    notYetStarted: true
-                };
-            }
-            else if (eventKey === "In progress") {
-                status = {
-                    completed: false,
-                    finishAndInReview: false,
-                    inProgress: true,
-                    notYetStarted: true
-                };
-            }
-            else if (eventKey === "Finished and in Review") {
-                status = {
-                    completed: false,
-                    finishAndInReview: true,
-                    inProgress: true,
-                    notYetStarted: true
-                };
-            }
-            else if (eventKey === "Completed") {
-                status = {
-                    completed: true,
-                    finishAndInReview: true,
-                    inProgress: true,
-                    notYetStarted: true
-                };
-            }
-            const dataObj = {
-                "update": {
-                    status
-                }
-            }
-
-            console.log(dataObj, "sending this data");
-
-            fetch(url_task_id, {
-                headers: {
-                    Authorization: "Bearer " + props.token,
-                    "Content-Type": "application/json"
-                },
-                method: 'PUT',
-                body: JSON.stringify(dataObj)
-            })
-                .then(res => res.json())
-                .then(data => {
-
-                    console.log("anurag", data);
-                    window.location.reload();
-                })
-                .catch(err => console.log(err));
-        }
-
-    };
 
 
 
@@ -134,30 +59,8 @@ const SortableItem = sortableElement((props) => {
             <div className="num" style={{ padding: '1%' }}>{props.sno}</div>
             <div className="taskname" style={{ padding: '1%' }}>{props.taskname}</div>
             <div className="created" style={{ padding: '1%' }}>{props.created.substring(0, props.created.indexOf('T'))}</div>
-            <div className="estimate" style={{ padding: '1%' }}>--------/----/----</div>
-            <div className="status" style={{ padding: '1%' }}>
-                <Dropdown
-                    onSelect={onSelect}
-                    id="d"
-                    style={{ marginLeft: 1.1 + "%" }}
-
-                >
-                    <Dropdown.Toggle
-                        variant="secondary"
-                        id="dropdown-basic"
-                        style={{ borderRadius: 20 + "px" }}
-                    >
-                        {value}
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu  >
-                        {status.map(user => (
-                            <Dropdown.Item eventKey={user.name} key={user.id}>
-                                {user.name}
-                            </Dropdown.Item>
-                        ))}
-                    </Dropdown.Menu>
-                </Dropdown>
-            </div>
+            <div className="estimate" style={{ padding: '1%' }}>------/---/---</div>
+            <div className="status" style={{ padding: '1%' }}>{(props.status.completed) ? <div className={"completed"}>Completed</div> : (props.status.finishAndInReview) ? <div className={"review"}>Finished and in Review</div> : (props.status.inProgress) ? <div className={"in_progress"}> In progress</div> : <div className={"start"}> Not yet Started</div>}</div>
             <div className="edit" style={{padding:'1%'}} onClick={handleEdit}><i className="fa fa-pencil-square" aria-hidden="true"></i> </div>
             <Accordion.Toggle as={Card.Text} className="arrow" style={{ padding: '1%' }} eventKey={props.sno + " "} onClick={handleClick} ><i className="fa fa-chevron-down" aria-hidden="true"></i></Accordion.Toggle>
 
@@ -281,8 +184,9 @@ class Tasks extends Component {
             },
             team: [],
             open: false,
-            loading: false
-
+            loading: false,
+            editLoading: false,
+            startDate: new Date()
         };
 
         this.close = () => {
@@ -501,6 +405,12 @@ class Tasks extends Component {
         })
     }
 
+    handleDate = (date) => {
+        this.setState({
+            startDate: date
+        });
+    }
+
     handleTaskChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value,
@@ -565,7 +475,9 @@ class Tasks extends Component {
 
     handleEdit = (e) => {
         e.preventDefault();
-
+        this.setState({
+            editLoading:true
+        })
         const url_task_id = "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/" + this.props.match.params.cid + "/projects/" + this.props.match.params.pid + "/tasks/" + this.state.editId;
         console.log(url_task_id);
 
@@ -605,11 +517,13 @@ class Tasks extends Component {
         }
         let name = this.state.taskName;
         let desc = this.state.taskDes;
+        let date = this.state.startDate;
         const dataObj = {
             "update": {
                 status,
                 "name":name,
-                "description":desc
+                "description":desc,
+                "estimatedDate": date
             }
         }
 
@@ -627,7 +541,17 @@ class Tasks extends Component {
             .then(data => {
 
                 console.log("anurag", data);
-                window.location.reload(false);
+                if(data.error){
+                    console.log(data.error,"this is the error coming while editing task")
+                    this.setState({
+                        editLoading:false
+                    })
+                }
+                else {
+                    window.location.reload(false);
+
+                }
+
             })
             .catch(err => console.log(err));
     }
@@ -813,6 +737,19 @@ class Tasks extends Component {
                             </Form.Group>
 
                             <Form.Group>
+                                <Form.Label className="taskLabel">ESTIMATED TIME</Form.Label>
+                                <br/>
+                                <DatePicker
+                                    // dateFormat="yyyy/MM/dd"
+                                    placeholderText="Click to select a date"
+                                    minDate={new Date()}
+                                    selected={this.state.startDate}
+                                    onChange={this.handleDate}
+                                    className={"datePicker"}
+                                />
+                            </Form.Group>
+
+                            <Form.Group>
                                 <Form.Label className="taskLabel">STATUS</Form.Label>
                                 <Form.Control id="stat" value={this.state.stat} as="select" onChange={this.handleTaskChange}>
                                     <option>Not yet Started</option>
@@ -824,7 +761,7 @@ class Tasks extends Component {
 
                             <Form.Group className="createBt">
                                 <Button type="submit" variant="secondary" size="sm" className="taskCreate" >
-                                    {this.state.loading ? <i className={"fa fa-refresh fa-spin"}></i> : "SAVE"}
+                                    {this.state.editLoading ? <i className={"fa fa-refresh fa-spin"}></i> : "SAVE"}
                                 </Button>
                             </Form.Group>
                         </Form>

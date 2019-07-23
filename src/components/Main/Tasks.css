@@ -198,7 +198,7 @@
 
 .taskname {
     flex-grow: 4;
-    width: 29.5vw;
+    width: 22vw;
 }
 
 .estimate {
@@ -216,7 +216,6 @@
 .status{
     flex-grow: 4;
     width: 23.8vw;
-    cursor: text;
 }
 
 .arrow {
@@ -449,6 +448,7 @@
 .edit {
     flex-grow: 1;
     width: 6vw;
+    opacity: 0.54;
 }
 
 .arrow i{
@@ -485,4 +485,24 @@
 
 .menudrop{
     z-index: 9999;
+}
+
+.completed{
+    color: #07CDAC;
+}
+
+.in_progress{
+    color: #6053F5;
+}
+
+.review{
+    color: #FB8937;
+}
+
+.start{
+    color: #F81D1D;
+}
+
+.datePicker {
+    padding: 4px;
 }
