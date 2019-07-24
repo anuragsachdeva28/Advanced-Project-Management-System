@@ -142,13 +142,13 @@ const modalStyle = function () {
 const modalStyle2 = function () {
     // we use some psuedo random coords so nested modals
     // don't sit right on top of each other.
-    let top = 20;
+    let top = 15;
     let left = 25;
 
     return {
         position: 'fixed',
         width: 650,
-        height: 430,
+        height: 500,
         zIndex: 1040,
         top: top + '%',
         left: left + '%',

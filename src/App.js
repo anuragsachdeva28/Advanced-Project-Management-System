@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 import Main from "./components/Main/Main";
 import Sidebar from "./components/Sidebar/Sidebar";
 import SignIn from "./components/SignIn/SignIn";
+import Page404 from "./404Page"
 import Profile from "./components/Profile/Profile";
 import Admin from "./components/Main/Admin";
 import Employee from "./components/Main/Employee";
@@ -19,22 +20,28 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-            <Route exact path="/" render={() => (<Redirect to="/signin" />)} />
+            <Switch>
+                <Route exact path="/" render={() => (<Redirect to="/signin" />)} />
 
-            {/*<Route path="/employees/" component={Sidebar} />*/}
-            <Route path="/clients/" component={Sidebar} />
-            <Route path="/admins/" component={Sidebar} />
+
+
+                {/*<Route path="/employees/" component={Sidebar} />*/}
+                <Route path="/clients/" component={Sidebar} />
+                <Route path="/admins/" component={Sidebar} />
+
+
+                <Route path="/signin/" component={SignIn} />
+
+                <Route path="/profile/" component={Profile} />
+
+                <Route path={"/admins/add/"} component={AddAdmin} />
+
+                <Route path="/employees/" component={EmployeeClient} />
+                <Route component={Page404} />
+
+            </Switch>
             <Route path="/clients/" component={Main} />
-
-            <Route path="/signin/" component={SignIn} />
-
-            <Route path="/profile/" component={Profile} />
             <Route path="/admins/" exact component={Admin} />
-            <Route path={"/admins/add/"} component={AddAdmin} />
-
-            <Route path="/employees/" component={EmployeeClient} />
-
-
         </div>
       </Router>
     );
