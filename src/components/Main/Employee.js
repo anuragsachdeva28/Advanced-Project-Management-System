@@ -75,6 +75,37 @@ class Employee extends Component {
         window.alert("Reset Password link sent");
     }
 
+    deleteEmp = (id) => {
+        console.log(id);
+        const url_emp_id = "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/" + this.props.match.params.cid + "/employees/" + id;
+        console.log(url_emp_id);
+
+
+        fetch(url_emp_id, {
+            headers: {
+                Authorization: "Bearer " + this.props.auth.stsTokenManager.accessToken,
+                "Content-Type": "application/json"
+            },
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+
+                console.log("anurag", data);
+                if(data.error){
+                    console.log(data.error,"this is the error coming while editing task")
+
+                }
+                else {
+                    window.location.reload(false);
+
+                }
+
+            })
+            .catch(err => console.log(err));
+    }
+
+
     componentDidMount() {
         const url_emp= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+this.props.match.params.cid+"/employees/";
         // console.log(url,"cddscsdCds",this.props);
@@ -293,6 +324,7 @@ class Employee extends Component {
                         <div className="role">Role</div>
                         <div className="num"></div>
                         <div className="num"></div>
+                        <div className="num"></div>
                         {/*<div className="status">Status</div>*/}
                         {/*<div className="arrow"></div>*/}
                     </div>}
@@ -331,6 +363,7 @@ class Employee extends Component {
 
                                     <div className="icons" onClick={() => this.open2({editName, editId, editNum, editEmail, editRole})}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></div>
                                     <div className="icons" onClick={() => this.resetPass(employee.email)}><i className="fa fa-key" aria-hidden="true"></i></div>
+                                    <div className="icons" onClick={() => this.deleteEmp(employee.id)}><i className="fa fa-trash" aria-hidden="true"></i></div>
                                 </div>
                             }
 

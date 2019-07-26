@@ -192,6 +192,36 @@ class Admin extends Component {
         .catch(err => console.log(err));
   }
 
+  deleteAdmin = (id) => {
+    console.log(id);
+    const url_admin_id = "https://us-central1-dexpert-admin.cloudfunctions.net/api/admins/" + id;
+    console.log(url_admin_id);
+
+
+    fetch(url_admin_id, {
+      headers: {
+        Authorization: "Bearer " + this.props.auth.stsTokenManager.accessToken,
+        "Content-Type": "application/json"
+      },
+      method: 'DELETE'
+    })
+        .then(res => res.json())
+        .then(data => {
+
+          console.log("anurag", data);
+          if(data.error){
+            console.log(data.error,"this is the error coming while editing task")
+
+          }
+          else {
+            window.location.reload(false);
+
+          }
+
+        })
+        .catch(err => console.log(err));
+  }
+
   render() {
     return (
       <Fragment>
@@ -233,6 +263,7 @@ class Admin extends Component {
                     <div className="role">{(admin.role.admin)?"Admin":(admin.role.manager)?"Manager":(admin.role.editor)?"Editor":"Viewer"}</div>
                     <div className="icons" onClick={() => this.open2({editName, editId, editRole})}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></div>
                     <div className="icons" onClick={() => this.resetPass(admin.email)}><i className="fa fa-key" aria-hidden="true"></i></div>
+                    <div className="icons" onClick={() => this.deleteAdmin(admin.id)}><i className="fa fa-trash" aria-hidden="true"></i></div>
                   </div>
                 }
 

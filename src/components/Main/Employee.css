@@ -69,7 +69,7 @@
 }
 .icons {
     flex-grow: 1;
-    width: 3vw;
+    /*width: 3vw;*/
     opacity: 0.54;
     cursor: pointer;
 }
