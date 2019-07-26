@@ -105,7 +105,7 @@ class AddAdmin extends Component {
         }
         else {
             this.props.reset(this.state.email)
-            // window.location.href = "/admins/";
+            window.location.href = "/admins/";
         }
       })
 

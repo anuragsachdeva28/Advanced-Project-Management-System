@@ -34,7 +34,7 @@ class App extends Component {
 
                 <Route path="/profile/" component={Profile} />
 
-                <Route path={"/admins/add/"} component={AddAdmin} />
+
 
                 <Route path="/employees/" component={EmployeeClient} />
                 <Route component={Page404} />
@@ -42,6 +42,7 @@ class App extends Component {
             </Switch>
             <Route path="/clients/" component={Main} />
             <Route path="/admins/" exact component={Admin} />
+            <Route path={"/admins/add/"} component={AddAdmin} />
         </div>
       </Router>
     );

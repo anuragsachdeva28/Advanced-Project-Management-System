@@ -67,6 +67,12 @@
     width: 3vw;
     font-weight: bold;
 }
+.icons {
+    flex-grow: 1;
+    width: 3vw;
+    opacity: 0.54;
+    cursor: pointer;
+}
 
 .username {
     flex-grow: 3;
@@ -82,7 +88,7 @@
 
 .email {
     flex-grow: 2;
-    width: 20vw;
+    width: 15vw;
     opacity: 0.54;
     overflow-x: hidden;
 }

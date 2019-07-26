@@ -21,7 +21,7 @@ const authReducer =(state=initialState,action) => {
             }
         case 'RESET_PASSWORD':
             console.log("password link sent");
-            window.location.href= "/admins/";
+            // window.location.href= "/admins/";
             return {
                 state
             }

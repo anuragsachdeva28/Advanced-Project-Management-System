@@ -3,6 +3,7 @@ import './AddEmp.css';
 import {Button, Col, Form, Row, Dropdown, MenuItem} from "react-bootstrap";
 import {connect} from "react-redux";
 import { Redirect } from "react-router-dom";
+import {reset} from "../../actions/authActions";
 
 
 class AddEmp extends Component {
@@ -105,6 +106,7 @@ class AddEmp extends Component {
                     })
                 }
                 else {
+                    this.props.reset(this.state.email)
                     window.location.href = "/employees/clients/"+this.props.match.params.cid+"/employees/";
                 }
             })
@@ -197,4 +199,9 @@ const mapStateToProps = (state) => {
         auth: state.firebase.auth
     }
 }
-export default connect(mapStateToProps)(AddEmp);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        reset: (mail) => dispatch(reset(mail))
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(AddEmp);
