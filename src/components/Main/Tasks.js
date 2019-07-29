@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { useState } from 'react';
+
 import './Tasks.css';
-// import {render} from 'react-dom';
+
 import { sortableContainer, sortableElement } from 'react-sortable-hoc';
 import DatePicker from "react-datepicker";
 
@@ -59,7 +59,7 @@ const SortableItem = sortableElement((props) => {
             <div className="num" style={{ padding: '1%' }}>{props.sno}</div>
             <div className="taskname" style={{ padding: '1%' }}>{props.taskname}</div>
             <div className="created" style={{ padding: '1%' }}>{props.created.substring(0, props.created.indexOf('T'))}</div>
-            <div className="estimate" style={{ padding: '1%' }}>------/---/---</div>
+            <div className="estimate" style={{ padding: '1%' }}>{props.estimate ? props.estimate.substring(0, props.created.indexOf('T')) : "NA"}</div>
             <div className="status" style={{ padding: '1%' }}>{(props.status.completed) ? <div className={"completed"}>Completed</div> : (props.status.finishAndInReview) ? <div className={"review"}>Finished and in Review</div> : (props.status.inProgress) ? <div className={"in_progress"}> In progress</div> : <div className={"start"}> Not yet Started</div>}</div>
             <div className="edit" style={{padding:'1%'}} onClick={handleEdit}><i className="fa fa-pencil-square" aria-hidden="true"></i> </div>
             <Accordion.Toggle as={Card.Text} className="arrow" style={{ padding: '1%' }} eventKey={props.sno + " "} onClick={handleClick} ><i className="fa fa-chevron-down" aria-hidden="true"></i></Accordion.Toggle>
@@ -80,7 +80,7 @@ const SortableInfiniteList = sortableContainer(({ items, open, cid, pid, token, 
             elementHeight={49}
             className="scrolling"
         >
-            {items && items.map(({ priority, height, name, creationTime, estimate, status, description, id }, index) => (
+            {items && items.map(({ priority, height, name, creationTime, estimatedDate, status, description, id }, index) => (
                 <SortableItem
                     key={`item-${index}`}
                     index={index}
@@ -88,7 +88,7 @@ const SortableInfiniteList = sortableContainer(({ items, open, cid, pid, token, 
                     height={height}
                     taskname={name}
                     created={creationTime}
-                    estimate={estimate}
+                    estimate={estimatedDate}
                     status={status}
                     body={description}
                     open={open}
