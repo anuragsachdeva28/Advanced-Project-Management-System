@@ -186,6 +186,7 @@ class Tasks extends Component {
             open: false,
             loading: false,
             editLoading: false,
+            deleteLoader: false,
             startDate: new Date()
         };
 
@@ -471,6 +472,41 @@ class Tasks extends Component {
                 })
             })
 
+    }
+
+    handleDelete = () => {
+        // console.log("ye hai id",id);
+        this.setState({
+            deleteLoader:true
+        })
+        const url_task_id = "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/" + this.props.match.params.cid + "/projects/" + this.props.match.params.pid + "/tasks/" + this.state.editId;
+        console.log(url_task_id);
+
+
+        fetch(url_task_id, {
+            headers: {
+                Authorization: "Bearer " + this.props.auth.stsTokenManager.accessToken,
+                "Content-Type": "application/json"
+            },
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+
+                console.log("anurag", data);
+                if(data.error){
+                    console.log(data.error,"this is the error coming while deleting task")
+                    this.setState({
+                        deleteLoader:false
+                    })
+                }
+                else {
+                    window.location.reload(false);
+
+                }
+
+            })
+            .catch(err => console.log(err));
     }
 
     handleEdit = (e) => {
@@ -760,9 +796,11 @@ class Tasks extends Component {
                             </Form.Group>
 
                             <Form.Group className="createBt">
-                                <Button type="submit" variant="secondary" size="sm" className="taskCreate" >
+                                <p className="taskDelete red" onClick={this.handleDelete}>{ this.state.deleteLoader ? <i className="fa fa-spinner fa-spin" aria-hidden="true"></i> : <span>Delete Task</span>}</p>
+                                <Button type="submit" variant="secondary" size="sm" className="taskEdit" >
                                     {this.state.editLoading ? <i className={"fa fa-refresh fa-spin"}></i> : "SAVE"}
                                 </Button>
+
                             </Form.Group>
                         </Form>
 
