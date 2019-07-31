@@ -22,13 +22,13 @@ const backdropStyle = {
 const modalStyle2 = function () {
   // we use some psuedo random coords so nested modals
   // don't sit right on top of each other.
-  let top = 15;
+  let top = 25;
   let left = 25;
 
   return {
     position: 'fixed',
     width: 650,
-    height: 500,
+    height: 325,
     zIndex: 1040,
     top: top + '%',
     left: left + '%',
@@ -43,7 +43,9 @@ const modalStyle2 = function () {
 class Admin extends Component {
   state = {
     showModal2: false,
+    showModal3: false,
     editLoading: false,
+    deleteLoader: false,
     aT: (this.props.auth.stsTokenManager)?this.props.auth.stsTokenManager.accessToken:""
   }
   myfunc = () => {
@@ -95,11 +97,25 @@ class Admin extends Component {
     });
   }
 
+  close3 = () => {
+
+    this.setState({ showModal3: false });
+  };
+  open3 = (id) => {
+    console.log(id,"ye hain id")
+    this.setState({
+      showModal3: true,
+
+      editId:id
+    });
+  }
+
   resetPass = (mail) => {
     this.props.reset(mail);
     console.log(mail,"this is the mail to which the mail is being send")
     window.alert("Reset Password link sent");
   }
+
   renderBackdrop(props) {
 
     return <div {...props} style={backdropStyle} />;
@@ -193,8 +209,11 @@ class Admin extends Component {
   }
 
   deleteAdmin = (id) => {
+    this.setState({
+      deleteLoader:true
+    })
     console.log(id);
-    const url_admin_id = "https://us-central1-dexpert-admin.cloudfunctions.net/api/admins/" + id;
+    const url_admin_id = "https://us-central1-dexpert-admin.cloudfunctions.net/api/admins/" + this.state.editId;
     console.log(url_admin_id);
 
 
@@ -210,6 +229,10 @@ class Admin extends Component {
 
           console.log("anurag", data);
           if(data.error){
+            this.setState({
+              deleteLoader:false
+            })
+
             console.log(data.error,"this is the error coming while editing task")
 
           }
@@ -263,7 +286,7 @@ class Admin extends Component {
                     <div className="role">{(admin.role.admin)?"Admin":(admin.role.manager)?"Manager":(admin.role.editor)?"Editor":"Viewer"}</div>
                     <div className="icons" onClick={() => this.open2({editName, editId, editRole})}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></div>
                     <div className="icons" onClick={() => this.resetPass(admin.email)}><i className="fa fa-key" aria-hidden="true"></i></div>
-                    <div className="icons" onClick={() => this.deleteAdmin(admin.id)}><i className="fa fa-trash" aria-hidden="true"></i></div>
+                    <div className="icons" onClick={() => this.open3(admin.id)}><i className="fa fa-trash" aria-hidden="true"></i></div>
                   </div>
                 }
 
@@ -279,6 +302,28 @@ class Admin extends Component {
 
             </div>
             <Modal
+                onHide={this.close3}
+
+                aria-labelledby="modal-label"
+                show={this.state.showModal3}
+                renderBackdrop={this.renderBackdrop}
+            >
+              <Modal.Header closeButton>
+                <Modal.Title>Delete Admin</Modal.Title>
+              </Modal.Header>
+
+              <Modal.Body>
+                <p>Are you sure you want to delete ?</p>
+              </Modal.Body>
+
+              <Modal.Footer>
+                { this.state.deleteLoader ? "" : <Button variant="secondary" onClick={this.close3}>Cancel</Button>}
+                <Button variant="danger" onClick={this.deleteAdmin}>
+                  {this.state.deleteLoader ? <i className={"fa fa-refresh fa-spin"}></i> : "Confirm"}
+                </Button>
+              </Modal.Footer>
+            </Modal>
+            <Modal
                 onHide={this.close2}
                 style={modalStyle2()}
                 aria-labelledby="modal-label"
@@ -289,13 +334,6 @@ class Admin extends Component {
                 <h2 id="modal-label">EDIT TASK</h2>
               </div>
               <Form onSubmit={this.handleEdit}>
-                {/*<div className="check">*/}
-                {/*    <Form.Group style={{ float: 'right' }} controlId="formBasicChecbox">*/}
-                {/*        <Form.Check id="checkbox" type="checkbox" label="mark me urgent" />*/}
-                {/*    </Form.Group>*/}
-                {/*</div>*/}
-
-
                 <Form.Group>
                   <Form.Label className="taskLabel">NAME</Form.Label>
                   <Form.Control
@@ -308,19 +346,6 @@ class Admin extends Component {
                   />
                 </Form.Group>
 
-
-
-                {/*<Form.Group>*/}
-                {/*    <Form.Label className="taskLabel">NUMBER</Form.Label>*/}
-                {/*    <Form.Control*/}
-                {/*        type="number"*/}
-                {/*        placeholder="Write here...."*/}
-                {/*        className="desField"*/}
-                {/*        id="empNum"*/}
-                {/*        value={this.state.empNum}*/}
-                {/*        onChange={this.handleEmpChange}*/}
-                {/*    />*/}
-                {/*</Form.Group>*/}
 
                 <Form.Group>
                   <Form.Label className="taskLabel">ROLE</Form.Label>

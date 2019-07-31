@@ -177,6 +177,7 @@ class Tasks extends Component {
             id: this.props,
             showModal: false,
             showModal2: false,
+            showModal3: false,
 
             project: {
                 name: "",
@@ -187,6 +188,7 @@ class Tasks extends Component {
             loading: false,
             editLoading: false,
             deleteLoader: false,
+            deleteLoaderConfirm: false,
             startDate: new Date()
         };
 
@@ -216,7 +218,21 @@ class Tasks extends Component {
 
     }
 
+    close3 = () => {
 
+        this.setState({
+            showModal3: false,
+            deleteLoader:false
+        });
+    };
+    open3 = () => {
+        // console.log(id,"ye hain id")
+        this.setState({
+            showModal3: true,
+            deleteLoader: true
+            // editId:id
+        });
+    }
 
     componentDidMount() {
         console.log("see props inside componentDidMount", this.props);
@@ -477,7 +493,7 @@ class Tasks extends Component {
     handleDelete = () => {
         // console.log("ye hai id",id);
         this.setState({
-            deleteLoader:true
+            deleteLoaderConfirm:true
         })
         const url_task_id = "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/" + this.props.match.params.cid + "/projects/" + this.props.match.params.pid + "/tasks/" + this.state.editId;
         console.log(url_task_id);
@@ -497,7 +513,7 @@ class Tasks extends Component {
                 if(data.error){
                     console.log(data.error,"this is the error coming while deleting task")
                     this.setState({
-                        deleteLoader:false
+                        deleteLoaderConfirm:false
                     })
                 }
                 else {
@@ -729,7 +745,28 @@ class Tasks extends Component {
                     <Accordion>
                         <SortableInfiniteList items={items} open={open} toOpen={this.open2} cid={this.props.match.params.cid} pid={this.props.match.params.pid} token={this.props.auth.stsTokenManager.accessToken} onSortEnd={this.onSortEnd} />
                     </Accordion>
+                    <Modal
+                        onHide={this.close3}
 
+                        aria-labelledby="modal-label"
+                        show={this.state.showModal3}
+                        renderBackdrop={this.renderBackdrop}
+                    >
+                        <Modal.Header closeButton>
+                            <Modal.Title>Delete Task</Modal.Title>
+                        </Modal.Header>
+
+                        <Modal.Body>
+                            <p>Are you sure you want to delete ?</p>
+                        </Modal.Body>
+
+                        <Modal.Footer>
+                            { this.state.deleteLoaderConfirm ? "" : <Button variant="secondary" onClick={this.close3}>Cancel</Button>}
+                            <Button variant="danger" onClick={this.handleDelete}>
+                                {this.state.deleteLoaderConfirm ? <i className={"fa fa-refresh fa-spin"}></i> : "Confirm"}
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
                     <Modal
                         onHide={this.close2}
                         style={modalStyle2()}
@@ -741,11 +778,7 @@ class Tasks extends Component {
                             <h2 id="modal-label">EDIT TASK</h2>
                         </div>
                         <Form onSubmit={this.handleEdit}>
-                            <div className="check">
-                                <Form.Group style={{ float: 'right' }} controlId="formBasicChecbox">
-                                    <Form.Check id="checkbox" type="checkbox" label="mark me urgent" />
-                                </Form.Group>
-                            </div>
+
 
 
                             <Form.Group>
@@ -795,8 +828,8 @@ class Tasks extends Component {
                                 </Form.Control>
                             </Form.Group>
 
-                            <Form.Group className="createBt">
-                                <p className="taskDelete red" onClick={this.handleDelete}>{ this.state.deleteLoader ? <i className="fa fa-spinner fa-spin" aria-hidden="true"></i> : <span>Delete Task</span>}</p>
+                            <Form.Group className="createBt1">
+                                <p className="taskDelete red" onClick={this.open3}>{ this.state.deleteLoader ? <i className="fa fa-spinner fa-spin" aria-hidden="true"></i> : <span>Delete Task</span>}</p>
                                 <Button type="submit" variant="secondary" size="sm" className="taskEdit" >
                                     {this.state.editLoading ? <i className={"fa fa-refresh fa-spin"}></i> : "SAVE"}
                                 </Button>

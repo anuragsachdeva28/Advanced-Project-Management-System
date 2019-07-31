@@ -25,13 +25,13 @@ const backdropStyle = {
 const modalStyle2 = function () {
     // we use some psuedo random coords so nested modals
     // don't sit right on top of each other.
-    let top = 15;
+    let top = 25;
     let left = 25;
 
     return {
         position: 'fixed',
         width: 650,
-        height: 500,
+        height: 325,
         zIndex: 1040,
         top: top + '%',
         left: left + '%',
@@ -49,6 +49,7 @@ class Employee extends Component {
         description:"",
         showModal2: false,
         editLoading: false,
+        deleteLoader:false,
         aT: (this.props.auth.stsTokenManager)?this.props.auth.stsTokenManager.accessToken:""
     }
 
@@ -69,15 +70,31 @@ class Employee extends Component {
         });
     }
 
+    close3 = () => {
+
+        this.setState({ showModal3: false });
+    };
+    open3 = (id) => {
+        console.log(id,"ye hain id")
+        this.setState({
+            showModal3: true,
+
+            editId:id
+        });
+    }
+
     resetPass = (mail) => {
         this.props.reset(mail);
         console.log(mail,"this is the mail to which the mail is being send")
         window.alert("Reset Password link sent");
     }
 
-    deleteEmp = (id) => {
-        console.log(id);
-        const url_emp_id = "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/" + this.props.match.params.cid + "/employees/" + id;
+    deleteEmp = () => {
+        // console.log(id);
+        this.setState({
+            deleteLoader:true
+        })
+        const url_emp_id = "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/" + this.props.match.params.cid + "/employees/" + this.state.editId;
         console.log(url_emp_id);
 
 
@@ -93,7 +110,10 @@ class Employee extends Component {
 
                 console.log("anurag", data);
                 if(data.error){
-                    console.log(data.error,"this is the error coming while editing task")
+                    console.log(data.error,"this is the error coming while editing task");
+                    this.setState({
+                        deleteLoader:false
+                    })
 
                 }
                 else {
@@ -363,7 +383,7 @@ class Employee extends Component {
 
                                     <div className="icons" onClick={() => this.open2({editName, editId, editNum, editEmail, editRole})}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></div>
                                     <div className="icons" onClick={() => this.resetPass(employee.email)}><i className="fa fa-key" aria-hidden="true"></i></div>
-                                    <div className="icons" onClick={() => this.deleteEmp(employee.id)}><i className="fa fa-trash" aria-hidden="true"></i></div>
+                                    <div className="icons" onClick={() => this.open3(employee.id)}><i className="fa fa-trash" aria-hidden="true"></i></div>
                                 </div>
                             }
 
@@ -371,6 +391,30 @@ class Employee extends Component {
                         }
 
                     </div>
+
+                    <Modal
+                        onHide={this.close3}
+
+                        aria-labelledby="modal-label"
+                        show={this.state.showModal3}
+                        renderBackdrop={this.renderBackdrop}
+                    >
+                        <Modal.Header closeButton>
+                            <Modal.Title>Delete Admin</Modal.Title>
+                        </Modal.Header>
+
+                        <Modal.Body>
+                            <p>Are you sure you want to delete ?</p>
+                        </Modal.Body>
+
+                        <Modal.Footer>
+                            { this.state.deleteLoader ? "" : <Button variant="secondary" onClick={this.close3}>Cancel</Button>}
+                            <Button variant="danger" onClick={this.deleteEmp}>
+                                {this.state.deleteLoader ? <i className={"fa fa-refresh fa-spin"}></i> : "Confirm"}
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
+
                     <Modal
                         onHide={this.close2}
                         style={modalStyle2()}
@@ -382,11 +426,6 @@ class Employee extends Component {
                             <h2 id="modal-label">EDIT TASK</h2>
                         </div>
                         <Form onSubmit={this.handleEdit}>
-                            {/*<div className="check">*/}
-                            {/*    <Form.Group style={{ float: 'right' }} controlId="formBasicChecbox">*/}
-                            {/*        <Form.Check id="checkbox" type="checkbox" label="mark me urgent" />*/}
-                            {/*    </Form.Group>*/}
-                            {/*</div>*/}
 
 
                             <Form.Group>
@@ -401,19 +440,6 @@ class Employee extends Component {
                                 />
                             </Form.Group>
 
-
-
-                            {/*<Form.Group>*/}
-                            {/*    <Form.Label className="taskLabel">NUMBER</Form.Label>*/}
-                            {/*    <Form.Control*/}
-                            {/*        type="number"*/}
-                            {/*        placeholder="Write here...."*/}
-                            {/*        className="desField"*/}
-                            {/*        id="empNum"*/}
-                            {/*        value={this.state.empNum}*/}
-                            {/*        onChange={this.handleEmpChange}*/}
-                            {/*    />*/}
-                            {/*</Form.Group>*/}
 
                             <Form.Group>
                                 <Form.Label className="taskLabel">ROLE</Form.Label>
