@@ -20,11 +20,13 @@ export const reset = (email) => {
     return (dispatch, getState, { getFirebase }) => {
         const firebase= getFirebase();
 
-        firebase.auth().sendPasswordResetEmail(email).then(() => {
+        return firebase.auth().sendPasswordResetEmail(email).then((res) => {
             dispatch({ type: 'RESET_PASSWORD'})
+            return res;
         })
     }
 }
+
 
 
 

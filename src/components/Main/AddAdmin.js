@@ -92,7 +92,7 @@ class AddAdmin extends Component {
       body: JSON.stringify(dataObj)
     })
       .then(res => res.json())
-      .then(data => {
+      .then(async data => {
         console.log(data, "see this here");
 
         // window.location.reload(false);
@@ -104,7 +104,7 @@ class AddAdmin extends Component {
           })
         }
         else {
-            this.props.reset(this.state.email)
+            await this.props.reset(this.state.email)
             window.location.href = "/admins/";
         }
       })

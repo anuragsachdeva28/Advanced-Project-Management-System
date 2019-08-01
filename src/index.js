@@ -18,8 +18,10 @@ const store = createStore(rootReducer, {},
         reactReduxFirebase(fbConfig, { attachAuthIsReady:true })
     )
 );
+// console.log(store.firebaseAuthIsReady,"index.js")
 
-store.firebaseAuthIsReady.then( () => {
+store.firebaseAuthIsReady.then( (res) => {
+    console.log(res,"index")
     ReactDOM.render(
         <Provider store={store}>
             <App />

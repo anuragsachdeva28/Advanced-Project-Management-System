@@ -19,12 +19,14 @@ class SignIn extends Component {
       x.className = x.className.replace("show", "");
     }, 5000);
   };
-  componentDidMount() {
+  componentWillMount() {
     if(this.props.auth.uid) {
       window.location.href = "/clients/"
+      console.log("checked")
     }
     console.log("checked")
   }
+
   componentWillReceiveProps(nextProps) {
     console.log("this is next props", nextProps);
     if (nextProps.auth.uid) {
@@ -59,7 +61,7 @@ class SignIn extends Component {
   }
 
   render() {
-    const { auth } = this.props;
+    console.log("xsxsxsd");
     // if (auth.uid && this.state.admin) return <Redirect to={"/profile/"} />;
     return (
       <Fragment>

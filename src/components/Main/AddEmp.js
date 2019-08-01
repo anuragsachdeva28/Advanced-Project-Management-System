@@ -92,7 +92,7 @@ class AddEmp extends Component {
             body: JSON.stringify(dataObj)
         })
             .then(res => res.json())
-            .then(data => {
+            .then(async data => {
 
                 console.log("anurag",data.error);
                 // window.location.reload(false);
@@ -106,7 +106,7 @@ class AddEmp extends Component {
                     })
                 }
                 else {
-                    this.props.reset(this.state.email)
+                    await this.props.reset(this.state.email)
                     window.location.href = "/employees/clients/"+this.props.match.params.cid+"/employees/";
                 }
             })

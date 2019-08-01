@@ -362,7 +362,9 @@ class Tasks extends Component {
     }
 
     onSortEnd = ({ oldIndex, newIndex }) => {
-        if (oldIndex !== newIndex) {
+        console.log(this.state.items[newIndex]);
+        console.log(this.state.items[oldIndex]);
+        if (oldIndex !== newIndex && !this.state.items[oldIndex].status.completed && !this.state.items[newIndex].status.completed ) {
             let priority = 0;
             this.setState(({ items }) => ({
                 items: arrayMove(items, oldIndex, newIndex),
@@ -379,9 +381,9 @@ class Tasks extends Component {
             else if (nextPriority === 0) {
                 priority = prevPriority + 20;
             }
-            console.log("newindex", this.state.items[newIndex - 1], this.state.items[newIndex], this.state.items[newIndex + 1])
+            // console.log("newindex", this.state.items[newIndex - 1], this.state.items[newIndex], this.state.items[newIndex + 1])
 
-            console.log("priority", priority)
+            // console.log("priority", priority)
             this.setState(prevState => {
                 const items = [...prevState.items];
                 items[newIndex] = { ...items[newIndex], priority: priority }
