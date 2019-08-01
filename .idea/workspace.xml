@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf7de8f9-2036-48fc-9747-f1bb111ec11f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/authActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/authActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Main/AddAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main/AddAdmin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Main/AddEmp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main/AddEmp.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Main/Tasks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main/Tasks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SignIn/SignIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SignIn/SignIn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/authReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/authReducer.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,11 +18,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/Main/Tasks.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="366" column="129" selection-start-line="366" selection-start-column="33" selection-end-line="366" selection-end-column="129" />
+            <state relative-caret-position="502">
+              <caret line="612" column="20" selection-start-line="588" selection-start-column="16" selection-end-line="612" selection-end-column="20" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
-                <element signature="n#!!block;n#componentDidMount#0;n#Tasks#0" />
+                <element signature="e#7455#7590#0" />
+                <element signature="e#7655#8067#0" />
                 <element signature="n#!!block;n#componentDidUpdate#0;n#Tasks#0" />
                 <element signature="n#!!block;n#componentWillReceiveProps#0;n#Tasks#0" />
                 <element signature="n#!!block;n#renderBackdrop#0;n#Tasks#0" />
@@ -380,21 +373,22 @@
       <workItem from="1563903479889" duration="6588000" />
       <workItem from="1563944768602" duration="39000000" />
       <workItem from="1564376363786" duration="27604000" />
-      <workItem from="1564636432908" duration="10681000" />
+      <workItem from="1564636432908" duration="14337000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="352470000" />
+    <option name="totallyTimeSpent" value="356126000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1366" height="743" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="npm" order="1" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.18466121" />
+      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.18466121" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="0" visible="true" weight="0.19381107" />
+      <window_info anchor="bottom" id="Terminal" order="0" weight="0.252443" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="2" />
       <window_info anchor="bottom" id="Docker" order="3" show_stripe_button="false" />
@@ -419,17 +413,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Main/Tasks.js</url>
-          <line>657</line>
+          <line>660</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Main/Tasks.js</url>
-          <line>718</line>
+          <line>721</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Main/Tasks.js</url>
-          <line>439</line>
+          <line>442</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
@@ -793,11 +787,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Main/Tasks.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="366" column="129" selection-start-line="366" selection-start-column="33" selection-end-line="366" selection-end-column="129" />
+        <state relative-caret-position="502">
+          <caret line="612" column="20" selection-start-line="588" selection-start-column="16" selection-end-line="612" selection-end-column="20" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
-            <element signature="n#!!block;n#componentDidMount#0;n#Tasks#0" />
+            <element signature="e#7455#7590#0" />
+            <element signature="e#7655#8067#0" />
             <element signature="n#!!block;n#componentDidUpdate#0;n#Tasks#0" />
             <element signature="n#!!block;n#componentWillReceiveProps#0;n#Tasks#0" />
             <element signature="n#!!block;n#renderBackdrop#0;n#Tasks#0" />

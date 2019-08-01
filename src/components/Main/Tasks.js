@@ -40,11 +40,13 @@ const SortableItem = sortableElement((props) => {
     }
 
     const handleEdit = (e) => {
+        console.log("ye hai handleEdit ke ander", props)
         let name=props.taskname;
         let id= props.id;
         let description = props.body;
-        let status = props.status
-        props.toOpen({ name, id, description, status});
+        let status = props.status;
+        let estimate = props.estimate;
+        props.toOpen({ name, id, description, status, estimate});
     }
 
 
@@ -189,7 +191,7 @@ class Tasks extends Component {
             editLoading: false,
             deleteLoader: false,
             deleteLoaderConfirm: false,
-            startDate: new Date()
+            startDate: null
         };
 
         this.close = () => {
@@ -205,12 +207,13 @@ class Tasks extends Component {
         };
 
         this.open2 = (id) => {
-            console.log(id,"ye neeche se aa rha")
+            console.log(id,"ye neeche se aa rha", new Date(id.estimate))
             this.setState({
                 showModal2: true,
                 taskName: id.name,
                 taskDes: id.description,
                 editId: id.id,
+                startDate: id.estimate ? new Date(id.estimate) : null,
                 stat:(id.status.completed) ? "Completed" : (id.status.finishAndInReview) ? "Finished and in Review" : (id.status.inProgress) ? "In progress" : "Not yet Started"
             });
         };
@@ -811,7 +814,7 @@ class Tasks extends Component {
                                 <Form.Label className="taskLabel">ESTIMATED TIME</Form.Label>
                                 <br/>
                                 <DatePicker
-                                    // dateFormat="yyyy/MM/dd"
+                                    dateFormat="yyyy/MM/dd"
                                     placeholderText="Click to select a date"
                                     minDate={new Date()}
                                     selected={this.state.startDate}
