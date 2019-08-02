@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf7de8f9-2036-48fc-9747-f1bb111ec11f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Sidebar/Icon/Icon.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sidebar/Icon/Icon.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Sidebar/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sidebar/Sidebar.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -20,8 +18,9 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Main/Tasks.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="307" column="22" lean-forward="true" selection-start-line="302" selection-start-column="25" selection-end-line="307" selection-end-column="22" />
+            <state relative-caret-position="268">
+              <caret line="72" column="29" lean-forward="true" selection-start-line="72" selection-start-column="29" selection-end-line="72" selection-end-column="29" />
+              <caret line="74" column="3" lean-forward="true" selection-start-line="74" selection-start-column="3" selection-end-line="74" selection-end-column="3" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
                 <element signature="e#7455#7590#0" />
@@ -46,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/Sidebar/Sidebar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="38" column="97" selection-start-line="38" selection-start-column="97" selection-end-line="38" selection-end-column="97" />
+            <state relative-caret-position="175">
+              <caret line="25" column="25" lean-forward="true" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -58,7 +57,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Sidebar/Icon/Icon.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
@@ -151,7 +150,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>bodyT</find>
       <find>set</find>
       <find>addT</find>
       <find>email</find>
@@ -181,6 +179,7 @@
       <find>str</find>
       <find>modalS</find>
       <find>delete</find>
+      <find>&lt;i</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -213,8 +212,6 @@
         <option value="$PROJECT_DIR$/src/components/Dashboard/Dashboard.js" />
         <option value="$PROJECT_DIR$/src/components/Dashboard/Dashboard_2.js" />
         <option value="$PROJECT_DIR$/src/components/Main/Tasks.css" />
-        <option value="$PROJECT_DIR$/src/components/Main/Admin.js" />
-        <option value="$PROJECT_DIR$/src/components/Main/Employee.js" />
         <option value="$PROJECT_DIR$/src/components/Main/AddEmp.js" />
         <option value="$PROJECT_DIR$/src/actions/authActions.js" />
         <option value="$PROJECT_DIR$/src/reducers/authReducer.js" />
@@ -222,12 +219,14 @@
         <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/components/SignIn/SignIn.js" />
-        <option value="$PROJECT_DIR$/src/components/Main/Tasks.js" />
         <option value="$PROJECT_DIR$/src/components/Main/Main.css" />
         <option value="$PROJECT_DIR$/src/components/Main/Autocomplete.js" />
         <option value="$PROJECT_DIR$/src/components/Main/Projects.js" />
-        <option value="$PROJECT_DIR$/src/components/Sidebar/Sidebar.js" />
         <option value="$PROJECT_DIR$/src/components/Sidebar/Icon/Icon.js" />
+        <option value="$PROJECT_DIR$/src/components/Main/Tasks.js" />
+        <option value="$PROJECT_DIR$/src/components/Main/Employee.js" />
+        <option value="$PROJECT_DIR$/src/components/Main/Admin.js" />
+        <option value="$PROJECT_DIR$/src/components/Sidebar/Sidebar.js" />
       </list>
     </option>
   </component>
@@ -372,12 +371,12 @@
       <workItem from="1563903479889" duration="6588000" />
       <workItem from="1563944768602" duration="39000000" />
       <workItem from="1564376363786" duration="27604000" />
-      <workItem from="1564636432908" duration="21917000" />
+      <workItem from="1564636432908" duration="22715000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="363706000" />
+    <option name="totallyTimeSpent" value="364504000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1366" height="743" extended-state="6" />
@@ -727,21 +726,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Main/Tasks.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="307" column="22" lean-forward="true" selection-start-line="302" selection-start-column="25" selection-end-line="307" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-            <element signature="e#7455#7590#0" />
-            <element signature="e#7655#8067#0" />
-            <element signature="n#!!block;n#componentDidUpdate#0;n#Tasks#0" />
-            <element signature="n#!!block;n#renderBackdrop#0;n#Tasks#0" />
-            <element signature="n#!!block;n#getInitals#0;n#Tasks#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Main/AddProject.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="274">
@@ -779,20 +763,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Sidebar/Sidebar.js">
+    <entry file="file://$PROJECT_DIR$/src/components/Sidebar/Icon/Icon.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="38" column="97" selection-start-line="38" selection-start-column="97" selection-end-line="38" selection-end-column="97" />
+        <state relative-caret-position="270">
+          <caret line="18" column="65" selection-start-line="18" selection-start-column="65" selection-end-line="18" selection-end-column="65" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Sidebar/Icon/Icon.js">
+    <entry file="file://$PROJECT_DIR$/src/components/Main/Tasks.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="65" selection-start-line="18" selection-start-column="65" selection-end-line="18" selection-end-column="65" />
+        <state relative-caret-position="268">
+          <caret line="72" column="29" lean-forward="true" selection-start-line="72" selection-start-column="29" selection-end-line="72" selection-end-column="29" />
+          <caret line="74" column="3" lean-forward="true" selection-start-line="74" selection-start-column="3" selection-end-line="74" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#7455#7590#0" />
+            <element signature="e#7655#8067#0" />
+            <element signature="n#!!block;n#componentDidUpdate#0;n#Tasks#0" />
+            <element signature="n#!!block;n#renderBackdrop#0;n#Tasks#0" />
+            <element signature="n#!!block;n#getInitals#0;n#Tasks#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Sidebar/Sidebar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="25" column="25" lean-forward="true" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>

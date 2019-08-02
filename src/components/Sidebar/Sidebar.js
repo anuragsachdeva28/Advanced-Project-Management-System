@@ -18,7 +18,7 @@ class Sidebar extends Component{
                     icon="fa-folder-open"
                     // onActive="fa-close"
                     // Activate={this.Activate} 
-                    title="Projects"
+                    title="Dexperts"
                     // active={this.state.active}
                      />
                 </Link>
