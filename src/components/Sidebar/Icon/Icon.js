@@ -9,13 +9,14 @@ class Icon extends Component {
     render() {
         // let closeIcon = this.props.onActive || this.props.icon;
         let showIcon = this.props.icon;
+        let title = this.props.title;
         // let listener = this.props.Activate ? {
         //     onClick: this.props.Activate
         // } : {};
         return (
             <div className="icon-component" >
                 <div className = "icon">
-                    <i className={"fa " + showIcon}></i>
+                    <i className={"fa " + showIcon} title={title}></i>
                 </div>
                 
             </div>

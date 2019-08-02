@@ -18,35 +18,25 @@ class Sidebar extends Component{
                     icon="fa-folder-open"
                     // onActive="fa-close"
                     // Activate={this.Activate} 
-                    title=""
+                    title="Projects"
                     // active={this.state.active}
                      />
                 </Link>
                 <Link to={"/employees/clients/"}>
                     <Icon
                     icon="fa-user"
-                    title="Profile" 
+                    title="Employees"
                     // active={this.state.active}
                     />
                 </Link>
                 <Link to={"/admins/"}>
                     <Icon
                     icon="fa-user-secret"
-                    title="Profile"
+                    title="Admin"
                     // active={this.state.active}
                     />
                 </Link>
-                <Link to={"/profile/"} > <img className="pic" src={Pic} alt="logo" /></Link>
-                {/*<Icon*/}
-                    {/*icon="fa-cog"*/}
-                    {/*title="Editor"*/}
-                    {/*// active={this.state.active}*/}
-                    {/*/>*/}
-                {/*<Icon*/}
-                    {/*icon="fa-info"*/}
-                    {/*title="About"*/}
-                    {/*// active={this.state.active}*/}
-                    {/*/>*/}
+                <Link to={"/profile/"} > <img className="pic" src={Pic} alt="logo" title="Profile" /></Link>
             </div>
         )
     }

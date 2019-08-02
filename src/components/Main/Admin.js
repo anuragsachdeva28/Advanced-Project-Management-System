@@ -284,9 +284,9 @@ class Admin extends Component {
                     <div className="username">{admin.name} </div>
                     <div className="email">{admin.email}</div>
                     <div className="role">{(admin.role.admin)?"Admin":(admin.role.manager)?"Manager":(admin.role.editor)?"Editor":"Viewer"}</div>
-                    <div className="icons" onClick={() => this.open2({editName, editId, editRole})}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></div>
-                    <div className="icons" onClick={() => this.resetPass(admin.email)}><i className="fa fa-key" aria-hidden="true"></i></div>
-                    <div className="icons" onClick={() => this.open3(admin.id)}><i className="fa fa-trash" aria-hidden="true"></i></div>
+                    <div className="icons" onClick={() => this.open2({editName, editId, editRole})}><i className="fa fa-pencil-square-o" aria-hidden="true" title="Edit"></i></div>
+                    <div className="icons" onClick={() => this.resetPass(admin.email)}><i className="fa fa-key" aria-hidden="true" title="Reset Password"></i></div>
+                    <div className="icons" onClick={() => this.open3(admin.id)}><i className="fa fa-trash" aria-hidden="true" title="Delete"></i></div>
                   </div>
                 }
 

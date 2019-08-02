@@ -381,9 +381,9 @@ class Employee extends Component {
                                     <div className="email">{ employee.email }</div>
                                     <div className="role">{ (employee.role.admin)? "Admin" : (employee.role.manager)? "Manager" : (employee.role.editor)? "Editor" : "Viewer" }</div>
 
-                                    <div className="icons" onClick={() => this.open2({editName, editId, editNum, editEmail, editRole})}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></div>
-                                    <div className="icons" onClick={() => this.resetPass(employee.email)}><i className="fa fa-key" aria-hidden="true"></i></div>
-                                    <div className="icons" onClick={() => this.open3(employee.id)}><i className="fa fa-trash" aria-hidden="true"></i></div>
+                                    <div className="icons" onClick={() => this.open2({editName, editId, editNum, editEmail, editRole})}><i className="fa fa-pencil-square-o" aria-hidden="true" title="Edit"></i></div>
+                                    <div className="icons" onClick={() => this.resetPass(employee.email)}><i className="fa fa-key" aria-hidden="true" title="Reset Password"></i></div>
+                                    <div className="icons" onClick={() => this.open3(employee.id)}><i className="fa fa-trash" aria-hidden="true" title="Delete"></i></div>
                                 </div>
                             }
 
