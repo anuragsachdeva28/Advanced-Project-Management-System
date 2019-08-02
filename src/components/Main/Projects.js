@@ -32,6 +32,9 @@ class Projects extends Component {
             .catch(err => console.log(err))
     }
     componentWillReceiveProps(nextProps) {
+        this.setState({
+            projects:null
+        });
         const url= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+nextProps.match.params.cid+"/projects/";
         // console.log(url);
         fetch(url,{
@@ -59,7 +62,7 @@ class Projects extends Component {
             <div className="projAside">
                 <div className="projHeader">
                     <div className="projHeaderName">
-                        <h5 className="projList">PROJECT</h5>
+                        <h5 className="projList">DEXPERT</h5>
                     </div>
                     <div className="addIcon">
                         <Link to={"/clients/"+this.props.match.params.cid+"/projects/add/"} >

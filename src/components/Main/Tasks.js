@@ -300,7 +300,12 @@ class Tasks extends Component {
 
     componentWillReceiveProps(nextProps, nextContext) {
         this.setState({
-            id: nextProps
+            id: nextProps,
+            project: {
+                name:"",
+                description:""
+            },
+            items:null
         })
         console.log(nextProps, "cdcdscdvfdgewdS")
         console.log(nextContext, "cdcdscdvfdgewdS")

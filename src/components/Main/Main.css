@@ -441,3 +441,8 @@ lines {
 .cancel1 {
     visibility: hidden;
 }
+
+
+.alignment {
+    margin-left:0;
+}

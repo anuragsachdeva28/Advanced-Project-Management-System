@@ -73,10 +73,10 @@ class Autocomplete extends Component {
             </option>
           ))}
         </datalist>
-        <Form.Group as={Row}>
+        <Form.Group as={Row} className={"alignment"}>
           <Form.Control
             type="text"
-            placeholder="Add members"
+            placeholder="Add monitors"
             className="addMember"
             list={"data-list"}
             id={"empName"}
