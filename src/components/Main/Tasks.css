@@ -166,9 +166,32 @@
 }
 
 .sets {
-    width: 64vw;
+    /*width: 64vw;*/
     padding-left: 2%;
     display: flex;
+    flex: 1;
+}
+
+.addMonitors {
+    display: flex;
+    /*color: #6053F5;*/
+    /*flex-direction: column;*/
+    /* background: white; */
+    justify-content: center;
+    align-items: center;
+}
+
+.editIconInside {
+    cursor: pointer;
+    background: white;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.64;
 }
 
 .bodyTask {
@@ -342,7 +365,21 @@
     border: 0;
 
 }
-.aaaa{}
+
+.monitorForm{
+    background-color: black;
+}
+
+.monitorHeading{
+    background-color: black;
+    color:white;
+    font-size: 18px;
+}
+
+.bg-black {
+    background-color: black;
+}
+
 .modalMain {
     text-align: center;
 }

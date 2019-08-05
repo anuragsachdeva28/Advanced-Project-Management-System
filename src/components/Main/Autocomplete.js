@@ -69,7 +69,7 @@ class Autocomplete extends Component {
               value={employee.name}
               key={id}
             >
-              {employee.name}
+              {`      ${employee.email}`}
             </option>
           ))}
         </datalist>

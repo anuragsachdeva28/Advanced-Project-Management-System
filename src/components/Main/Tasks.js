@@ -12,6 +12,8 @@ import { Accordion, Card, Button, Dropdown } from 'react-bootstrap';
 import { Modal, Form } from 'react-bootstrap';
 import { connect } from "react-redux";
 import NO_Tasks from "../../no_task.png";
+import {Link} from "react-router-dom";
+import Autocomplete from "./Autocomplete";
 
 let last;
 
@@ -162,6 +164,27 @@ const modalStyle2 = function () {
     };
 };
 
+const modalStyle4 = function () {
+    // we use some psuedo random coords so nested modals
+    // don't sit right on top of each other.
+    let top = 15;
+    let left = 25;
+
+    return {
+        position: 'fixed',
+        width: 650,
+        height: 500,
+        zIndex: 1040,
+        top: top + '%',
+        left: left + '%',
+        borderRadius: '8px',
+        backgroundColor: 'black',
+        boxShadow: '0 5px 15px rgba(0,0,0,.5)',
+        padding: 0,
+        overflow: 'hidden'
+    };
+};
+
 
 
 
@@ -180,6 +203,7 @@ class Tasks extends Component {
             showModal: false,
             showModal2: false,
             showModal3: false,
+            showModal4: true,
 
             project: {
                 name: "",
@@ -232,6 +256,22 @@ class Tasks extends Component {
         // console.log(id,"ye hain id")
         this.setState({
             showModal3: true,
+            deleteLoader: true
+            // editId:id
+        });
+    }
+
+    close4 = () => {
+
+        this.setState({
+            showModal4: false,
+            deleteLoader:false
+        });
+    };
+    open4 = () => {
+        // console.log(id,"ye hain id")
+        this.setState({
+            showModal4: true,
             deleteLoader: true
             // editId:id
         });
@@ -653,7 +693,14 @@ class Tasks extends Component {
                                 </div>
                             )
                         }
+                        <div className="addMonitors">
+                                <div className="editIconInside" onClick={this.open4}>
+                                    <i className="fa fa-pencil" aria-hidden="true" title="Edit Monitors"></i>
+                                </div>
+                        </div>
                     </div>
+
+
                     {/*uncomment to add search bar*/}
 
 
@@ -666,7 +713,7 @@ class Tasks extends Component {
                     <div className="addButton modal-example">
                         <button onClick={this.open} className="add_task" type="button">
                             {" "}
-                            <span>+</span> Add Task{" "}
+                            <span>+</span>&nbsp;&nbsp; Add Task{" "}
                         </button>
 
                         <Modal
@@ -735,6 +782,7 @@ class Tasks extends Component {
                         <div className="created">Created on</div>
                         <div className="estimate">Estimate Delivery</div>
                         <div className="status">Status</div>
+                        <div className="edit"></div>
                         <div className="arrow"></div>
                     </div>}
                     {console.log(!items)}
@@ -839,13 +887,40 @@ class Tasks extends Component {
                             </Form.Group>
 
                             <Form.Group className="createBt1">
-                                <p className="taskDelete red" onClick={this.open3}>{ this.state.deleteLoader ? <i className="fa fa-spinner fa-spin" aria-hidden="true"></i> : <span>Delete Task</span>}</p>
+                                { this.state.editLoading ? "" : <p className="taskDelete red" onClick={this.open3}>{ this.state.deleteLoader ? <i className="fa fa-spinner fa-spin" aria-hidden="true"></i> : <span>Delete Task</span>}</p>}
                                 <Button type="submit" variant="secondary" size="sm" className="taskEdit" >
                                     {this.state.editLoading ? <i className={"fa fa-refresh fa-spin"}></i> : "SAVE"}
                                 </Button>
 
                             </Form.Group>
                         </Form>
+
+                    </Modal>
+
+
+                    <Modal
+                        onHide={this.close4}
+                        style={modalStyle4()}
+                        aria-labelledby="modal-label"
+                        show={this.state.showModal4}
+                        renderBackdrop={this.renderBackdrop}
+                    >
+                        <div className="monitorHeading">
+                            <h5 id="modal-label">Add New Monitors</h5>
+                        </div>
+
+                        <Autocomplete
+                            options={this.state.employees}
+                            onSelection={this.setSelection}
+                        />
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <div className="monitorHeading">
+                            <h5 id="modal-label">Current Monitors</h5>
+                        </div>
+
 
                     </Modal>
 
