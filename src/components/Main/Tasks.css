@@ -144,6 +144,49 @@
     border: 3px solid white;
 }
 
+.monitor-list {
+    overflow-y: auto;
+}
+
+.monitor {
+    margin: 2% 0;
+    display: flex;
+    padding: 1.5% 4%;
+    color: white;
+    flex-wrap: nowrap;
+    background: #1F1F1F;
+    box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+
+}
+
+.monitorImg {
+    flex:1;
+    width: 5vw;
+}
+.monitorName{
+    flex:3;
+    width: 5vw;
+
+}
+.monitorMail {
+    flex:5;
+    width: 10vw;
+}
+
+.monitorImg div {
+    border: 2px solid white;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+}
+
+.vert-align {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .set:hover  .name {
     display: flex;
     opacity: 1;
@@ -363,7 +406,7 @@
 }
 .modal-content {
     border: 0;
-
+    background: repeat;
 }
 
 .monitorForm{

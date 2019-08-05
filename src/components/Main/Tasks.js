@@ -12,8 +12,7 @@ import { Accordion, Card, Button, Dropdown } from 'react-bootstrap';
 import { Modal, Form } from 'react-bootstrap';
 import { connect } from "react-redux";
 import NO_Tasks from "../../no_task.png";
-import {Link} from "react-router-dom";
-import Autocomplete from "./Autocomplete";
+import AddMonitors from "./AddMonitors";
 
 let last;
 
@@ -209,7 +208,7 @@ class Tasks extends Component {
                 name: "",
                 description: ""
             },
-            team: [],
+
             open: false,
             loading: false,
             editLoading: false,
@@ -905,20 +904,41 @@ class Tasks extends Component {
                         show={this.state.showModal4}
                         renderBackdrop={this.renderBackdrop}
                     >
+
                         <div className="monitorHeading">
                             <h5 id="modal-label">Add New Monitors</h5>
                         </div>
 
-                        <Autocomplete
+                        <br/>
+
+                        <AddMonitors
                             options={this.state.employees}
                             onSelection={this.setSelection}
                         />
+
                         <br/>
                         <br/>
-                        <br/>
-                        <br/>
+
                         <div className="monitorHeading">
                             <h5 id="modal-label">Current Monitors</h5>
+                        </div>
+
+                        <br/>
+
+                        <div className="monitor-list">
+                            {
+                                this.state.team && this.state.team.map((employee, index) =>
+                                    // console.log(employee,"this is employee list")
+                                    <div className="monitor" key={index}>
+                                        <div className="profileImg monitorImg">
+                                            <div className="profile">{this.getInitals(employee.name)} </div>
+                                        </div>
+                                        <div className="monitorName vert-align">{employee.name}</div>
+                                        <div className="monitorMail vert-align">{employee.email}</div>
+                                        <i className="fa fa-trash vert-align" ></i>
+                                    </div>
+                                )
+                            }
                         </div>
 
 

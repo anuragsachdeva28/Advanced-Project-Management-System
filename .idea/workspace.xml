@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf7de8f9-2036-48fc-9747-f1bb111ec11f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Main/Autocomplete.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main/Autocomplete.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Main/Main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main/Main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Main/Employee.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main/Employee.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Main/Tasks.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main/Tasks.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Main/Tasks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main/Tasks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,8 +20,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Main/Tasks.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="715" column="54" selection-start-line="715" selection-start-column="54" selection-end-line="715" selection-end-column="54" />
+            <state relative-caret-position="397">
+              <caret line="940" column="29" selection-start-line="940" selection-start-column="29" selection-end-line="940" selection-end-column="29" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
                 <element signature="n#!!block;n#componentDidUpdate#0;n#Tasks#0" />
@@ -38,29 +34,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="92" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/index.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="18" lean-forward="true" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/Main/Tasks.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="375" column="20" selection-start-line="375" selection-start-column="20" selection-end-line="375" selection-end-column="20" />
+            <state relative-caret-position="412">
+              <caret line="147" column="20" selection-start-line="147" selection-start-column="20" selection-end-line="147" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Main/AddMonitors.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-908">
+              <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -68,11 +58,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Main/Autocomplete.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="83" column="12" lean-forward="true" selection-start-line="76" selection-start-column="10" selection-end-line="83" selection-end-column="12" />
+            <state relative-caret-position="165">
+              <caret line="11" column="20" lean-forward="true" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Main/AddMonitors.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="11" selection-start-column="11" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -89,11 +88,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Main/Main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="181" column="27" lean-forward="true" selection-start-line="181" selection-start-column="27" selection-end-line="181" selection-end-column="27" />
+            <state relative-caret-position="-923">
+              <caret line="360" column="47" lean-forward="true" selection-start-line="360" selection-start-column="47" selection-end-line="360" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -103,16 +102,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>tasks</find>
-      <find>snackbar</find>
-      <find>reset</find>
       <find>stripContent</find>
       <find>stripComp</find>
       <find>statu</find>
@@ -125,7 +121,6 @@
       <find>new</find>
       <find>arrow</find>
       <find>stat</find>
-      <find>addIcon</find>
       <find>Client List</find>
       <find>cid</find>
       <find>creat</find>
@@ -139,7 +134,11 @@
       <find>sets</find>
       <find>editI</find>
       <find>moda</find>
+      <find>addIcon</find>
+      <find>modal-c</find>
+      <find>profilr</find>
       <find>add tas</find>
+      <find>addM</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -164,7 +163,6 @@
         <option value="$PROJECT_DIR$/src/components/Main/AddEmp.css" />
         <option value="$PROJECT_DIR$/src/404Page.js" />
         <option value="$PROJECT_DIR$/src/components/Main/Admin.css" />
-        <option value="$PROJECT_DIR$/src/components/Main/Employee.css" />
         <option value="$PROJECT_DIR$/package-lock.json" />
         <option value="$PROJECT_DIR$/src/components/Dashboard/dashboard.css" />
         <option value="$PROJECT_DIR$/src/components/Dashboard/Dashboard.js" />
@@ -182,11 +180,14 @@
         <option value="$PROJECT_DIR$/src/components/Main/Admin.js" />
         <option value="$PROJECT_DIR$/src/components/Sidebar/Sidebar.js" />
         <option value="$PROJECT_DIR$/src/components/Main/Autocomplete.js" />
-        <option value="$PROJECT_DIR$/src/components/Main/Tasks.css" />
-        <option value="$PROJECT_DIR$/src/components/Main/Tasks.js" />
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/src/index.css" />
         <option value="$PROJECT_DIR$/src/components/Main/Main.css" />
+        <option value="$PROJECT_DIR$/src/components/Main/AddMonitors.css" />
+        <option value="$PROJECT_DIR$/src/components/Main/AddMonitors.js" />
+        <option value="$PROJECT_DIR$/src/components/Main/Employee.css" />
+        <option value="$PROJECT_DIR$/src/components/Main/Tasks.js" />
+        <option value="$PROJECT_DIR$/src/components/Main/Tasks.css" />
       </list>
     </option>
   </component>
@@ -331,12 +332,12 @@
       <workItem from="1563944768602" duration="39000000" />
       <workItem from="1564376363786" duration="27604000" />
       <workItem from="1564636432908" duration="25981000" />
-      <workItem from="1564982678562" duration="13770000" />
+      <workItem from="1564982678562" duration="18982000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="381540000" />
+    <option name="totallyTimeSpent" value="386752000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1366" height="743" extended-state="6" />
@@ -371,108 +372,90 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Main/Tasks.js</url>
-          <line>487</line>
+          <line>486</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Main/Tasks.js</url>
-          <line>900</line>
+          <line>899</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Main/Tasks.js</url>
-          <line>901</line>
+          <line>900</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Main/Tasks.js</url>
-          <line>902</line>
+          <line>901</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Main/Tasks.js</url>
-          <line>903</line>
+          <line>902</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Main/Tasks.js</url>
-          <line>904</line>
+          <line>903</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Main/Tasks.js</url>
-          <line>905</line>
+          <line>904</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Main/Tasks.js</url>
-          <line>906</line>
+          <line>905</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Main/Tasks.js</url>
-          <line>907</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/components/Main/Tasks.js</url>
-          <line>908</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/components/Main/Tasks.js</url>
-          <line>909</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/components/Main/Tasks.js</url>
-          <line>200</line>
+          <line>199</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Main/Tasks.js</url>
-          <line>201</line>
+          <line>200</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Main/Tasks.js</url>
-          <line>202</line>
+          <line>201</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Main/Tasks.js</url>
-          <line>203</line>
+          <line>202</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Main/Tasks.js</url>
-          <line>204</line>
+          <line>203</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Main/Tasks.js</url>
-          <line>205</line>
+          <line>204</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Main/Tasks.js</url>
-          <line>207</line>
+          <line>206</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="22" />
         </line-breakpoint>
@@ -617,13 +600,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="74">
           <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Main/Employee.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="73" column="20" lean-forward="true" selection-start-line="73" selection-start-column="20" selection-end-line="73" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -787,49 +763,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Main/Autocomplete.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="83" column="12" lean-forward="true" selection-start-line="76" selection-start-column="10" selection-end-line="83" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Main/Tasks.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="375" column="20" selection-start-line="375" selection-start-column="20" selection-end-line="375" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Main/Tasks.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="715" column="54" selection-start-line="715" selection-start-column="54" selection-end-line="715" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-            <element signature="n#!!block;n#componentDidUpdate#0;n#Tasks#0" />
-            <element signature="n#!!block;n#renderBackdrop#0;n#Tasks#0" />
-            <element signature="n#!!block;n#getInitals#0;n#Tasks#0" />
-            <element signature="e#27408#28440#0" />
-            <element signature="e#28461#32146#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="18" lean-forward="true" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -843,10 +780,73 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="18" lean-forward="true" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Main/Autocomplete.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="20" lean-forward="true" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Main/AddMonitors.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="11" selection-start-column="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Main/Employee.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="123" column="2" selection-start-line="123" selection-start-column="2" selection-end-line="123" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Main/Main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="181" column="27" lean-forward="true" selection-start-line="181" selection-start-column="27" selection-end-line="181" selection-end-column="27" />
+        <state relative-caret-position="-923">
+          <caret line="360" column="47" lean-forward="true" selection-start-line="360" selection-start-column="47" selection-end-line="360" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Main/AddMonitors.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-908">
+          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Main/Tasks.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="940" column="29" selection-start-line="940" selection-start-column="29" selection-end-line="940" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+            <element signature="n#!!block;n#componentDidUpdate#0;n#Tasks#0" />
+            <element signature="n#!!block;n#renderBackdrop#0;n#Tasks#0" />
+            <element signature="n#!!block;n#getInitals#0;n#Tasks#0" />
+            <element signature="e#27408#28440#0" />
+            <element signature="e#28461#32146#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Main/Tasks.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="147" column="20" selection-start-line="147" selection-start-column="20" selection-end-line="147" selection-end-column="20" />
         </state>
       </provider>
     </entry>
