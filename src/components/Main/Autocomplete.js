@@ -16,35 +16,47 @@ class Autocomplete extends Component {
     );
   };
   _onChange = event => {
-      const name = document.getElementById("empName").value;
-      const keys = document.querySelectorAll("#data-list option");
-      // console.log(keys)
-      keys.forEach((key,item)=>{
-          if(key.getAttribute("value").toString().toLowerCase()===name.toString().toLowerCase()) {
-              console.log(key.getAttribute("data-id"))
-              console.log(key.getAttribute("data-email"))
-          }
-      })
+    const name = document.getElementById("empName").value;
+    const keys = document.querySelectorAll("#data-list option");
+    // console.log(keys)
+    keys.forEach((key, item) => {
+      if (
+        key
+          .getAttribute("value")
+          .toString()
+          .toLowerCase() === name.toString().toLowerCase()
+      ) {
+        console.log(key.getAttribute("data-id"));
+        console.log(key.getAttribute("data-email"));
+      }
+    });
     // console.log("aaaaaa",key);
   };
   addChange = () => {
     const name = document.getElementById("empName").value;
-    if(name!==""){
-    let id = "";
-    let email= "";
-    console.log("see this",name);
+    if (name !== "") {
+      let id = "";
+      let email = "";
+      console.log("see this", name);
       const keys = document.querySelectorAll("#data-list option");
       // console.log(keys)
-      keys.forEach((key,item)=>{
-          if(key.getAttribute("value").toString().toLowerCase()===name.toString().toLowerCase()) {
-              console.log(key.getAttribute("data-id"))
-              id=key.getAttribute("data-id");
-              console.log(key.getAttribute("data-email"));
-              email=key.getAttribute("data-email");
-          }
-      })
-    this.props.onSelection({name,id,email});
-  }};
+      keys.forEach((key, item) => {
+        if (
+          key
+            .getAttribute("value")
+            .toString()
+            .toLowerCase() === name.toString().toLowerCase()
+        ) {
+          console.log(key.getAttribute("data-id"));
+          id = key.getAttribute("data-id");
+          console.log(key.getAttribute("data-email"));
+          email = key.getAttribute("data-email");
+        }
+      });
+      this.props.onSelection({ name, id, email });
+      document.getElementById("empName").value = "";
+    }
+  };
 
   randomId = () =>
     Math.floor((1 + Math.random()) * 0x100000)
@@ -53,25 +65,23 @@ class Autocomplete extends Component {
 
   state = { id: this.randomId() };
   render() {
-      // console.log("zzzzzzzzzzzzz",this.props)
+    // console.log("zzzzzzzzzzzzz",this.props)
     return (
       <React.Fragment>
-        <datalist
-          id={"data-list"}
-          onautocomplete={this.selected}
-        >
-          {this.props.options && this.props.options.map((employee, id) => (
-            <option
-              data-id={employee.id}
-              data-name={employee.name}
-              data-email={employee.email}
-              className="opt"
-              value={employee.name}
-              key={id}
-            >
-              {`      ${employee.email}`}
-            </option>
-          ))}
+        <datalist id={"data-list"} onautocomplete={this.selected}>
+          {this.props.options &&
+            this.props.options.map((employee, id) => (
+              <option
+                data-id={employee.id}
+                data-name={employee.name}
+                data-email={employee.email}
+                className="opt"
+                value={employee.name}
+                key={id}
+              >
+                {`      ${employee.email}`}
+              </option>
+            ))}
         </datalist>
         <Form.Group as={Row} className={"alignment"}>
           <Form.Control

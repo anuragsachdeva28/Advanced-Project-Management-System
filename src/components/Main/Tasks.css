@@ -146,6 +146,7 @@
 
 .monitor-list {
     overflow-y: auto;
+    max-height: 28vh;
 }
 
 .monitor {
@@ -159,7 +160,9 @@
     border-radius: 8px;
 
 }
-
+.delete-model .modal-content {
+    background-color: white;
+}
 .monitorImg {
     flex:1;
     width: 5vw;
@@ -169,6 +172,11 @@
     width: 5vw;
 
 }
+
+.deleteEmp{
+    cursor: pointer;
+}
+
 .monitorMail {
     flex:5;
     width: 10vw;

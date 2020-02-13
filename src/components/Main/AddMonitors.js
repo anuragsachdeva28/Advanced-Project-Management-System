@@ -1,32 +1,16 @@
 import React, { Component } from "react";
 import { Button, Form, Row } from "react-bootstrap";
 import "./AddMonitors.css";
-// const DataList = ({ id, options }) => (
-//
-// );
+
+
 class AddMonitors extends Component {
     state = {
-        name: ""
+        name: "",
+        loading:false
     };
 
-    selected = () => {
-        console.log(
-            "qqqqqqqqqqqqqqqqq",
-            document.getElementById("data-list").selectedIndex
-        );
-    };
-    _onChange = event => {
-        const name = document.getElementById("empName").value;
-        const keys = document.querySelectorAll("#data-list option");
-        // console.log(keys)
-        keys.forEach((key,item)=>{
-            if(key.getAttribute("value").toString().toLowerCase()===name.toString().toLowerCase()) {
-                console.log(key.getAttribute("data-id"))
-                console.log(key.getAttribute("data-email"))
-            }
-        })
-        // console.log("aaaaaa",key);
-    };
+
+
     addChange = () => {
         const name = document.getElementById("empName").value;
         if(name!==""){
@@ -43,15 +27,56 @@ class AddMonitors extends Component {
                     email=key.getAttribute("data-email");
                 }
             })
-            this.props.onSelection({name,id,email});
+            // const dataObj = {name,id,email};
+            const dataObj = {
+                "update": {
+                    "team": [{name, id, email}]
+                }
+            }
+            console.log(dataObj);
+
+            this.setState({
+                loading:true
+            })
+
+            const url= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+this.props.cid+"/projects/"+this.props.pid+"/employees/add";
+            console.log(url,"sending put project",this.props);
+            fetch(url,{
+                headers: {
+                    Authorization: "Bearer "+this.props.token,
+                    "Content-Type":"application/json"
+                },
+                method: 'PUT',
+                body: JSON.stringify(dataObj)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById("empName").value="";
+                    console.log("anurag",data);
+                    this.props.addToState({name, id, email})
+                    this.setState({
+                        loading:false
+                    })
+                    if(data.error){
+                        console.log("errrrrrrrrrrror")
+
+
+                    }
+                    else {
+                        // window.location.reload(false);
+                    }
+                })
+
+                .catch(err => {
+                    console.log(err);
+                    this.setState({
+                        loading:false
+                    })
+
+                })
         }};
 
-    randomId = () =>
-        Math.floor((1 + Math.random()) * 0x100000)
-            .toString(16)
-            .substring(0);
 
-    state = { id: this.randomId() };
     render() {
         // console.log("zzzzzzzzzzzzz",this.props)
         return (
@@ -73,7 +98,7 @@ class AddMonitors extends Component {
                         </option>
                     ))}
                 </datalist>
-                <Form.Group as={Row} className={"alignment"}>
+                <Form.Group as={Row} className={"alignment-bt"}>
                     <Form.Control
                         type="text"
                         placeholder="Add monitors"
@@ -82,8 +107,8 @@ class AddMonitors extends Component {
                         id={"empName"}
                         onChange={this._onChange}
                     />
-                    <Button variant="secondary" size="sm" onClick={this.addChange}>
-                        <b>+</b>
+                    <Button className={"add-monitor-bt"} variant="secondary" size="sm" onClick={this.addChange}>
+                        {this.props.fetchEmpLoader ? <i className={"fa fa-spinner fa-spin"}></i> : this.state.loading ? <i className={"fa fa-circle-o-notch fa-spin"}></i> : <b>add</b>}
                     </Button>
                 </Form.Group>
             </React.Fragment>

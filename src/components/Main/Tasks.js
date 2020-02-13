@@ -202,7 +202,8 @@ class Tasks extends Component {
             showModal: false,
             showModal2: false,
             showModal3: false,
-            showModal4: true,
+            showModal4: false,
+            showModal5: false,
 
             project: {
                 name: "",
@@ -214,6 +215,8 @@ class Tasks extends Component {
             editLoading: false,
             deleteLoader: false,
             deleteLoaderConfirm: false,
+            fetchEmpLoader:false,
+            deleteMonitorConfirm:false,
             startDate: null
         };
 
@@ -271,9 +274,52 @@ class Tasks extends Component {
         // console.log(id,"ye hain id")
         this.setState({
             showModal4: true,
-            deleteLoader: true
+            fetchEmpLoader:true
             // editId:id
         });
+        const url_emp= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+this.props.match.params.cid+"/employees/";
+        console.log(url_emp,"sending fetch emp request");
+        fetch(url_emp,{
+            headers: {
+                Authorization: "Bearer "+this.props.auth.stsTokenManager.accessToken
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+
+                // console.log("cdcqqqqqqqqqqqqqqdsc",data);
+                const arr = data.res;
+                this.setState({
+                    monitors:arr,
+                    fetchEmpLoader:false
+                })
+
+
+            })
+
+            .catch(err => console.log(err))
+    }
+
+    close5 = () => {
+
+        this.setState({
+            showModal5: false,
+            deleteLoader:false
+        });
+    };
+    open5 = (id) => {
+        console.log(id,"ye hain id")
+        this.setState({
+            showModal5: true,
+            deleteLoader: true,
+            deleteId:id
+        });
+    }
+
+    addToState = (val) => {
+        this.setState({
+            team:[...this.state.team,val]
+        })
     }
 
     componentDidMount() {
@@ -290,7 +336,7 @@ class Tasks extends Component {
 
                 // console.log("cdcdsc",data);
 
-                // console.log(data.res);
+                console.log(data.res);
                 const arr = data.res.project.team;
                 this.setState({
                     project: {
@@ -344,7 +390,8 @@ class Tasks extends Component {
                 name:"",
                 description:""
             },
-            items:null
+            items:null,
+            team:null
         })
         console.log(nextProps, "cdcdscdvfdgewdS")
         console.log(nextContext, "cdcdscdvfdgewdS")
@@ -572,6 +619,70 @@ class Tasks extends Component {
 
             })
             .catch(err => console.log(err));
+    }
+
+    handleDeleteMonitor = () => {
+        this.setState({
+            deleteMonitorConfirm:true
+        })
+
+        const dataObj = {
+            "update": {
+                "team": [{"id":this.state.deleteId}]
+            }
+        }
+        console.log(dataObj);
+        const url= "https://us-central1-dexpert-admin.cloudfunctions.net/api/clients/"+this.props.match.params.cid+"/projects/"+this.props.match.params.pid+"/employees/remove";
+        console.log(url,"sending put project",this.props);
+        fetch(url,{
+            headers: {
+                Authorization: "Bearer "+this.props.auth.stsTokenManager.accessToken,
+                "Content-Type":"application/json"
+            },
+            method: 'PUT',
+            body: JSON.stringify(dataObj)
+        })
+            .then(res => res.json())
+            .then(data => {
+
+                console.log("anurag",data);
+                if(data.error){
+                    console.log("errrrrrrrrrrror")
+
+                    this.setState({
+                        deleteMonitorConfirm:false
+                    })
+                }
+                else {
+                    // window.location.reload(false);
+                    let array = [...this.state.team];
+                    let index=null;
+                    for(let i=0; i<array.length;i++)
+                    {
+                        if(array[i].id===this.state.deleteId) {
+                            index=i;
+                        }
+                    }
+                    if(index!==null){
+                        array.splice(index,1);
+                        this.setState({
+                            team:array
+                        })
+                    }
+                    this.close5();
+                    this.setState({
+                        deleteMonitorConfirm:false
+                    })
+                }
+            })
+
+            .catch(err => {
+                console.log(err);
+                this.setState({
+                    deleteMonitorConfirm:false
+                })
+
+            })
     }
 
     handleEdit = (e) => {
@@ -912,8 +1023,12 @@ class Tasks extends Component {
                         <br/>
 
                         <AddMonitors
-                            options={this.state.employees}
-                            onSelection={this.setSelection}
+                            options={this.state.monitors}
+                            pid={this.props.match.params.pid}
+                            cid={this.props.match.params.cid}
+                            token={this.props.auth.stsTokenManager.accessToken}
+                            fetchEmpLoader={this.state.fetchEmpLoader}
+                            addToState={this.addToState}
                         />
 
                         <br/>
@@ -935,7 +1050,7 @@ class Tasks extends Component {
                                         </div>
                                         <div className="monitorName vert-align">{employee.name}</div>
                                         <div className="monitorMail vert-align">{employee.email}</div>
-                                        <i className="fa fa-trash vert-align" ></i>
+                                        <i className="fa fa-trash vert-align deleteEmp" title={"Delete"} onClick={() => this.open5(employee.id)}> </i>
                                     </div>
                                 )
                             }
@@ -943,7 +1058,28 @@ class Tasks extends Component {
 
 
                     </Modal>
+                    <Modal
+                        onHide={this.close5}
+                        className={"delete-model"}
+                        aria-labelledby="modal-label"
+                        show={this.state.showModal5}
+                        renderBackdrop={this.renderBackdrop}
+                    >
+                        <Modal.Header closeButton>
+                            <Modal.Title>Delete Monitor</Modal.Title>
+                        </Modal.Header>
 
+                        <Modal.Body>
+                            <p>Are you sure you want to delete ?</p>
+                        </Modal.Body>
+
+                        <Modal.Footer>
+                            { this.state.deleteMonitorConfirm ? "" : <Button variant="secondary" onClick={this.close5}>Cancel</Button>}
+                            <Button variant="danger" onClick={this.handleDeleteMonitor}>
+                                {this.state.deleteMonitorConfirm ? <i className={"fa fa-refresh fa-spin"}></i> : "Confirm"}
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
 
 
 

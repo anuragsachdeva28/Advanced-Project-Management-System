@@ -10,4 +10,16 @@
 
 .addMonitor::placeholder{
     color: #6053F5;
+    opacity: 0.84;
+}
+
+.add-monitor-bt {
+    border-radius: 0;
+    background-color: #6053F5;
+    padding: 0 20px;
+}
+
+.alignment-bt {
+    margin-left:0;
+    flex-wrap: nowrap;
 }

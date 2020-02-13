@@ -322,6 +322,7 @@ input[type="file"] {
 
 .addMember::placeholder{
     color: #6053F5;
+    opacity: 0.84;
 }
 
 [list]::-webkit-calendar-picker-indicator {
